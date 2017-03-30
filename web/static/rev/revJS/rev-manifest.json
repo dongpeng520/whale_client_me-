@@ -1,0 +1,16 @@
+{
+  "static/js/common/common.js": "static/js/common/common-39a3671351.js",
+  "static/js/common/main.js": "static/js/common/main-8314ec33f3.js",
+  "static/js/common/nation.js": "static/js/common/nation-55e9aa6804.js",
+  "static/js/controller.js": "static/js/controller-421e4bb48f.js",
+  "static/js/controller/FAQ.js": "static/js/controller/FAQ-c6a21de5cd.js",
+  "static/js/controller/about.js": "static/js/controller/about-7eb015e44b.js",
+  "static/js/controller/contact.js": "static/js/controller/contact-9f1af4c560.js",
+  "static/js/controller/home.js": "static/js/controller/home-a02c14ab69.js",
+  "static/js/controller/login.js": "static/js/controller/login-59c5d00159.js",
+  "static/js/controller/picture.js": "static/js/controller/picture-726db44f7e.js",
+  "static/js/controller/privacy.js": "static/js/controller/privacy-ff0b6d9cb5.js",
+  "static/js/controller/register.js": "static/js/controller/register-a5765eddc1.js",
+  "static/js/controller/service.js": "static/js/controller/service-415d882be0.js",
+  "static/js/controller/share.js": "static/js/controller/share-321baa0f0b.js"
+}

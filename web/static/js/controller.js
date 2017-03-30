@@ -20,7 +20,7 @@ whaleModule.config(['$routeProvider',function ($routeProvider) {
         redirectTo: '/'
     });
 }]);
-pictureModule.directive('repeatFinish',function(){
+whaleModule.directive('repeatFinish',function(){
     return {
         link: function(scope,element,attr){
             console.log(scope.$index)
@@ -31,7 +31,7 @@ pictureModule.directive('repeatFinish',function(){
         }
     }
 })
-pictureModule.directive('todayMm', ['$rootScope',
+whaleModule.directive('todayMm', ['$rootScope',
     function($rootScope) {
         return {
             restrict: 'EA',
@@ -125,7 +125,7 @@ pictureModule.directive('todayMm', ['$rootScope',
         };
     }
 ]);
-pictureModule.directive('timeMm', ['$rootScope',
+whaleModule.directive('timeMm', ['$rootScope',
     function($rootScope) {
         return {
             restrict: 'EA',
@@ -174,7 +174,7 @@ pictureModule.directive('timeMm', ['$rootScope',
         };
     }
 ]);
-pictureModule.directive('nameLan', ['$rootScope',
+whaleModule.directive('nameLan', ['$rootScope',
     function($rootScope) {
         return {
             restrict: 'EA',
