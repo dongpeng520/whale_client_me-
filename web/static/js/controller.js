@@ -1,8 +1,8 @@
 /**
- * Created by Peter on 16/11/2.
+ * Created by Peter on 17/11/2.
  */
 window.whaleModule = angular.module('whaleModule', ['ngRoute']);
-whaleModule.config(['$routeProvider',function ($routeProvider) {
+whaleModule.config(['$routeProvider','$locationProvider',function ($routeProvider,$locationProvider) {
     $routeProvider.
     when('/', {
         controller: "HomeController",
@@ -19,6 +19,7 @@ whaleModule.config(['$routeProvider',function ($routeProvider) {
     otherwise({
         redirectTo: '/'
     });
+    //$locationProvider.html5Mode(true);
 }]);
 whaleModule.directive('repeatFinish',function(){
     return {
