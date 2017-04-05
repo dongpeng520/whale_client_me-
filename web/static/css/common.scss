@@ -11,6 +11,7 @@ ul li{
 }
 img{
   border: 0;
+  vertical-align: initial;
 }
 .layout{
   width: 1170px;
@@ -27,7 +28,6 @@ img{
   overflow: hidden;
   visibility: hidden;
   transform: rotate(120deg);
-  cursor: pointer;
   .hexagon-in1 {
       overflow: hidden;
       width: 100%;
@@ -40,4 +40,61 @@ img{
           transform: rotate(-60deg);
       }
     }
+}
+
+.modal-header {
+  .close{
+    font-size:24px;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    &:hover{
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+}
+.m150{
+  margin-top:150px;
+}
+.m40{
+  margin-top:40px;
+}
+.m120{
+  margin-top:120px;
+}
+.m100{ margin-top:100px;}
+.m60{ margin-top:60px;}
+.mtop{
+  padding-top:10px;
+  margin-bottom:10px;
+}
+.mtop-btn{
+  margin-top:20px;
+  margin-bottom:10px;
+}
+.mtop-btn .btn-paddings{
+  padding:10px 0;
+  font-size:30px;
+}
+.m-left .row{
+  margin-left:40px;
+  margin-right:40px;
+}
+.form-control-feedback {
+  height: 44px;
+  line-height: 44px;
+}
+#SEND{
+  font-size: 18px;
 }

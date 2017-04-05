@@ -4,21 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5,maximum-scale=1.0, user-scalable=no">
     <title>whale client</title>
+    <link type="text/css" rel="stylesheet" href="static/js/libs/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="static/css/common.css">
     <link type="text/css" rel="stylesheet" href="static/css/global.css">
     <link type="text/css" rel="stylesheet" href="static/css/home.css">
+
     <!--<base href="/">-->
 </head>
 
 <body>
     <ng-view></ng-view>
-    <script type="text/javascript" src="static/js/libs/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="static/js/libs/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="static/js/libs/bootstrap.min.js"></script>
     <script src="static/js/libs/angular.js"></script>
     <script src="static/js/libs/angular-route.js"></script>
     <script src="static/js/common/main.js"></script>
     <script src="static/js/common/common.js"></script>
+    <script src="static/js/common/check.js"></script>
     <script src="static/js/controller.js"></script>
     <script src="static/js/controller/home.js"></script>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog m150">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        请填写并提交以下信息我们将第一时间联系您
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form role="form" method="post" action=""
+                              onsubmit="{return false}">
+                            <div class="row">
+                                <div class="col-md-12 mtop">
+                                    <div class="form-group-lg  has-feedback">
+                                        <input class="form-control" type="text" id="realName"
+                                               name="name" placeholder="姓名">
+										<span class="glyphicon  form-control-feedback"
+                                              id="realNameSpan"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mtop">
+                                    <div class="form-group-lg  has-feedback">
+                                        <input class="form-control" type="text" id="phone"
+                                               name="phone" placeholder="手机号码"> <span
+                                            class="glyphicon form-control-feedback" id="phoneSpan"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mtop">
+                                    <div class="form-group-lg  has-feedback">
+                                        <input class="form-control" type="text" id="YZM"
+                                               name="name" placeholder="验证码"><span
+                                            class="glyphicon form-control-feedback" id="yzmSpan"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mtop">
+                                    <div class="form-group-lg  has-feedback">
+                                        <button class="btn btn-primary btn-block  btn-paddings"
+                                                type="submit" id="SEND">发送验证码
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mtop">
+                                    <div class="form-group-lg has-feedback">
+                                        <input class="form-control" type="text" id="accout"
+                                               name="accout" placeholder="公司名称"> <span
+                                            class="glyphicon  form-control-feedback" id="accoutSpan"></span>
+                                    </div>
+                                </div>
 
+                                <div class="col-md-12 mtop">
+									<span class="form-group-lg"> <select
+                                            class="form-control" id="citySelect">
+                                        <option value="shanghai">上海</option>
+                                        <option value="beijing">北京</option>
+                                        <option value="shenzheng">广东</option>
+                                    </select>
+									</span>
+                                </div>
+                                <div class="col-md-12 mtop">
+                                    <div class="form-group has-feedback">
+                                        <textarea class="form-control" rows="3" placeholder="描述信息"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="alert" id="showDiv"
+                                 class="alert alert-danger text-center col-md-12 hintmc"
+                                 style='display: none'>以上标红的内容格式不正确，请修改后再提交
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mtop-btn">
+                                    <button class="btn btn-primary btn-block  btn-paddings"
+                                            type="submit" id="button_home">提交信息
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
