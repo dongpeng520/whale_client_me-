@@ -24,7 +24,7 @@
     <script src="static/js/common/check.js"></script>
     <script src="static/js/controller.js"></script>
     <script src="static/js/controller/home.js"></script>
-    <script src="static/js/controller/login.js"></script>
+    <script src="static/js/controller/CrawlerApply.js"></script>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog m150">
             <div class="modal-content">
@@ -111,8 +111,30 @@
             </div>
         </div>
     </div>
-    <script type="text/ng-template" id="Login.html">
-        <div>{{login}}</div>
+    <script type="text/ng-template" id="CrawlerApply.html">
+        <div class="Crawler_close"><div class="close">&times;</div></div>
+        <div class="Crawler_title">
+            <img src="static/img/whale.png" alt="">
+            <span>鲸鱼爬虫</span>
+        </div>
+        <div class="contain">
+            <div class="contain1">请选择爬虫应用</div>
+            <div class="contain2">
+                <div class="apply" ng-repeat="dd in data">
+                    <div class="img">
+                        <img ng-if="dd.a1=='a'" ng-src="static/img/going.png" alt="">
+                        <img ng-if="dd.a1=='b'" ng-src="static/img/waiting.png" alt="">
+                        <img ng-if="dd.a1=='c'" ng-src="static/img/end.png" alt="">
+                    </div>
+                    <div class="name">海飞丝</div>
+                    <div class="time">
+                        <p class="time1">启动时间：2017-03-02</p>
+                        <p class="time2">当前状态：<span ng-class="{'aa':dd.a1=='a','as':dd.a1=='b','ad':dd.a1=='c'}">{{dd.state}}</span></p>
+                    </div>
+                    <div class="admin">管理</div>
+                </div>
+            </div>
+        </div>
     </script>
 </body>
 </html>

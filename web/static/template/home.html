@@ -393,8 +393,10 @@
     </div>
 </div>
 
-<div ng-include="'Login.html'" ng-controller="logincontroller"></div>
+<!--选择爬虫应用-->
+<div ng-include="'CrawlerApply.html'" id="Crawler" ng-controller="CrawlerApplycontroller"></div>
 
+<!--登录-->
 <div id="login" ng-if="openflag">
     <div class="contain">
         <div class="close"><span id="loginclosed" ng-click="closedlogin()">&times;</span></div>

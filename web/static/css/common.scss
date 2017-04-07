@@ -17,11 +17,11 @@ img{
   width: 1170px;
   margin: 0 auto;
 }
+
 .hexagon_include{
   width: 100%;
   height: 100%;
 }
-
 .hexagon {
   width: 100%;
   height: 100%;
@@ -97,4 +97,118 @@ img{
 }
 #SEND{
   font-size: 18px;
+}
+
+#Crawler{
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ededed;
+  padding-top: 100px;
+  .Crawler_close{
+    width: 95%;
+    overflow: hidden;
+    clear: both;
+    .close{
+      font-size: 30px;
+    }
+  }
+
+  .Crawler_title{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 70px;
+    img{
+      width: 70px;
+      height: 60px;
+    }
+    span{
+      margin-left: 20px;
+      color: #000;
+      font-size: 44px;
+    }
+  }
+  .contain{
+    width: 1170px;
+    margin: 0 auto;
+    .contain1{
+      text-align: center;
+      font-size: 45px;
+      color: #1085e4;
+      height: 197px;
+      line-height: 197px;
+      background: #fff;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      box-shadow:0px 0px 10px #cde0ee;
+    }
+    .contain2{
+      height: 480px;
+      margin-bottom: 20px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      .apply{
+        height:457px;
+        background: #fff;
+        width: 377px;
+        float: left;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        .img{
+          height: 188px;
+          position: relative;
+          img{
+            display: block;
+            margin: auto;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+          }
+        }
+        .name{
+          width: 282px;
+          margin: 0 auto 50px;
+          font-size: 30px;
+          color: #464646;
+          text-align: center;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .time{
+          width: 145px;
+          margin: 0 auto 30px;
+          color: #464646;
+          font-size: 14px;
+          .time1{
+
+          }
+          .time2{
+            .ad{
+              color: #761c19;
+            }
+            span{
+              color: #60b027;
+            }
+          }
+        }
+        .admin{
+          width: 90px;
+          height: 30px;
+          line-height: 30px;
+          margin: 0 auto;
+          background:#1080e4;
+          font-size: 14px;
+          text-align: center;
+          color: #fff;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }
