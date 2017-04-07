@@ -14,12 +14,12 @@ $("html,body").on("click", function () {
     $("#En div").hide();
 });*/
 var data_clear=13;
-if (!pictureAir.store("data_clear")) {
-    pictureAir.store("data_clear",data_clear)
+if (!whale.store("data_clear")) {
+    whale.store("data_clear",data_clear)
 }else{
-    if(data_clear!=pictureAir.store("data_clear")){
+    if(data_clear!=whale.store("data_clear")){
         localStorage.clear();
-        pictureAir.store("data_clear",data_clear);
+        whale.store("data_clear",data_clear);
         window.history.go(0);
         location.reload()
     }

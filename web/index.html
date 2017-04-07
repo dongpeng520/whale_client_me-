@@ -18,13 +18,13 @@
     <script type="text/javascript" src="static/js/libs/bootstrap.min.js"></script>
     <script src="static/js/libs/angular.js"></script>
     <script src="static/js/libs/angular-route.js"></script>
+    <script src="static/js/libs/md5.js"></script>
     <script src="static/js/common/main.js"></script>
     <script src="static/js/common/common.js"></script>
     <script src="static/js/common/check.js"></script>
     <script src="static/js/controller.js"></script>
     <script src="static/js/controller/home.js"></script>
     <script src="static/js/controller/login.js"></script>
-    <script src="static/js/controller/reser.js"></script>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog m150">
             <div class="modal-content">
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-md-12 mtop">
                                     <div class="form-group has-feedback">
-                                        <textarea class="form-control" rows="3" placeholder="描述信息"></textarea>
+                                        <textarea class="form-control" rows="3" placeholder="描述信息（可选）"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -113,9 +113,6 @@
     </div>
     <script type="text/ng-template" id="Login.html">
         <div>{{login}}</div>
-    </script>
-    <script type="text/ng-template" id="reser.html">
-        <div>{{reser}}</div>
     </script>
 </body>
 </html>

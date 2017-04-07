@@ -3,18 +3,14 @@
  */
 (function (window, document, jQuery) {
     if (typeof window !== "undefined" && typeof document !== "undefined" && typeof jQuery !== "undefined") {
-        var pictureAir = {};
-        // pictureAir.host = "http://192.168.8.107:4001/";
-        // pictureAir.host = "http://211.95.27.37/api/";//api
-        pictureAir.host = "http://api.pictureair.com/api/";//api
-        // pictureAir.http = "http://211.95.27.37/";//图片
-        pictureAir.http = "http://web.pictureair.com/";//图片
-        pictureAir.appId = "6c8c8dc48280ed2163136ad416e1dbfe";
-        pictureAir.email_pat = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+        var whale = {};
+        whale.host = "http://106.39.181.188:8081/account";//api
+        whale.appId = "6c8c8dc48280ed2163136ad416e1dbfe";
+        whale.email_pat = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
         // pictureAir.phone_bat= /(?:\(?[0\+]?\d{1,3}\)?)[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
-        pictureAir.phone_bat= /[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
-        pictureAir.password_bat=/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/;
-        pictureAir.store=function(namespace,data){
+        whale.phone_bat= /[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
+        whale.password_bat=/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,52}$/;
+        whale.store=function(namespace,data){
             if(!!window.localStorage){
                 try {
                     if(arguments.length>1){
@@ -46,7 +42,7 @@
                 return obj;
             }
         }*/
-        pictureAir.removestore = function (arr) {
+        whale.removestore = function (arr) {
             if(!!window.localStorage){
                 try {
                     localStorage.removeItem(arr);
@@ -59,14 +55,14 @@
             }
             // localStorage.removeItem(arr);
         };
-        pictureAir.removestoreall = function (arr) {
+        whale.removestoreall = function (arr) {
             if (arr && arr.length > 0) {
                 for (i = 0; i < arr.length; i++) {
                     localStorage.removeItem(arr[i]);
                 }
             }
         };
-        pictureAir.checkBrowser = function () {
+        whale.checkBrowser = function () {
             var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
             var isOpera = userAgent.indexOf("Opera") > -1;
             if (isOpera) {
@@ -87,10 +83,10 @@
             }
             //判断是否IE浏览器
         };
-        pictureAir.Trim= function (str) {
+        whale.Trim= function (str) {
             return $.trim(str);
         };
-        pictureAir.fstrr = function (str) {
+        whale.fstrr = function (str) {
             if (str !== null) {
                 if (str.indexOf("%") == -1) {
                     return str;
@@ -113,7 +109,7 @@
 
             }
         };
-        window.pictureAir = pictureAir;
+        window.whale = whale;
     }
 
 

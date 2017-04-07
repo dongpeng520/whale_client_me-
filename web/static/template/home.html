@@ -19,9 +19,36 @@
                     <p class="p2">领先的爬虫和大数据定制服务</p>
                 </div>
             </div>
-            <div class="login">
+            <div class="login" ng-click="openlogin()" ng-if="username_flag">
                 <div class="login_img"><img src="static/img/login.png" alt=""></div>
                 <div class="login_name"><a href="">登录</a></div>
+            </div>
+            <div class="username" ng-class="{'user_change':user_change}" ng-if="!username_flag">
+                <div class="username_fun"><a href="">用户中心</a></div>
+                <div class="username_img" ng-mouseleave="usernameenter(false)" ng-mouseenter="usernameenter(true)">
+                    <img src="static/img/user.png" alt="">
+                    <div class="username_xin">
+                        <div class="title">
+                            <div class="img">
+                                <img src="static/img/user.png" alt="">
+                            </div>
+                            <div class="name">
+                                <p class="p1">Trnrjck</p>
+                                <p class="p2">这是你使用鲸鱼的第120天</p>
+                            </div>
+                        </div>
+                        <div class="shuju">
+                            <div class="shuju1 bor mar">爬虫应用数<span>3</span></div>
+                            <div class="shuju1 mar">爬虫应用数<span>3.3G</span></div>
+                            <div class="shuju1 bor">爬虫应用数<span>3</span></div>
+                            <div class="shuju1">爬虫应用数<span>3</span></div>
+                        </div>
+                        <div class="foo">
+                            <div class="foo_user">用户中心</div>
+                            <div class="foo_out">退出</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -365,6 +392,21 @@
         <div class="fot">Copyright © 2017 上海诚数信息科技有限公司版权所有 沪ICP备12010279号</div>
     </div>
 </div>
+
 <div ng-include="'Login.html'" ng-controller="logincontroller"></div>
-<div ng-include="'reser.html'" ng-controller="resercontroller"></div>
+
+<div id="login" ng-if="openflag">
+    <div class="contain">
+        <div class="close"><span id="loginclosed" ng-click="closedlogin()">&times;</span></div>
+        <div class="title">登录</div>
+        <div class="input_name">
+            <input type="text" ng-model="loginInfo.name1" placeholder="邮箱" autofocus="autofocus">
+        </div>
+        <div class="input_password">
+            <input type="password" ng-model="loginInfo.password1" placeholder="密码">
+        </div>
+        <div class="login_error" ng-if="error">{{error_wenzi}}</div>
+        <div class="submit" ng-click="submit()">登录</div>
+    </div>
+</div>
 

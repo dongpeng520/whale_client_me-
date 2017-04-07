@@ -60,14 +60,14 @@ var checkPhone = function(){
     return true;
 }
 var send=function(){
-    if (pictureAir.store("sendtimes")) {
+    if (whale.store("sendtimes")) {
         return false;
     }
     if(checkPhone()){
         var nat=$('#phone').val();
         var resend=$("#SEND");
         var datas = {
-            access_token:pictureAir.store("access_token"),
+            access_token:whale.store("access_token"),
             phone:nat,//8615655566161
             type:0
         };
@@ -85,7 +85,7 @@ var send=function(){
             dataType : 'json',
             success : function(data){
                 if (data.status === 200) {
-                    pictureAir.store("sendtimes", "no");
+                    whale.store("sendtimes", "no");
                     var count = 60;
                     var inter=setInterval(thst,1000)
                     function thst() {
@@ -95,7 +95,7 @@ var send=function(){
                         } else {
                             resend.html("重新发送");
                             clearInterval(inter);
-                            pictureAir.removestore("sendtimes");
+                            whale.removestore("sendtimes");
                         }
                     }
                 }else if(data.status === 425){
@@ -239,7 +239,7 @@ var ajaxForm = function(){
 
 
 $(document).ready(function(){
-    pictureAir.removestore("sendtimes");
+    whale.removestore("sendtimes");
     $("#SEND").on("click", send);
     $('#button_home').click(function () {
         if(checkForm()){
