@@ -44,7 +44,7 @@
                             <div class="shuju1">爬虫应用数<span>3</span></div>
                         </div>
                         <div class="foo">
-                            <div class="foo_user">用户中心</div>
+                            <div class="foo_user" ng-click="Crawler_close()">用户中心</div>
                             <div class="foo_out">退出</div>
                         </div>
                     </div>
@@ -394,7 +394,7 @@
 </div>
 
 <!--选择爬虫应用-->
-<div ng-include="'CrawlerApply.html'" id="Crawler" ng-controller="CrawlerApplycontroller"></div>
+<div ng-include="'CrawlerApply.html'" id="Crawler" ng-controller="CrawlerApplycontroller" ng-if="crawler_close"></div>
 
 <!--登录-->
 <div id="login" ng-if="openflag">

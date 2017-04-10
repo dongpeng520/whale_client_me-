@@ -149,10 +149,13 @@ img{
       margin-bottom: 20px;
       overflow-y: auto;
       overflow-x: hidden;
+      .zeromargin{
+        margin-right: 0px!important;
+      }
       .apply{
         height:457px;
         background: #fff;
-        width: 377px;
+        width: 370px;
         float: left;
         margin-right: 20px;
         margin-bottom: 20px;

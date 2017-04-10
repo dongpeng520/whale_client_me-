@@ -1,7 +1,7 @@
 /**
  * Created by peter.dong on 17/3/28.
  */
-whaleModule.controller("HomeController",["$scope","$window","$http","$interval","$location", function($scope,$window,$http,$interval,$location){
+whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http","$interval","$location", function($scope,$rootScope,$window,$http,$interval,$location){
     $scope.openlogin=function(){
         $scope.openflag=true;
         $("body").css("overflow","hidden");
@@ -53,7 +53,7 @@ whaleModule.controller("HomeController",["$scope","$window","$http","$interval",
         //submit
         var datt={
             username: whale.Trim($scope.loginInfo.name1),
-            password: hex_md5($scope.loginInfo.password1)
+            password: hex_md5(hex_md5($scope.loginInfo.password1))
         }
         $http.post("/account/usercontroller/login",datt).success(function (data) {
             console.log(data);
@@ -68,6 +68,11 @@ whaleModule.controller("HomeController",["$scope","$window","$http","$interval",
     }
     $scope.usernameenter=function(flag){
         $scope.user_change=flag;
+    }
+    $scope.Crawler_close=function(){
+        //$scope.crawler_close=true;
+        $rootScope.crawler_close=true;
+        $("body").css("overflow","hidden");
     }
 
 }])

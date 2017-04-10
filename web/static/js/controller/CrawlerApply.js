@@ -1,7 +1,16 @@
 /**
  * Created by Administrator on 2017/4/6.
  */
-whaleModule.controller("CrawlerApplycontroller",["$scope","$window","$http","$interval","$location", function($scope,$window,$http,$interval,$location){
+whaleModule.controller("CrawlerApplycontroller",["$scope","$rootScope","$window","$http","$interval","$location", function($scope,$rootScope,$window,$http,$interval,$location){
+    $scope.Crawler_close=function(){
+        //$scope.$parent.$parent.crawler_close=false;
+        $rootScope.crawler_close=false;
+        $("body").css({
+            "margin-top" : '0px',
+            "margin-right" : '0px',
+            "overflow" : 'initial'
+        })
+    }
     $scope.data=[
         {
            "a1":"a",
@@ -21,6 +30,5 @@ whaleModule.controller("CrawlerApplycontroller",["$scope","$window","$http","$in
         }
 
     ]
-
 
 }])

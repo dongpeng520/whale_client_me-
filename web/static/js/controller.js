@@ -12,6 +12,22 @@ whaleModule.config(['$routeProvider','$locationProvider',function ($routeProvide
         controller: "PictureController",
         templateUrl: 'static/template/picture.html'
     }).
+    when('/overview',{
+        controller: "OverviewController",
+        templateUrl: 'static/template/overview.html'
+    }).
+    when('/setup',{
+        controller: "SetupController",
+        templateUrl: 'static/template/setup.html'
+    }).
+    when('/history',{
+        controller: "HistoryController",
+        templateUrl: 'static/template/history.html'
+    }).
+    when('/result',{
+        controller: "ResultController",
+        templateUrl: 'static/template/result.html'
+    }).
     when('/h5/contact',{
         controller: "ContactController",
         templateUrl: 'static/template/contact.html'
@@ -21,6 +37,10 @@ whaleModule.config(['$routeProvider','$locationProvider',function ($routeProvide
     });
     //$locationProvider.html5Mode(true);
 }]);
+whaleModule.run(['$rootScope',function($rootScope){
+
+}])
+
 whaleModule.directive('repeatFinish',function(){
     return {
         link: function(scope,element,attr){

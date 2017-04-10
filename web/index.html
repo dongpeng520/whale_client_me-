@@ -24,6 +24,10 @@
     <script src="static/js/common/check.js"></script>
     <script src="static/js/controller.js"></script>
     <script src="static/js/controller/home.js"></script>
+    <script src="static/js/controller/overview.js"></script>
+    <script src="static/js/controller/result.js"></script>
+    <script src="static/js/controller/setup.js"></script>
+    <script src="static/js/controller/history.js"></script>
     <script src="static/js/controller/CrawlerApply.js"></script>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog m150">
@@ -112,7 +116,7 @@
         </div>
     </div>
     <script type="text/ng-template" id="CrawlerApply.html">
-        <div class="Crawler_close"><div class="close">&times;</div></div>
+        <div class="Crawler_close"><div class="close" ng-click="Crawler_close()">&times;</div></div>
         <div class="Crawler_title">
             <img src="static/img/whale.png" alt="">
             <span>鲸鱼爬虫</span>
@@ -120,7 +124,7 @@
         <div class="contain">
             <div class="contain1">请选择爬虫应用</div>
             <div class="contain2">
-                <div class="apply" ng-repeat="dd in data">
+                <div class="apply" ng-repeat="dd in data" ng-class="{'zeromargin':($index+1)%3=='0'}">
                     <div class="img">
                         <img ng-if="dd.a1=='a'" ng-src="static/img/going.png" alt="">
                         <img ng-if="dd.a1=='b'" ng-src="static/img/waiting.png" alt="">
