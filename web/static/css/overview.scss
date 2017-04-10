@@ -1,0 +1,211 @@
+#overContain{
+  width: calc(100% - 200px);
+  width: -moz-calc(100% - 200px);
+  width:-webkit-calc(100% - 200px);
+  float: left;
+  background: #e2e5ec;
+  padding-left: 40px;
+  padding-right: 20px;
+  .contain1{
+    .title{
+      height: 80px;
+      line-height: 80px;
+      font-size: 30px;
+      color: #5b5b5b;
+    }
+    .con{
+      overflow: hidden;
+      clear: both;
+      margin-bottom: 40px;
+      .zt{
+        float: left;
+        div{
+          display: inline-block;
+          font-size: 14px;
+          color: #5b5b5b;
+          margin-right: 40px;
+        }
+        .zt1{
+          display: inline-block;
+          img{
+            vertical-align: middle;
+          }
+          span{
+
+          }
+        }
+      }
+      .set{
+        float: right;
+        text-align: center;
+        width: 80px;
+        height: 30px;
+        background: #1085e4;
+        line-height: 30px;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #fff;
+        cursor: pointer;
+      }
+    }
+  }
+  .contain2{
+    width: 100%;
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 20px;
+    .shuju1{
+      float: left;
+      width:18.5%;
+      min-width: 220px;
+      height: 139px;
+      background: #fff;
+      margin-right: 20px;
+      .s1{
+        position: relative;
+        width: 40%;
+        height: 139px;
+        float: left;
+        img{
+          width: 60%;
+          display: block;
+          position: absolute;
+          margin: auto;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+      }
+      .s2{
+        width: 60%;
+        position: relative;
+        float: left;
+        height: 139px;
+        .ss{
+          position: absolute;
+          top:50%;
+          transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -webkit-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+          .p1{
+            font-size: 30px;
+            color: #f79769;
+            span{
+              font-size: 14px;
+              color: #464646;
+            }
+          }
+          .p2{
+            font-size:14px;
+            color: #464646;
+          }
+        }
+      }
+    }
+    .shuju2{
+      .p1{
+        color: #1085e4!important;
+      }
+    }
+    .shuju3{
+      .p1{
+        color: #60b027!important;
+      }
+    }
+    .shuju4{
+      .p1{
+        color: #993300!important;
+      }
+    }
+    .shuju5{
+      margin-right: 0!important;
+      .p1{
+        color: #9933cc!important;
+      }
+    }
+  }
+  .contain3{
+    width: 100%;
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 20px;
+    .title{
+      height: 62px;
+      line-height: 62px;
+      color: #464646;
+      font-size: 14px;
+    }
+    .today{
+      width: 48%;
+      height: 500px;
+      padding: 0 30px 0;
+      float: left;
+      background: #fff;
+      margin-right: 40px;
+    }
+    .history{
+      margin-right: 0px;
+      .title{
+        a{
+          display: block;
+          text-decoration: none;
+          float: right;
+          cursor: pointer;
+          color: #1085e4;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .contain4{
+    width: 100%;
+    background: #fff;
+    .title{
+      width: 100%;
+      padding: 15px 10px 15px 0;
+      height: 60px;
+      div{
+        color: #464646;
+        font-size: 14px;
+      }
+      .title1{
+        width: 120px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        display: inline-block;
+      }
+      .title2{
+        width: 150px;
+        display: inline-block;
+        padding-left: 20px;
+        border: 1px solid #e2e5ec;
+        background: url(../img/shuju1.png) no-repeat center;
+        position: relative;
+        .selected{
+          height: 30px;
+          line-height: 30px;
+        }
+        .select{
+          position: absolute;
+          width: 150px;
+          left: 0px;
+          border: 1px solid #e2e5ec;
+          border-top: none;
+          .select1{
+            padding-left: 20px;
+            border-bottom: 1px solid #e2e5ec;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            &:hover{
+              background: #1085e4;
+            }
+          }
+        }
+      }
+    }
+  }
+}
