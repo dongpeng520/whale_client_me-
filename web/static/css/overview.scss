@@ -222,61 +222,6 @@
         }
       }
     }
-    .order{
-      width: 100%;
-      .order_list1{
-        width: 18%;
-        border-right: 1px solid #f5f3f3;
-      }
-      .order_list2{
-        width: 20%;
-        border-right: 1px solid #f5f3f3;
-      }
-      .order_list3{
-        width: 44%;
-        border-right: 1px solid #f5f3f3;
-      }
-      .order_list4{
-        width: 18%;
-      }
-      .order_title{
-        background: #fafafa;
-        overflow: hidden;
-        clear: both;
-        li{
-          float: left;
-          height: 39px;
-          line-height: 39px;
-          text-align: center;
-          font-size: 14px;
-          color: #464646;
-        }
-      }
-      .order_list{
-        overflow: hidden;
-        clear: both;
-        li{
-          float: left;
-          height: 39px;
-          line-height: 39px;
-          text-align: center;
-          font-size: 14px;
-          color: #464646;
-          &.order_list4{
-            color: #1085e4;
-            span{
-              cursor: pointer;
-            }
 
-          }
-        }
-      }
-      .order_listeven{
-        background: #fcfdff;
-      }
-      .order_listodd{
-        background: #ffffff;
-      }
-    }
   }
 }

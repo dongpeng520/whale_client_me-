@@ -1,0 +1,27 @@
+<div ng-include="'CrawlerApply.html'" id="Crawler" ng-controller="CrawlerApplycontroller" ng-if="crawler_close"></div>
+
+
+<div ng-include="'overSet.html'" id="overSet" ng-controller="overSetcontroller"></div>
+<div ng-include="'overHead.html'" id="overHead" ng-controller="overHeadcontroller"></div>
+
+<div id="setupContain">
+    <div class="contain">
+        <div class="title">基本信息</div>
+        <div class="contain1">
+            <div class="contitle">基本信息</div>
+            <div class="conname">爬虫名称：</div>
+            <div class="coninput">
+                <div class="coninput1"><input type="text" class="form-control"></div>
+                <div class="coninput2"><textarea class="form-control" rows="3" placeholder="描述信息"></textarea></div>
+            </div>
+        </div>
+        <div class="contain2 contain1">
+            <div class="contitle">应用配置</div>
+            <div class="conname"></div>
+            <div class="coninput">
+                <div class="coninput2"><textarea class="form-control" rows="3" placeholder="描述信息"></textarea></div>
+                <div class="coninput3">保存</div>
+            </div>
+        </div>
+    </div>
+</div>

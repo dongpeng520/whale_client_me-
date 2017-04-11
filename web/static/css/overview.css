@@ -170,47 +170,5 @@
           text-decoration: none; }
       #overContain .contain4 .title .select_change .selected {
         background: url(../img/up.png) no-repeat 100px center; }
-    #overContain .contain4 .order {
-      width: 100%; }
-      #overContain .contain4 .order .order_list1 {
-        width: 18%;
-        border-right: 1px solid #f5f3f3; }
-      #overContain .contain4 .order .order_list2 {
-        width: 20%;
-        border-right: 1px solid #f5f3f3; }
-      #overContain .contain4 .order .order_list3 {
-        width: 44%;
-        border-right: 1px solid #f5f3f3; }
-      #overContain .contain4 .order .order_list4 {
-        width: 18%; }
-      #overContain .contain4 .order .order_title {
-        background: #fafafa;
-        overflow: hidden;
-        clear: both; }
-        #overContain .contain4 .order .order_title li {
-          float: left;
-          height: 39px;
-          line-height: 39px;
-          text-align: center;
-          font-size: 14px;
-          color: #464646; }
-      #overContain .contain4 .order .order_list {
-        overflow: hidden;
-        clear: both; }
-        #overContain .contain4 .order .order_list li {
-          float: left;
-          height: 39px;
-          line-height: 39px;
-          text-align: center;
-          font-size: 14px;
-          color: #464646; }
-          #overContain .contain4 .order .order_list li.order_list4 {
-            color: #1085e4; }
-            #overContain .contain4 .order .order_list li.order_list4 span {
-              cursor: pointer; }
-      #overContain .contain4 .order .order_listeven {
-        background: #fcfdff; }
-      #overContain .contain4 .order .order_listodd {
-        background: #ffffff; }
 
 /*# sourceMappingURL=overview.css.map */

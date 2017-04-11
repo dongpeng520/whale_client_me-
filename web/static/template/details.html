@@ -1,0 +1,16 @@
+<div>
+    <div id="details" ng-if="details_seceld">
+        <div class="contain">
+            <div class="detail_title">
+                <div class="title">数据详情
+                    <div class="closed" ng-click="details_close()"></div>
+                </div>
+
+            </div>
+            <div class="details_contain">
+                <pre id="custom-spacing">{{details | json:4 }}</pre>
+                <div>{{index}}</div>
+            </div>
+        </div>
+    </div>
+</div>

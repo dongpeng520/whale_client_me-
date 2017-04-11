@@ -2,24 +2,30 @@
  * Created by Administrator on 2017/4/10.
  */
 whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$http","$interval","$location", function($scope,$rootScope,$window,$http,$interval,$location){
-    $scope.Crawler_close=function(){
-        //$scope.crawler_close=true;
-        $rootScope.crawler_close=true;
-        $("body").css("overflow","hidden");
-    }
-    $scope.select=function(sel){
+
+    $scope.select=function(sel,event){
         $scope.over_select=!$scope.over_select;
         $scope.select_change=!$scope.select_change;
+        event.stopPropagation();
         var ele=angular.element("#selected");
         if(ele.html()==sel){
             return
         }
-        ele.html(sel);
         if(sel!=null){
+            ele.html(sel);
             $scope.$broadcast('sendParent',sel);
         }
 
     }
+    angular.element("html").on("click", function () {
+        if($scope.over_select==false||$scope.select_change==false){
+            return
+        }
+        $scope.$apply(function(){
+            $scope.over_select=false;
+            $scope.select_change=false;
+        })
+    })
     $scope.order=[
         {
             "time":"2017-03-01 12:09:09",

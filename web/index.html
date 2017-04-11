@@ -33,6 +33,8 @@
     <script src="static/js/controller/setup.js"></script>
     <script src="static/js/controller/history.js"></script>
     <script src="static/js/controller/CrawlerApply.js"></script>
+    <script src="static/js/controller/overset.js"></script>
+    <script src="static/js/controller/overHead.js"></script>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog m150">
             <div class="modal-content">
@@ -142,6 +144,46 @@
                     <div class="admin">管理</div>
                 </div>
             </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="overSet.html">
+        <div class="overSet">
+            <div class="over_logo">
+                <div class="contain">
+                    <img src="static/img/whale.png" alt="">
+                    <span>鲸鱼爬虫</span>
+                </div>
+            </div>
+            <div class="over_set">
+                <div class="set1">
+                    <span class="span1">刷新</span>
+                    <span class="span2" ng-click="Crawler_close()">切换</span>
+                </div>
+                <div class="set2">
+                    <div class="s1">
+                        <img src="static/img/set1.png" alt="">
+                        <span>总览</span>
+                    </div>
+                    <div class="s1">
+                        <img src="static/img/set2.png" alt="">
+                        <span>爬虫设置</span>
+                    </div>
+                    <div class="s1">
+                        <img src="static/img/set3.png" alt="">
+                        <span>爬虫历史</span>
+                    </div>
+                    <div class="s1">
+                        <img src="static/img/set4.png" alt="">
+                        <span>爬虫结果</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</script>
+    <script type="text/ng-template" id="overHead.html">
+        <div class="overHead">
+            <span class="head_span1">修改密码</span>
+            <span class="head_span2">退出</span>
         </div>
     </script>
 </body>

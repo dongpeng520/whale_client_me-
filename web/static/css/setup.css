@@ -1,3 +1,68 @@
-
+#setupContain {
+  width: calc(100% - 200px);
+  width: -moz-calc(100% - 200px);
+  width: -webkit-calc(100% - 200px);
+  min-height: 1080px;
+  float: left;
+  background: #e2e5ec;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 20px; }
+  #setupContain .contain {
+    width: 100%;
+    background: #fff; }
+    #setupContain .contain .title {
+      height: 70px;
+      padding-left: 20px;
+      line-height: 70px;
+      font-size: 30px;
+      color: #5b5b5b;
+      border-bottom: 1px solid #eeeeee; }
+    #setupContain .contain .contain1 {
+      margin-left: 50px;
+      margin-right: 50px;
+      padding-top: 50px;
+      height: 330px;
+      border-bottom: 1px solid #eeeeee; }
+      #setupContain .contain .contain1 .contitle {
+        width: 240px;
+        float: left;
+        height: 225px;
+        font-size: 30px;
+        color: #999; }
+      #setupContain .contain .contain1 .conname {
+        width: 80px;
+        height: 225px;
+        padding-top: 20px;
+        float: left;
+        font-size: 14px;
+        color: #666; }
+      #setupContain .contain .contain1 .coninput {
+        width: 455px;
+        height: 330px;
+        float: left;
+        padding-top: 10px;
+        font-size: 14px;
+        color: #666; }
+        #setupContain .contain .contain1 .coninput .coninput1 {
+          width: 340px;
+          height: 30px !important;
+          font-size: 14px;
+          color: #666;
+          margin-bottom: 30px; }
+        #setupContain .contain .contain1 .coninput .coninput2 textarea {
+          width: 450px;
+          height: 192px !important; }
+    #setupContain .contain .contain2 .coninput3 {
+      width: 132px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      font-size: 14px;
+      background: #1085e4;
+      color: #fff;
+      margin-top: 20px;
+      border-radius: 4px;
+      cursor: pointer; }
 
 /*# sourceMappingURL=setup.css.map */

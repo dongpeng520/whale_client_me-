@@ -259,4 +259,91 @@ img {
   .overHead .head_span2 {
     margin-right: 21px; }
 
+.order {
+  width: 100%; }
+  .order .order_list1 {
+    width: 18%;
+    border-right: 1px solid #f5f3f3; }
+  .order .order_list2 {
+    width: 20%;
+    border-right: 1px solid #f5f3f3; }
+  .order .order_list3 {
+    width: 44%;
+    border-right: 1px solid #f5f3f3; }
+  .order .order_list4 {
+    width: 18%; }
+  .order .order_title {
+    background: #fafafa;
+    overflow: hidden;
+    clear: both; }
+    .order .order_title li {
+      float: left;
+      height: 39px;
+      line-height: 39px;
+      text-align: center;
+      font-size: 14px;
+      color: #464646; }
+  .order .order_list {
+    overflow: hidden;
+    clear: both; }
+    .order .order_list li {
+      float: left;
+      height: 39px;
+      line-height: 39px;
+      text-align: center;
+      font-size: 14px;
+      color: #464646; }
+      .order .order_list li.order_list4 {
+        color: #1085e4; }
+        .order .order_list li.order_list4 span {
+          cursor: pointer; }
+  .order .order_listeven {
+    background: #fcfdff; }
+  .order .order_listodd {
+    background: #ffffff; }
+
+#details {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(51, 51, 51, 0.7); }
+  #details .contain {
+    width: 800px;
+    height: 640px;
+    position: absolute;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    padding: 20px; }
+    #details .contain .detail_title {
+      margin-bottom: 20px; }
+      #details .contain .detail_title .title {
+        font-size: 14px;
+        color: #464646; }
+        #details .contain .detail_title .title .closed {
+          position: relative;
+          left: 10px;
+          float: right;
+          width: 20px;
+          height: 20px;
+          background: url("../img/closed.png") no-repeat center;
+          cursor: pointer; }
+    #details .contain .details_contain {
+      height: 560px;
+      border: 1px solid #c9c9c9;
+      overflow-y: auto;
+      overflow-x: hidden; }
+      #details .contain .details_contain pre {
+        background-color: #fff;
+        font-size: 14px;
+        border: 0;
+        color: #464646; }
+
 /*# sourceMappingURL=common.css.map */

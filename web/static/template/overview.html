@@ -2,43 +2,9 @@
 <div ng-include="'CrawlerApply.html'" id="Crawler" ng-controller="CrawlerApplycontroller" ng-if="crawler_close"></div>
 
 
-<div class="overSet">
-    <div class="over_logo">
-        <div class="contain">
-            <img src="static/img/whale.png" alt="">
-            <span>鲸鱼爬虫</span>
-        </div>
-    </div>
-    <div class="over_set">
-        <div class="set1">
-            <span class="span1">刷新</span>
-            <span class="span2" ng-click="Crawler_close()">切换</span>
-        </div>
-        <div class="set2">
-            <div class="s1">
-                <img src="static/img/set1.png" alt="">
-                <span>总览</span>
-            </div>
-            <div class="s1">
-                <img src="static/img/set2.png" alt="">
-                <span>爬虫设置</span>
-            </div>
-            <div class="s1">
-                <img src="static/img/set3.png" alt="">
-                <span>爬虫历史</span>
-            </div>
-            <div class="s1">
-                <img src="static/img/set4.png" alt="">
-                <span>爬虫结果</span>
-            </div>
-        </div>
-    </div>
-</div>
+<div ng-include="'overSet.html'" id="overSet" ng-controller="overSetcontroller"></div>
+<div ng-include="'overHead.html'" id="overHead" ng-controller="overHeadcontroller"></div>
 
-<div class="overHead">
-    <span class="head_span1">修改密码</span>
-    <span class="head_span2">退出</span>
-</div>
 <div id="overContain">
     <div class="contain1">
         <div class="title">海飞丝品牌舆情监控爬虫</div>
@@ -122,16 +88,16 @@
         <div class="title">
             <div class="title1">最新抓取结果</div>
             <div class="title2" ng-class="{'select_change':select_change}">
-                <div class="selected" id="selected" ng-click="select()">所有</div>
+                <div class="selected" id="selected" ng-click="select(null,$event)">所有</div>
                 <div class="select" ng-if="over_select">
-                    <div class="select1" ng-click="select('所有')">所有</div>
-                    <div class="select1" ng-click="select('舆情监控')">舆情监控</div>
-                    <div class="select1" ng-click="select('在线电商品牌')">在线电商品牌</div>
+                    <div class="select1" ng-click="select('所有',$event)">所有</div>
+                    <div class="select1" ng-click="select('舆情监控',$event)">舆情监控</div>
+                    <div class="select1" ng-click="select('在线电商品牌',$event)">在线电商品牌</div>
                 </div>
             </div>
             <div class="all"><a href="">全部</a></div>
         </div>
         <order-list orderlist="order"></order-list>
-
     </div>
 </div>
+<detail-list></detail-list>
