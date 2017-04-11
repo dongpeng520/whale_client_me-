@@ -52,6 +52,44 @@ whaleModule.directive('repeatFinish',function(){
         }
     }
 })
+
+whaleModule.directive('orderList',function(){
+    var linkFunction=function(scope,element,attr){
+        scope.order=scope.orderlist;
+        scope.$on('sendParent',function(event,data){//监听在子控制器中定义的 sendParent 事件
+            if(data=="舆情监控"){
+                scope.order=[
+                    {
+                        "time":"2017-03-01 12:09:09",
+                        "aa":"在线电商品牌",
+                        "url":"https://www.hao123.com/"
+                    },
+                    {
+                        "time":"2017-03-02 12:09:09",
+                        "aa":"舆情监控",
+                        "url":"https://www.hao123.com/"
+                    },
+                    {
+                        "time":"2017-03-03 12:09:09",
+                        "aa":"舆情监控",
+                        "url":"https://www.hao123.com/"
+                    }
+                ]
+            }
+        });
+
+
+    }
+    return {
+        restrict: "E",
+        scope: {
+            orderlist:'=orderlist'
+        },
+        replace:true,
+        templateUrl: "static/template/orderlist.html",
+        link: linkFunction
+    }
+})
 whaleModule.directive('todayMm', ['$rootScope',
     function($rootScope) {
         return {

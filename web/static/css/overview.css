@@ -2,6 +2,7 @@
   width: calc(100% - 200px);
   width: -moz-calc(100% - 200px);
   width: -webkit-calc(100% - 200px);
+  min-height: 1500px;
   float: left;
   background: #e2e5ec;
   padding-left: 40px;
@@ -141,17 +142,18 @@
         display: inline-block;
         padding-left: 20px;
         border: 1px solid #e2e5ec;
-        background: url(../img/shuju1.png) no-repeat center;
         position: relative; }
         #overContain .contain4 .title .title2 .selected {
           height: 30px;
-          line-height: 30px; }
+          line-height: 30px;
+          background: url(../img/down.png) no-repeat 100px center; }
         #overContain .contain4 .title .title2 .select {
           position: absolute;
           width: 150px;
           left: 0px;
           border: 1px solid #e2e5ec;
-          border-top: none; }
+          border-top: none;
+          background: #fff; }
           #overContain .contain4 .title .title2 .select .select1 {
             padding-left: 20px;
             border-bottom: 1px solid #e2e5ec;
@@ -160,5 +162,55 @@
             cursor: pointer; }
             #overContain .contain4 .title .title2 .select .select1:hover {
               background: #1085e4; }
+      #overContain .contain4 .title .all {
+        float: right;
+        color: #1085e4;
+        font-size: 14px; }
+        #overContain .contain4 .title .all a {
+          text-decoration: none; }
+      #overContain .contain4 .title .select_change .selected {
+        background: url(../img/up.png) no-repeat 100px center; }
+    #overContain .contain4 .order {
+      width: 100%; }
+      #overContain .contain4 .order .order_list1 {
+        width: 18%;
+        border-right: 1px solid #f5f3f3; }
+      #overContain .contain4 .order .order_list2 {
+        width: 20%;
+        border-right: 1px solid #f5f3f3; }
+      #overContain .contain4 .order .order_list3 {
+        width: 44%;
+        border-right: 1px solid #f5f3f3; }
+      #overContain .contain4 .order .order_list4 {
+        width: 18%; }
+      #overContain .contain4 .order .order_title {
+        background: #fafafa;
+        overflow: hidden;
+        clear: both; }
+        #overContain .contain4 .order .order_title li {
+          float: left;
+          height: 39px;
+          line-height: 39px;
+          text-align: center;
+          font-size: 14px;
+          color: #464646; }
+      #overContain .contain4 .order .order_list {
+        overflow: hidden;
+        clear: both; }
+        #overContain .contain4 .order .order_list li {
+          float: left;
+          height: 39px;
+          line-height: 39px;
+          text-align: center;
+          font-size: 14px;
+          color: #464646; }
+          #overContain .contain4 .order .order_list li.order_list4 {
+            color: #1085e4; }
+            #overContain .contain4 .order .order_list li.order_list4 span {
+              cursor: pointer; }
+      #overContain .contain4 .order .order_listeven {
+        background: #fcfdff; }
+      #overContain .contain4 .order .order_listodd {
+        background: #ffffff; }
 
 /*# sourceMappingURL=overview.css.map */

@@ -121,14 +121,17 @@
     <div class="contain4">
         <div class="title">
             <div class="title1">最新抓取结果</div>
-            <div class="title2">
-                <div class="selected" ng-click="select()">所有</div>
+            <div class="title2" ng-class="{'select_change':select_change}">
+                <div class="selected" id="selected" ng-click="select()">所有</div>
                 <div class="select" ng-if="over_select">
-                    <div class="select1" ng-click="select()">所有</div>
-                    <div class="select1" ng-click="select()">舆情监控</div>
-                    <div class="select1" ng-click="select()">在线电商品牌</div>
+                    <div class="select1" ng-click="select('所有')">所有</div>
+                    <div class="select1" ng-click="select('舆情监控')">舆情监控</div>
+                    <div class="select1" ng-click="select('在线电商品牌')">在线电商品牌</div>
                 </div>
             </div>
+            <div class="all"><a href="">全部</a></div>
         </div>
+        <order-list orderlist="order"></order-list>
+
     </div>
 </div>

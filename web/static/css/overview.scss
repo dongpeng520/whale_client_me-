@@ -2,6 +2,7 @@
   width: calc(100% - 200px);
   width: -moz-calc(100% - 200px);
   width:-webkit-calc(100% - 200px);
+  min-height: 1500px;
   float: left;
   background: #e2e5ec;
   padding-left: 40px;
@@ -182,11 +183,11 @@
         display: inline-block;
         padding-left: 20px;
         border: 1px solid #e2e5ec;
-        background: url(../img/shuju1.png) no-repeat center;
         position: relative;
         .selected{
           height: 30px;
           line-height: 30px;
+          background: url(../img/down.png) no-repeat 100px center;
         }
         .select{
           position: absolute;
@@ -194,6 +195,7 @@
           left: 0px;
           border: 1px solid #e2e5ec;
           border-top: none;
+          background: #fff;
           .select1{
             padding-left: 20px;
             border-bottom: 1px solid #e2e5ec;
@@ -205,6 +207,75 @@
             }
           }
         }
+      }
+      .all{
+        float: right;
+        color: #1085e4;
+        font-size: 14px;
+        a{
+          text-decoration: none;
+        }
+      }
+      .select_change{
+        .selected{
+          background: url(../img/up.png) no-repeat 100px center;
+        }
+      }
+    }
+    .order{
+      width: 100%;
+      .order_list1{
+        width: 18%;
+        border-right: 1px solid #f5f3f3;
+      }
+      .order_list2{
+        width: 20%;
+        border-right: 1px solid #f5f3f3;
+      }
+      .order_list3{
+        width: 44%;
+        border-right: 1px solid #f5f3f3;
+      }
+      .order_list4{
+        width: 18%;
+      }
+      .order_title{
+        background: #fafafa;
+        overflow: hidden;
+        clear: both;
+        li{
+          float: left;
+          height: 39px;
+          line-height: 39px;
+          text-align: center;
+          font-size: 14px;
+          color: #464646;
+        }
+      }
+      .order_list{
+        overflow: hidden;
+        clear: both;
+        li{
+          float: left;
+          height: 39px;
+          line-height: 39px;
+          text-align: center;
+          font-size: 14px;
+          color: #464646;
+          &.order_list4{
+            color: #1085e4;
+            span{
+              cursor: pointer;
+            }
+
+          }
+        }
+      }
+      .order_listeven{
+        background: #fcfdff;
+      }
+      .order_listodd{
+        background: #ffffff;
       }
     }
   }

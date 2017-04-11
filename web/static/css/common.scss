@@ -6,9 +6,13 @@ html,body{
   padding: 0;
   outline: none;
 }
-ul li{
-  list-style: none;
+ul{
+  margin: 0!important;
+  li{
+    list-style: none;
+  }
 }
+
 img{
   border: 0;
   vertical-align: initial;

@@ -1,0 +1,18 @@
+<div>
+    <div class="order">
+        <ul class="order_title">
+            <li class="order_list1">爬取时间</li>
+            <li class="order_list2">类别</li>
+            <li class="order_list3">来源URL</li>
+            <li class="order_list4"></li>
+        </ul>
+        <ul class="order_list" ng-class="{order_listeven: !$even, order_listodd: !$odd}" ng-repeat="list in order">
+            <li class="order_list1" ng-bind="list.time"></li>
+            <li class="order_list2" ng-bind="list.aa"></li>
+            <li class="order_list3" ng-bind="list.url"></li>
+            <li class="order_list4">
+                <span  ng-bind="'详情'"></span>
+            </li>
+        </ul>
+    </div>
+</div>
