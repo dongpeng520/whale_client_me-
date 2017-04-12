@@ -1,0 +1,54 @@
+<!--选择爬虫应用-->
+<div ng-include="'CrawlerApply.html'" id="Crawler" ng-controller="CrawlerApplycontroller" ng-if="crawler_close"></div>
+
+
+<div ng-include="'overSet.html'" id="overSet" ng-controller="overSetcontroller"></div>
+<div ng-include="'overHead.html'" id="overHead" ng-controller="overHeadcontroller"></div>
+
+<div id="download">
+
+</div>
+
+<div id="resultContain">
+    <div class="contain1">
+        <div class="title">爬取结果</div>
+        <div class="con">
+            <div class="zt">
+                <div class="zt1">
+                    本轮爬取任务启动于<span>2017/03/01 02:00</span>，
+                </div>
+                <div class="zt2">
+                    结束于<span>2017/03/01 05:40</span>，
+                </div>
+                <div class="zt3">
+                    共爬取<span>12,000</span>条数据
+                </div>
+            </div>
+            <div class="set1">爬取文件下载</div>
+            <div class="set2"><a href="">爬取历史</a></div>
+        </div>
+    </div>
+    <div class="contain2">
+        <div class="con1">
+            <div class="sele" ng-repeat="a in allcenter" ng-click="selectCategory($index)" ng-class="{'categoryActive':current === a}">{{a}}</div>
+        </div>
+        <div class="con2">
+            <div class="time1">开始时间</div>
+            <div class="time2"><input class="form-control" id="starttime" type="text" placeholder="过滤开始时间"></div>
+            <div class="time1">结束时间</div>
+            <div class="time2"><input class="form-control" id="endtime" type="text" placeholder="过滤结束时间"></div>
+            <div class="time5">查询</div>
+            <div class="time6 time5">导出结果</div>
+        </div>
+        <div class="con3">
+            <order-list orderlist="order"></order-list>
+        </div>
+    </div>
+    <div class="contain3">
+        <div class="con1">* 以上只显示本轮任务爬取的最近10,000条数据，如需获取全部历史数据，请点击“结果文件下载”。</div>
+        <div class="con2">
+            <page-middle></page-middle>
+        </div>
+    </div>
+</div>
+<detail-list></detail-list>

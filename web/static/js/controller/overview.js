@@ -2,7 +2,6 @@
  * Created by Administrator on 2017/4/10.
  */
 whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$http","$interval","$location", function($scope,$rootScope,$window,$http,$interval,$location){
-
     $scope.select=function(sel,event){
         $scope.over_select=!$scope.over_select;
         $scope.select_change=!$scope.select_change;

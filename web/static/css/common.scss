@@ -12,7 +12,9 @@ ul{
     list-style: none;
   }
 }
-
+a{
+  text-decoration: none;
+}
 img{
   border: 0;
   vertical-align: initial;
@@ -304,6 +306,90 @@ img{
   }
 }
 
+#password{
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  .contain{
+    width: 500px;
+    margin: auto;
+    background: white;
+    position: absolute;
+    left: 50%;
+    top:30%;
+    margin-left: -250px;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    padding: 24px 40px 40px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    .close{
+      font-size: 25px;
+    }
+    .title{
+      text-align: center;
+      font-size: 30px;
+      height: 30px;
+      line-height: 30px;
+      color: #4b5861;
+      margin-bottom: 50px;
+    }
+    .input_name{
+      width: 350px;
+      margin: 0px auto 30px;
+      input{
+        width: 100%;
+        height: 37px;
+        padding-left: 20px;
+        font-size: 16px;
+        &:focus{
+          border: 1px solid #28b0f8;
+        }
+      }
+    }
+    .input_password{
+      width: 350px;
+      margin: 0px auto 30px;
+      input{
+        width: 100%;
+        height: 37px;
+        padding-left: 20px;
+        font-size: 16px;
+        &:focus{
+          border: 1px solid #28b0f8;
+        }
+      }
+    }
+    .login_error{
+      width:350px;
+      margin: 0px auto 15px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      color: #e87171;
+      font-size: 16px;
+    }
+    .submit{
+      width:350px;
+      margin: 0px auto;
+      height: 40px;
+      background: #1085e4;
+      line-height: 40px;
+      text-align: center;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  }
+}
+
 .order{
   width: 100%;
   .order_list1{
@@ -410,5 +496,46 @@ img{
         line-height: 3;
       }
     }
+  }
+}
+
+#paging{
+  .pagingcontain{
+    display: inline-block;
+    .page_disabled{
+      background: #cccccc;
+      a{
+        color: #eee;
+      }
+    }
+    .page_active{
+      background: #1085e4;
+      a{
+        color: #fff;
+      }
+    }
+    li{
+      display: inline-block;
+      background: #fff;
+      border-radius: 4px;
+      margin-right: 10px;
+      a{
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+        color: #464646;
+        text-align: center;
+        line-height: 35px;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  span{
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
   }
 }

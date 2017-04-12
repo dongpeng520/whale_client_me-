@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5,maximum-scale=1.0, user-scalable=no">
     <title>whale client</title>
     <link type="text/css" rel="stylesheet" href="static/js/libs/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="static/js/libs/jquery.datetimepicker.css">
     <link type="text/css" rel="stylesheet" href="static/css/common.css">
     <link type="text/css" rel="stylesheet" href="static/css/global.css">
     <link type="text/css" rel="stylesheet" href="static/css/home.css">
@@ -20,6 +21,7 @@
     <ng-view></ng-view>
     <script type="text/javascript" src="static/js/libs/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="static/js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/libs/jquery.datetimepicker.full.js"></script>
     <script src="static/js/libs/angular.js"></script>
     <script src="static/js/libs/angular-route.js"></script>
     <script src="static/js/libs/md5.js"></script>
@@ -27,6 +29,7 @@
     <script src="static/js/common/common.js"></script>
     <script src="static/js/common/check.js"></script>
     <script src="static/js/controller.js"></script>
+    <script src="static/js/controller/directive.js"></script>
     <script src="static/js/controller/home.js"></script>
     <script src="static/js/controller/overview.js"></script>
     <script src="static/js/controller/result.js"></script>
@@ -182,8 +185,25 @@
 </script>
     <script type="text/ng-template" id="overHead.html">
         <div class="overHead">
-            <span class="head_span1">修改密码</span>
+            <span class="head_span1" ng-click="openlogin()">修改密码</span>
             <span class="head_span2">退出</span>
+        </div>
+        <div id="password" ng-if="openflag">
+            <div class="contain">
+                <div class="close"><span id="loginclosed" ng-click="closedlogin()">&times;</span></div>
+                <div class="title">修改密码</div>
+                <div class="input_name">
+                    <input type="text" ng-model="loginInfo.name1" placeholder="旧密码" autofocus="autofocus">
+                </div>
+                <div class="input_password">
+                    <input type="password" ng-model="loginInfo.password1" placeholder="新密码">
+                </div>
+                <div class="input_password">
+                    <input type="password" ng-model="loginInfo.password2" placeholder="确认密码">
+                </div>
+                <div class="login_error" ng-if="error">{{error_wenzi}}</div>
+                <div class="submit" ng-click="submit()">确认</div>
+            </div>
         </div>
     </script>
 </body>

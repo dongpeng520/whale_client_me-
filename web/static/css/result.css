@@ -1,3 +1,129 @@
-
+#resultContain {
+  width: calc(100% - 200px);
+  width: -moz-calc(100% - 200px);
+  width: -webkit-calc(100% - 200px);
+  min-height: 1500px;
+  float: left;
+  background: #e2e5ec;
+  padding-left: 40px;
+  padding-right: 20px; }
+  #resultContain .contain1 .title {
+    height: 80px;
+    line-height: 80px;
+    font-size: 30px;
+    color: #5b5b5b; }
+  #resultContain .contain1 .con {
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 20px; }
+    #resultContain .contain1 .con .zt {
+      float: left; }
+      #resultContain .contain1 .con .zt div {
+        display: inline-block;
+        font-size: 14px;
+        color: #5b5b5b; }
+      #resultContain .contain1 .con .zt .zt1 span, #resultContain .contain1 .con .zt .zt2 span {
+        color: #1085e4; }
+      #resultContain .contain1 .con .zt .zt3 span {
+        color: #993300; }
+    #resultContain .contain1 .con .set1 {
+      float: right;
+      text-align: center;
+      width: 120px;
+      height: 30px;
+      background: #1085e4;
+      line-height: 30px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #fff;
+      cursor: pointer; }
+    #resultContain .contain1 .con .set2 {
+      float: right;
+      text-align: center;
+      margin-right: 20px;
+      width: 90px;
+      height: 30px;
+      background: #eee;
+      line-height: 30px;
+      border-radius: 4px; }
+      #resultContain .contain1 .con .set2 a {
+        font-size: 14px;
+        color: #464646;
+        cursor: pointer;
+        text-decoration: none; }
+  #resultContain .contain2 {
+    background: #fff; }
+    #resultContain .contain2 .con1 {
+      height: 52px;
+      border: 1px solid #e8ebee; }
+      #resultContain .contain2 .con1 .categoryActive {
+        border-bottom: 3px solid #1085e4; }
+      #resultContain .contain2 .con1 .sele {
+        width: 104px;
+        height: 50px;
+        font-size: 14px;
+        color: #464646;
+        line-height: 50px;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer; }
+    #resultContain .contain2 .con2 {
+      height: 60px;
+      padding: 15px 0; }
+      #resultContain .contain2 .con2 .time1 {
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        color: #464646;
+        text-align: center;
+        display: inline-block; }
+      #resultContain .contain2 .con2 .time2 {
+        display: inline-block; }
+        #resultContain .contain2 .con2 .time2 input {
+          width: 160px;
+          height: 30px;
+          font-size: 14px;
+          color: #6ec3fb;
+          cursor: pointer; }
+        #resultContain .contain2 .con2 .time2 #starttime {
+          background: url("../img/starttime.png") #eaf6fe no-repeat 135px center; }
+        #resultContain .contain2 .con2 .time2 #endtime {
+          background: url("../img/endtime.png") #eaf6fe no-repeat 135px center; }
+        #resultContain .contain2 .con2 .time2 input::-webkit-input-placeholder {
+          color: #6ec3fb; }
+        #resultContain .contain2 .con2 .time2 input:-moz-placeholder {
+          color: #6ec3fb; }
+        #resultContain .contain2 .con2 .time2 input::-moz-placeholder {
+          color: #6ec3fb; }
+        #resultContain .contain2 .con2 .time2 input:-ms-input-placeholder {
+          color: #6ec3fb; }
+      #resultContain .contain2 .con2 .time5 {
+        display: inline-block;
+        margin: 0px 20px;
+        width: 60px;
+        height: 30px;
+        line-height: 30px;
+        color: #fff;
+        background: #1085e4;
+        text-align: center;
+        border-radius: 4px;
+        cursor: pointer; }
+      #resultContain .contain2 .con2 .time6 {
+        margin: 0;
+        width: 90px; }
+  #resultContain .contain3 {
+    margin-top: 20px;
+    overflow: hidden;
+    clear: both; }
+    #resultContain .contain3 .con1 {
+      float: left;
+      width: 620px;
+      font-size: 14px;
+      color: #999; }
+    #resultContain .contain3 .con2 {
+      float: right;
+      height: 35px;
+      width: 450px; }
 
 /*# sourceMappingURL=result.css.map */

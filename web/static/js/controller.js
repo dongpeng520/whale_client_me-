@@ -41,6 +41,11 @@ whaleModule.run(['$rootScope',function($rootScope){
 
 }])
 
+whaleModule.factory('DateCenter', function() {
+    var factory = ["所有","舆情监控","在线电商品牌"];
+    return factory;
+});
+
 whaleModule.directive('repeatFinish',function(){
     return {
         link: function(scope,element,attr){
@@ -53,79 +58,6 @@ whaleModule.directive('repeatFinish',function(){
     }
 })
 
-whaleModule.directive('orderList',["$rootScope",function($rootScope){
-    var linkFunction=function(scope,element,attr){
-        scope.order=scope.orderlist;
-        scope.$on('sendParent',function(event,data){//监听在子控制器中定义的 sendParent 事件
-            if(data=="舆情监控"){
-                scope.order=[
-                    {
-                        "time":"2017-03-01 12:09:09",
-                        "aa":"在线电商品牌",
-                        "url":"https://www.hao123.com/"
-                    },
-                    {
-                        "time":"2017-03-02 12:09:09",
-                        "aa":"舆情监控",
-                        "url":"https://www.hao123.com/"
-                    },
-                    {
-                        "time":"2017-03-03 12:09:09",
-                        "aa":"舆情监控",
-                        "url":"https://www.hao123.com/"
-                    }
-                ]
-            }
-        });
-
-
-    }
-    return {
-        restrict: "E",
-        controller : function($scope){
-            $scope.details_change=function(index){
-                $rootScope.$broadcast('delivery.request', index);
-            }
-        },
-        scope: {
-            orderlist:'=orderlist'
-        },
-        replace:true,
-        templateUrl: "static/template/orderlist.html",
-        link: linkFunction
-    }
-}])
-whaleModule.directive('detailList',function(){
-    var linkFunction=function(scope,element,attr){
-        scope.$on('delivery.request', function (e, req) {
-            scope.details_seceld=true;
-            scope.index=req;
-            scope.details=[
-                {
-                    "time":"2017-03-01 12:09:09",
-                    "aa":"在线电商品牌",
-                    "url":"https://www.hao123.com/"
-                },
-                {
-                    "time":"2017-03-02 12:09:09",
-                    "aa":"舆情监控",
-                    "url":"https://www.hao123.com/"
-                }
-            ]
-        });
-    }
-    return {
-        restrict: "E",
-        controller : function($scope){
-            $scope.details_close=function(){
-                $scope.details_seceld=false;
-            }
-        },
-        replace:true,
-        templateUrl: "static/template/details.html",
-        link: linkFunction
-    }
-})
 whaleModule.directive('todayMm', ['$rootScope',
     function($rootScope) {
         return {
