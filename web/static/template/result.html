@@ -6,7 +6,24 @@
 <div ng-include="'overHead.html'" id="overHead" ng-controller="overHeadcontroller"></div>
 
 <div id="download">
-
+    <div class="contain">
+        <div class="contain1">
+            <div class="title">
+                <div class="title1">抓取结果文件下载</div>
+                <div class="title2" ng-class="{'selecttaskName_change':selecttaskName_change}">
+                    <div class="selected" id="selectedtaskName" ng-click="selecttaskName(null,$event)">{{taskName}}</div>
+                    <div class="select" ng-if="over_selecttaskName">
+                        <div class="select1" ng-click="selecttaskName('所有',$event)">所有</div>
+                        <div class="select1" ng-click="selecttaskName('舆情监控',$event)">舆情监控</div>
+                        <div class="select1" ng-click="selecttaskName('在线电商品牌',$event)">在线电商品牌</div>
+                    </div>
+                </div>
+                <div class="all"><div class="close">&times;</div></div>
+            </div>
+            <task-list orderlist="order2"></task-list>
+        </div>
+        <taskpage-middle></taskpage-middle>
+    </div>
 </div>
 
 <div id="resultContain">
@@ -41,7 +58,7 @@
             <div class="time6 time5">导出结果</div>
         </div>
         <div class="con3">
-            <order-list orderlist="order"></order-list>
+            <order-list orderlist="order1"></order-list>
         </div>
     </div>
     <div class="contain3">

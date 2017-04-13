@@ -13,6 +13,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
         if(sel!=null){
             ele.html(sel);
             $scope.$broadcast('sendParent',sel);
+
         }
 
     }

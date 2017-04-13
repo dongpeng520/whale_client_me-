@@ -26,7 +26,39 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         step:1,
         timepicker: true
     });
-    $scope.order=[
+    $scope.order2=[
+        {
+            "time":"2017-03-01_001.zip",
+            "modifytime":"2017-03-01 12:09:09",
+            "size":"100M",
+            "num":"100"
+        },
+        {
+            "time":"2017-03-01_001.zip",
+            "modifytime":"2017-03-01 12:09:09",
+            "size":"100M",
+            "num":"200"
+        },
+        {
+            "time":"2017-03-01_001.zip",
+            "modifytime":"2017-03-01 12:09:09",
+            "size":"100M",
+            "num":"400"
+        },
+        {
+            "time":"2017-03-01_001.zip",
+            "modifytime":"2017-03-01 12:09:09",
+            "size":"100M",
+            "num":"500"
+        },
+        {
+            "time":"2017-03-01_001.zip",
+            "modifytime":"2017-03-01 12:09:09",
+            "size":"100M",
+            "num":"100"
+        }
+    ]
+    $scope.order1=[
         {
             "time":"2017-03-01 12:09:09",
             "aa":"在线电商品牌",
@@ -83,5 +115,28 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             "url":"https://www.hao123.com/"
         }
     ]
+    $scope.selecttaskName=function(sel,event){
+        $scope.over_selecttaskName=!$scope.over_selecttaskName;
+        $scope.selecttaskName_change=!$scope.selecttaskName_change;
+        event.stopPropagation();
+        var ele=angular.element("#selectedtaskName");
+        if(ele.html()==sel){
+            return
+        }
+        if(sel!=null){
+            ele.html(sel);
+            //$scope.$broadcast('sendParent',sel);
 
+        }
+
+    }
+    angular.element("html").on("click", function () {
+        if($scope.over_selecttaskName==false||$scope.selecttaskName_change==false){
+            return
+        }
+        $scope.$apply(function(){
+            $scope.over_selecttaskName=false;
+            $scope.selecttaskName_change=false;
+        })
+    })
 }])

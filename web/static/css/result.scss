@@ -144,19 +144,17 @@
     }
   }
   .contain3{
-    margin-top: 20px;
     overflow: hidden;
     clear: both;
     .con1{
+      margin-top: 20px;
       float: left;
       width: 620px;
       font-size: 14px;
       color: #999;
     }
     .con2{
-      float: right;
-      height: 35px;
-      width: 450px;
+
     }
   }
 }

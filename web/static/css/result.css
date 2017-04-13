@@ -113,17 +113,13 @@
         margin: 0;
         width: 90px; }
   #resultContain .contain3 {
-    margin-top: 20px;
     overflow: hidden;
     clear: both; }
     #resultContain .contain3 .con1 {
+      margin-top: 20px;
       float: left;
       width: 620px;
       font-size: 14px;
       color: #999; }
-    #resultContain .contain3 .con2 {
-      float: right;
-      height: 35px;
-      width: 450px; }
 
 /*# sourceMappingURL=result.css.map */

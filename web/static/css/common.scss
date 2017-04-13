@@ -446,6 +446,66 @@ img{
     background: #ffffff;
   }
 }
+.task{
+  width: 100%;
+  .task_list1{
+    width: 24%;
+    border-right: 1px solid #f5f3f3;
+  }
+  .task_list2{
+    width: 24%;
+    border-right: 1px solid #f5f3f3;
+  }
+  .task_list3{
+    width: 18%;
+    border-right: 1px solid #f5f3f3;
+  }
+  .task_list4{
+    width: 17%;
+    border-right: 1px solid #f5f3f3;
+  }
+  .task_list5{
+    width: 17%;
+  }
+  .task_title{
+    background: #fafafa;
+    overflow: hidden;
+    clear: both;
+    li{
+      float: left;
+      height: 39px;
+      line-height: 39px;
+      text-align: center;
+      font-size: 14px;
+      color: #464646;
+    }
+  }
+  .task_list{
+    overflow: hidden;
+    clear: both;
+    li{
+      float: left;
+      height: 39px;
+      line-height: 39px;
+      text-align: center;
+      font-size: 14px;
+      color: #464646;
+      &.task_list5{
+        color: #1085e4;
+        span{
+          cursor: pointer;
+        }
+
+      }
+    }
+  }
+  .task_listeven{
+    background: #fcfdff;
+  }
+  .task_listodd{
+    background: #ffffff;
+  }
+}
 
 #details{
   position: fixed;
@@ -500,6 +560,10 @@ img{
 }
 
 #paging{
+  float: right;
+  height: 35px;
+  width: 450px;
+  margin-top: 20px;
   .pagingcontain{
     display: inline-block;
     .page_disabled{
@@ -538,4 +602,136 @@ img{
     height: 35px;
     line-height: 35px;
   }
+}
+#taskpaging{
+  float: right;
+  height: 35px;
+  width: 450px;
+  margin-top: 20px;
+  .pagingcontain{
+    display: inline-block;
+    .page_disabled{
+      background: #cccccc;
+      a{
+        color: #eee;
+      }
+    }
+    .page_active{
+      background: #1085e4;
+      a{
+        color: #fff;
+      }
+    }
+    li{
+      display: inline-block;
+      background: #fff;
+      border-radius: 4px;
+      margin-right: 10px;
+      a{
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+        color: #464646;
+        text-align: center;
+        line-height: 35px;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  span{
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+  }
+}
+#download{
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  .contain{
+    width: 1165px;
+    height:300px;
+    margin: auto;
+    background: white;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin-left: -580px;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    box-sizing: border-box;
+    border-radius: 4px;
+    .contain1{
+      width: 100%;
+      background: #fff;
+      .title{
+        width: 100%;
+        padding: 15px 10px 15px 0;
+        height: 60px;
+        div{
+          color: #464646;
+          font-size: 14px;
+        }
+        .title1{
+          width: 160px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          display: inline-block;
+        }
+        .title2{
+          width: 220px;
+          display: inline-block;
+          padding-left: 20px;
+          border: 1px solid #e2e5ec;
+          position: relative;
+          .selected{
+            height: 30px;
+            line-height: 30px;
+            background: url(../img/down.png) no-repeat 170px center;
+          }
+          .select{
+            position: absolute;
+            width: 220px;
+            left: 0px;
+            border: 1px solid #e2e5ec;
+            border-top: none;
+            background: #fff;
+            .select1{
+              padding-left: 20px;
+              border-bottom: 1px solid #e2e5ec;
+              height: 30px;
+              line-height: 30px;
+              cursor: pointer;
+              &:hover{
+                background: #1085e4;
+              }
+            }
+          }
+        }
+        .all{
+          float: right;
+          margin-right: 10px;
+          .close{
+            font-size: 25px;
+          }
+        }
+        .select_change{
+          .selected{
+            background: url(../img/up.png) no-repeat 170px center;
+          }
+        }
+      }
+    }
+  }
+
 }
