@@ -5,7 +5,7 @@
 <div ng-include="'overSet.html'" id="overSet" ng-controller="overSetcontroller"></div>
 <div ng-include="'overHead.html'" id="overHead" ng-controller="overHeadcontroller"></div>
 
-<div id="download">
+<div id="download" ng-if="down_flag">
     <div class="contain">
         <div class="contain1">
             <div class="title">
@@ -18,7 +18,7 @@
                         <div class="select1" ng-click="selecttaskName('在线电商品牌',$event)">在线电商品牌</div>
                     </div>
                 </div>
-                <div class="all"><div class="close">&times;</div></div>
+                <div class="all"><div class="close" ng-click="closeDown(false)">&times;</div></div>
             </div>
             <task-list orderlist="order2"></task-list>
         </div>
@@ -41,7 +41,7 @@
                     共爬取<span>12,000</span>条数据
                 </div>
             </div>
-            <div class="set1">爬取文件下载</div>
+            <div class="set1" ng-click="closeDown(true)">爬取文件下载</div>
             <div class="set2"><a href="">爬取历史</a></div>
         </div>
     </div>

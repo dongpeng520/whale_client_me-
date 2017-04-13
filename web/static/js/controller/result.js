@@ -3,7 +3,7 @@
  */
 whaleModule.controller("ResultController",["$scope","$rootScope","$window","$http","$interval","$location","DateCenter", function($scope,$rootScope,$window,$http,$interval,$location,DateCenter){
     $scope.allcenter=DateCenter;
-    $scope.selectCategory=function(index){
+    $scope.selectCategory=function(index){//选择爬虫类型结果
         $scope.current=DateCenter[index];
         $scope.$broadcast('sendParent',index);
     }
@@ -115,7 +115,8 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             "url":"https://www.hao123.com/"
         }
     ]
-    $scope.selecttaskName=function(sel,event){
+
+    $scope.selecttaskName=function(sel,event){//选择下载任务名
         $scope.over_selecttaskName=!$scope.over_selecttaskName;
         $scope.selecttaskName_change=!$scope.selecttaskName_change;
         event.stopPropagation();
@@ -130,7 +131,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         }
 
     }
-    angular.element("html").on("click", function () {
+    angular.element("html").on("click", function () {//解决点击关闭任务栏
         if($scope.over_selecttaskName==false||$scope.selecttaskName_change==false){
             return
         }
@@ -139,4 +140,19 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             $scope.selecttaskName_change=false;
         })
     })
+
+    $scope.closeDown=function(flag){
+        if(flag){
+            $scope.down_flag=flag;//打开下载页面
+            $("body").css("overflow","hidden");
+        }else{
+            $scope.down_flag=flag;//关闭下载页面
+            $("body").css({
+                "margin-top" : '0px',
+                "margin-right" : '0px',
+                "overflow" : 'initial'
+            })
+        }
+
+    }
 }])

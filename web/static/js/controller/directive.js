@@ -64,7 +64,7 @@ whaleModule.directive('detailList',function(){
             ]
         });
         scope.$on('page.request', function (e, req) {
-            alert(req);
+            alert(req+"11");
         });
     }
     return {

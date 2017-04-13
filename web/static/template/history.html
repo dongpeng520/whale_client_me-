@@ -1,0 +1,56 @@
+<!--选择爬虫应用-->
+<div ng-include="'CrawlerApply.html'" id="Crawler" ng-controller="CrawlerApplycontroller" ng-if="crawler_close"></div>
+
+
+<div ng-include="'overSet.html'" id="overSet" ng-controller="overSetcontroller"></div>
+<div ng-include="'overHead.html'" id="overHead" ng-controller="overHeadcontroller"></div>
+
+<div id="download" ng-if="down_flag">
+    <div class="contain">
+        <div class="contain1">
+            <div class="title">
+                <div class="title1">抓取结果文件下载</div>
+                <div class="title2" ng-class="{'selecttaskName_change':selecttaskName_change}">
+                    <div class="selected" id="selectedtaskName" ng-click="selecttaskName(null,$event)">{{taskName}}</div>
+                    <div class="select" ng-if="over_selecttaskName">
+                        <div class="select1" ng-click="selecttaskName('所有',$event)">所有</div>
+                        <div class="select1" ng-click="selecttaskName('舆情监控',$event)">舆情监控</div>
+                        <div class="select1" ng-click="selecttaskName('在线电商品牌',$event)">在线电商品牌</div>
+                    </div>
+                </div>
+                <div class="all"><div class="close" ng-click="closeDown(false)">&times;</div></div>
+            </div>
+            <task-list orderlist="order2"></task-list>
+        </div>
+        <taskpage-middle></taskpage-middle>
+    </div>
+</div>
+
+
+<div id="historyContain">
+    <div class="contain1">
+        <div class="title1">任务历史</div>
+        <div class="title2">共执行过<span>29</span>次爬虫任务</div>
+    </div>
+    <div class="contain2">
+        <div class="con" ng-repeat="l in historyCenter">
+            <div class="con3" ng-if="type!='zxz'" ng-click="closeDown(true)"></div>
+            <a class="con4" ng-href="#/result" ng-if="type=='zxz'"></a>
+            <div class="con1">
+                <div class="co1">爬虫任务#29</div>
+                <div class="co2" ng-if="type!='zxz'">执行中</div>
+                <div class="co3" ng-if="type=='error'">异常状态</div>
+                <div class="co4">启动时间：2017/03/01 02:00:00</div>
+                <div class="co5" ng-if="type!='zxz'">结束时间：2017/03/01 02:00:00</div>
+            </div>
+            <div class="con2">
+                <div class="co1">耗时&nbsp;<span>5小时13分钟</span></div>
+                <div class="co2">爬取数据数&nbsp; <span>12,000</span><span>条</span></div>
+                <div class="co3">平均速度&nbsp; <span>1.87</span><span>条/秒</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="contain3">
+        <taskpage-middle></taskpage-middle>
+    </div>
+</div>
