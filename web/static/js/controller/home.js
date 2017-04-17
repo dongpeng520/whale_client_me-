@@ -1,10 +1,10 @@
 /**
  * Created by peter.dong on 17/3/28.
  */
-whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http","$interval","$location", function($scope,$rootScope,$window,$http,$interval,$location){
-    $scope.openlogin=function(){
-        $scope.openflag=true;
-        $("body").css("overflow","hidden");
+whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http","$interval","$location","$timeout", function($scope,$rootScope,$window,$http,$interval,$location,$timeout){
+    if(whale.store("orgId")){
+        $scope.username_flag=true;
+        task1();
     }
     $scope.closedlogin=function(){
         $scope.loginInfo={
@@ -50,29 +50,75 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
             $scope.error=true;
             return
         }
-        //submit
+        //submit  hex_md5(hex_md5($scope.loginInfo.password1))
         var datt={
             username: whale.Trim($scope.loginInfo.name1),
             password: hex_md5(hex_md5($scope.loginInfo.password1))
         }
         $http.post("/account/usercontroller/login",datt).success(function (data) {
             console.log(data);
-            if (data.status === 200) {
-            } else if (data.status == 407) {
-            } else if (data.status == 408) {
-            }else if (data.status == 406) {
-            } else {
-                console.log(data);
+            if (data.code == 10200) {
+                $rootScope.errormsg = '登录成功';
+                $timeout(function() {
+                    $rootScope.errormsg = null;
+                }, 1500);
+                whale.store("username",data.name);
+                whale.store("creattime",data.data.createTime);
+                whale.store("orgId",data.orgId);
+                $scope.closedlogin();
+                $scope.username_flag=true;
+                task1()
+            }else if (data.code == 42104||data.code == 42100||data.code == 42103||data.code == 42101||data.code == 42117) {
+                $scope.error_wenzi=data.note;
+                $scope.error=true;
+                return
+            }else {
+                $scope.error_wenzi="网络异常，请稍后重试";
+                $scope.error=true;
+                return
             }
         });
     }
     $scope.usernameenter=function(flag){
         $scope.user_change=flag;
     }
+    $scope.openlogin=function(){
+        $scope.openflag=true;
+        $("body").css("overflow","hidden");
+    }
     $scope.Crawler_close=function(){
         //$scope.crawler_close=true;
         $rootScope.crawler_close=true;
         $("body").css("overflow","hidden");
+
+        $http.get("/task/taskcontroller/queryApplicationHead",{
+            params: {
+                orgId: whale.store("orgId")
+            }
+        }).success(function (data) {
+            if (data.code == 10200) {
+                $scope.CrawlerApply=data.data;
+            }
+        })
+    }
+    function task1(){
+        $http.get("/task/appcontroller/queryFirstCrawCount",{
+            params: {
+                orgId: whale.store("orgId")
+            }
+        }).success(function (data) {
+            if (data.code == 10200) {
+                $scope.usercount={};
+                var count={};
+                count.costTime=data.data.costTime;
+                count.appcount=data.data.appcount;
+                count.totalCount=data.data.totalCount;
+                count.crawlNum=data.data.crawlNum;
+                count.username=whale.store("username");
+                count.time=whale.store("creattime");
+                $scope.usercount=count;
+            }
+        })
     }
 
 }])

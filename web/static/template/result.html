@@ -13,9 +13,7 @@
                 <div class="title2" ng-class="{'selecttaskName_change':selecttaskName_change}">
                     <div class="selected" id="selectedtaskName" ng-click="selecttaskName(null,$event)">{{taskName}}</div>
                     <div class="select" ng-if="over_selecttaskName">
-                        <div class="select1" ng-click="selecttaskName('所有',$event)">所有</div>
-                        <div class="select1" ng-click="selecttaskName('舆情监控',$event)">舆情监控</div>
-                        <div class="select1" ng-click="selecttaskName('在线电商品牌',$event)">在线电商品牌</div>
+                        <div class="select1" ng-repeat="t in taskname" ng-click="selecttaskName(t,$event)">{{t}}</div>
                     </div>
                 </div>
                 <div class="all"><div class="close" ng-click="closeDown(false)">&times;</div></div>

@@ -6,5 +6,15 @@ whaleModule.controller("overSetcontroller",["$scope","$rootScope","$window","$ht
         //$scope.crawler_close=true;
         $rootScope.crawler_close=true;
         $("body").css("overflow","hidden");
+        $http.get("/task/taskcontroller/queryApplicationHead",{
+            params: {
+                orgId: whale.store("orgId")
+            }
+        }).success(function (data) {
+            if (data.code == 10200) {
+                $rootScope.CrawlerApply=data.data;
+            }
+        })
     }
+
 }])

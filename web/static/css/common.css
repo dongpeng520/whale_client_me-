@@ -22,6 +22,33 @@ img {
   width: 1170px;
   margin: 0 auto; }
 
+.error-msg {
+  top: 10%;
+  left: 5%;
+  width: 90%;
+  height: 60px;
+  position: absolute;
+  z-index: 9999;
+  text-align: center;
+  pointer-events: none; }
+  .error-msg span {
+    line-height: 60px;
+    padding: 20px 15px;
+    color: #464646;
+    font-size: 14px;
+    text-align: center;
+    background: #eee;
+    border-radius: 5px;
+    opacity: 0;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s; }
+    .error-msg span.msg-active {
+      opacity: 1; }
+
 .hexagon_include {
   width: 100%;
   height: 100%; }
@@ -86,7 +113,7 @@ img {
 
 .mtop-btn .btn-paddings {
   padding: 10px 0;
-  font-size: 30px; }
+  font-size: 20px; }
 
 .m-left .row {
   margin-left: 40px;
@@ -119,12 +146,7 @@ img {
     text-align: center;
     margin-bottom: 70px; }
     #Crawler .Crawler_title img {
-      width: 70px;
       height: 60px; }
-    #Crawler .Crawler_title span {
-      margin-left: 20px;
-      color: #000;
-      font-size: 44px; }
   #Crawler .contain {
     width: 1170px;
     margin: 0 auto; }
@@ -177,10 +199,12 @@ img {
           margin: 0 auto 30px;
           color: #464646;
           font-size: 14px; }
-          #Crawler .contain .contain2 .apply .time .time2 .ad {
-            color: #761c19; }
-          #Crawler .contain .contain2 .apply .time .time2 span {
+          #Crawler .contain .contain2 .apply .time .time2 .aa {
             color: #60b027; }
+          #Crawler .contain .contain2 .apply .time .time2 .as {
+            color: #464646; }
+          #Crawler .contain .contain2 .apply .time .time2 .ad {
+            color: #a94442; }
         #Crawler .contain .contain2 .apply .admin {
           width: 90px;
           height: 30px;
@@ -296,12 +320,15 @@ img {
       margin-bottom: 50px; }
     #password .contain .input_name {
       width: 350px;
-      margin: 0px auto 30px; }
+      margin: 0px auto 30px;
+      background: #f9f9f9; }
       #password .contain .input_name input {
         width: 100%;
         height: 37px;
         padding-left: 20px;
-        font-size: 16px; }
+        font-size: 16px;
+        border: 1px solid #dfdfdf;
+        border-radius: 4px; }
         #password .contain .input_name input:focus {
           border: 1px solid #28b0f8; }
     #password .contain .input_password {
@@ -311,7 +338,9 @@ img {
         width: 100%;
         height: 37px;
         padding-left: 20px;
-        font-size: 16px; }
+        font-size: 16px;
+        border: 1px solid #dfdfdf;
+        border-radius: 4px; }
         #password .contain .input_password input:focus {
           border: 1px solid #28b0f8; }
     #password .contain .login_error {
@@ -321,7 +350,9 @@ img {
       line-height: 40px;
       text-align: center;
       color: #e87171;
-      font-size: 16px; }
+      font-size: 16px;
+      background: #f2dedf;
+      border-radius: 4px; }
     #password .contain .submit {
       width: 350px;
       margin: 0px auto;
@@ -590,10 +621,14 @@ img {
           #download .contain .contain1 .title .title2 .select {
             position: absolute;
             width: 220px;
+            height: 151px;
             left: 0px;
+            top: 32px;
             border: 1px solid #e2e5ec;
             border-top: none;
-            background: #fff; }
+            background: #fff;
+            overflow-y: auto;
+            overflow-x: hidden; }
             #download .contain .contain1 .title .title2 .select .select1 {
               padding-left: 20px;
               border-bottom: 1px solid #e2e5ec;

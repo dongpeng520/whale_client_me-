@@ -27,15 +27,15 @@ whaleModule.controller("overHeadcontroller",["$scope","$rootScope","$window","$h
     }
     $scope.submit=function(){
         if ($scope.loginInfo.name1&&$scope.loginInfo.name1.length>0) {
-            if(!(whale.email_pat).test($scope.loginInfo.name1)){
-                $scope.error_wenzi="你输入的账号不正确，请重新输入";
+            if(!(whale.password_bat).test($scope.loginInfo.name1)){
+                $scope.error_wenzi="密码格式不正确(6-22位，且不包含特殊字符)";
                 $scope.error=true;
                 return
             }else{
                 $scope.error=false;
             }
         }else{
-            $scope.error_wenzi="请输入账号";
+            $scope.error_wenzi="请输入旧密码";
             $scope.error=true;
             return
         }
@@ -52,12 +52,30 @@ whaleModule.controller("overHeadcontroller",["$scope","$rootScope","$window","$h
             $scope.error=true;
             return
         }
+        if ($scope.loginInfo.password2&&$scope.loginInfo.password2.length>0) {
+            if(!(whale.password_bat).test($scope.loginInfo.password2)){
+                $scope.error_wenzi="密码格式不正确(6-22位，且不包含特殊字符)";
+                $scope.error=true;
+                return
+            }else{
+                if($scope.loginInfo.password2!=$scope.loginInfo.password1){
+                    $scope.error_wenzi="密码不一致";
+                    $scope.error=true;
+                    return
+                }
+                $scope.error=false;
+            }
+        }else{
+            $scope.error_wenzi="请输入确认密码";
+            $scope.error=true;
+            return
+        }
         //submit
         var datt={
             username: whale.Trim($scope.loginInfo.name1),
             password: hex_md5(hex_md5($scope.loginInfo.password1))
         }
-        $http.post("/account/usercontroller/login",datt).success(function (data) {
+        $http.post("/account/usercontroller/editPwd",datt).success(function (data) {
             console.log(data);
             if (data.status === 200) {
             } else if (data.status == 407) {

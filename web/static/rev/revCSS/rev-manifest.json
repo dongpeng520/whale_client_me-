@@ -1,3 +1,9 @@
 {
-  "static/css/main.css": "static/css/main-d41d8cd98f.css"
+  "static/css/common.css": "static/css/common-687b6ec00c.css",
+  "static/css/global.css": "static/css/global-8b45b7cdd1.css",
+  "static/css/history.css": "static/css/history-99eca6c50a.css",
+  "static/css/home.css": "static/css/home-9839a907ef.css",
+  "static/css/overview.css": "static/css/overview-5f8a3c72d2.css",
+  "static/css/result.css": "static/css/result-2019b04142.css",
+  "static/css/setup.css": "static/css/setup-a11ac1b781.css"
 }

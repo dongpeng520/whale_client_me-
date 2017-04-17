@@ -9,9 +9,9 @@
         whale.email_pat = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
         // pictureAir.phone_bat= /(?:\(?[0\+]?\d{1,3}\)?)[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
         whale.phone_bat= /[\s-]?(?:0|\d{1,4})[\s-]?(?:(?:13\d{9})|(?:\d{7,8}))/;
-        whale.password_bat=/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,52}$/;
+        whale.password_bat=/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/;
         whale.store=function(namespace,data){
-            if(!!window.localStorage){
+            /*if(!!window.localStorage){
                 try {
                     if(arguments.length>1){
                         localStorage.setItem(namespace,JSON.stringify(data));
@@ -26,13 +26,13 @@
                 }
             }else{
                 return false;
+            }*/
+            if(arguments.length>1){
+                localStorage.setItem(namespace,JSON.stringify(data));
+            }else{
+                var obj = localStorage.getItem(namespace);
+                return obj = JSON.parse(obj);
             }
-            // if(arguments.length>1){
-            //     localStorage.setItem(namespace,JSON.stringify(data));
-            // }else{
-            //     var obj = localStorage.getItem(namespace);
-            //     return obj = JSON.parse(obj);
-            // }
         }
         /*pictureAir.store_sting=function(namespace,data){
             if(arguments.length>1){

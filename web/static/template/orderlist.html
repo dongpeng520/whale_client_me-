@@ -7,11 +7,11 @@
             <li class="order_list4"></li>
         </ul>
         <ul class="order_list" ng-class="{order_listeven: !$even, order_listodd: !$odd}" ng-repeat="list in order">
-            <li class="order_list1" ng-bind="list.time"></li>
-            <li class="order_list2" ng-bind="list.aa"></li>
+            <li class="order_list1">{{list.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</li>
+            <li class="order_list2" ng-bind="list.category"></li>
             <li class="order_list3" ng-bind="list.url"></li>
             <li class="order_list4">
-                <span ng-click="details_change($index)" ng-bind="'详情'"></span>
+                <span ng-click="details_change(list._id)" ng-bind="'详情'"></span>
             </li>
         </ul>
     </div>

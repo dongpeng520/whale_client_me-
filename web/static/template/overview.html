@@ -7,15 +7,20 @@
 
 <div id="overContain">
     <div class="contain1">
-        <div class="title">海飞丝品牌舆情监控爬虫</div>
+        <div class="title">{{overCurrentTask.appName}}</div>
         <div class="con">
             <div class="zt">
                 <div class="zt1">
-                    <img src="static/img/going1.png" alt="">
-                    <span>爬取中</span>
+                    <img ng-if="overCurrentTask.status=='1'" ng-src="static/img/going1.png" alt="">
+                    <img ng-if="overCurrentTask.status=='0'" ng-src="static/img/going1.png" alt="">
+                    <img ng-if="overCurrentTask.status=='2'" ng-src="static/img/going1.png" alt="">
+                    <span ng-class="{'aa':overCurrentTask.status=='1','as':overCurrentTask.status=='0','ad':overCurrentTask.status=='2'}">{{ overCurrentTask.status | crawlerstatus}}</span>
                 </div>
                 <div class="zt2">
-                    启用于 2017/03/01 14:10:01
+                    启用于 {{overCurrentTask.startTime | date:"yyyy-MM-dd HH:mm:ss"}}
+                </div>
+                <div class="zt2" ng-if="!overCurrentTask.status=='1'">
+                    结束于 {{overCurrentTask.endTime | date:"yyyy-MM-dd HH:mm:ss"}}
                 </div>
                 <div class="zt3">
                     定时运行（每天2:00开始）
@@ -29,7 +34,7 @@
             <div class="s1"><img src="static/img/overview1.png" alt=""></div>
             <div class="s2">
                 <div class="ss">
-                    <p class="p1">1,310,690</p>
+                    <p class="p1">{{overApplyDetail.totalCount}}</p>
                     <p class="p2">累计爬取数据量</p>
                 </div>
             </div>
@@ -39,9 +44,9 @@
             <div class="s2">
                 <div class="ss">
                     <p class="p1">
-                        85 <span>条/秒</span>
+                        {{overApplyDetail.speed}} <span>条/秒</span>
                     </p>
-                    <p class="p2">累计爬取数据量</p>
+                    <p class="p2">平均爬取速度</p>
                 </div>
             </div>
         </div>
@@ -49,8 +54,8 @@
             <div class="s1"><img src="static/img/overview3.png" alt=""></div>
             <div class="s2">
                 <div class="ss">
-                    <p class="p1">859 <span>M</span></p>
-                    <p class="p2">累计爬取数据量</p>
+                    <p class="p1"><home-kmg ng-if="overApplyDetail" creattime="overApplyDetail.totalFileSize"></home-kmg></p>
+                    <p class="p2">占用存储空间</p>
                 </div>
             </div>
         </div>
@@ -58,8 +63,8 @@
             <div class="s1"><img src="static/img/overview4.png" alt=""></div>
             <div class="s2">
                 <div class="ss">
-                    <p class="p1">10 <span>个</span></p>
-                    <p class="p2">累计爬取数据量</p>
+                    <p class="p1">{{overApplyDetail.crawlNum}} <span>个</span></p>
+                    <p class="p2">爬虫节点数</p>
                 </div>
             </div>
         </div>
@@ -67,8 +72,8 @@
             <div class="s1"><img src="static/img/overview5.png" alt=""></div>
             <div class="s2">
                 <div class="ss">
-                    <p class="p1">102.5 <span>小时</span></p>
-                    <p class="p2">累计爬取数据量</p>
+                    <p class="p1"><home-hours ng-if="overApplyDetail" creattime="overApplyDetail.costTime"></home-hours></p>
+                    <p class="p2">累计爬取时间</p>
                 </div>
             </div>
         </div>
@@ -93,13 +98,12 @@
                 <div class="selected" id="selected" ng-click="select(null,$event)">所有</div>
                 <div class="select" ng-if="over_select">
                     <div class="select1" ng-click="select('所有',$event)">所有</div>
-                    <div class="select1" ng-click="select('舆情监控',$event)">舆情监控</div>
-                    <div class="select1" ng-click="select('在线电商品牌',$event)">在线电商品牌</div>
+                    <div class="select1" ng-repeat="list in DataCategory" ng-click="select(list,$event)">{{list}}</div>
                 </div>
             </div>
             <div class="all"><a href="">全部</a></div>
         </div>
-        <order-list orderlist="order"></order-list>
+        <order-list orderlist="querybycategory"></order-list>
     </div>
 </div>
 <detail-list></detail-list>

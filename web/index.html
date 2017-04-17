@@ -18,6 +18,9 @@
 </head>
 
 <body>
+    <div class="error-msg" ng-click="errormsg = null">
+        <span ng-class="{'msg-active':errormsg}" ng-bind="errormsg"></span>
+    </div>
     <ng-view></ng-view>
     <script type="text/javascript" src="static/js/libs/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="static/js/libs/bootstrap.min.js"></script>
@@ -27,9 +30,9 @@
     <script src="static/js/libs/angular-route.js"></script>
     <script src="static/js/libs/md5.js"></script>
     <script src="static/js/common/main.js"></script>
-    <script src="static/js/common/common.js"></script>
     <script src="static/js/common/check.js"></script>
     <script src="static/js/controller.js"></script>
+    <script src="static/js/controller/filter.js"></script>
     <script src="static/js/controller/directive.js"></script>
     <script src="static/js/controller/home.js"></script>
     <script src="static/js/controller/overview.js"></script>
@@ -128,24 +131,23 @@
     <script type="text/ng-template" id="CrawlerApply.html">
         <div class="Crawler_close"><div class="close" ng-click="Crawler_close()">&times;</div></div>
         <div class="Crawler_title">
-            <img src="static/img/whale.png" alt="">
-            <span>鲸鱼爬虫</span>
+            <img src="static/img/whale_c.png" alt="">
         </div>
         <div class="contain">
             <div class="contain1">请选择爬虫应用</div>
             <div class="contain2">
-                <div class="apply" ng-repeat="dd in data" ng-class="{'zeromargin':($index+1)%3=='0'}">
+                <div class="apply" ng-repeat="dd in CrawlerApply" ng-class="{'zeromargin':($index+1)%3=='0'}">
                     <div class="img">
-                        <img ng-if="dd.a1=='a'" ng-src="static/img/going.png" alt="">
-                        <img ng-if="dd.a1=='b'" ng-src="static/img/waiting.png" alt="">
-                        <img ng-if="dd.a1=='c'" ng-src="static/img/end.png" alt="">
+                        <img ng-if="dd.status=='1'" ng-src="static/img/going.png" alt="">
+                        <img ng-if="dd.status=='0'" ng-src="static/img/waiting.png" alt="">
+                        <img ng-if="dd.status=='2'" ng-src="static/img/end.png" alt="">
                     </div>
-                    <div class="name">海飞丝</div>
+                    <div class="name">{{dd.CrawlerApply}}</div>
                     <div class="time">
-                        <p class="time1">启动时间：2017-03-02</p>
-                        <p class="time2">当前状态：<span ng-class="{'aa':dd.a1=='a','as':dd.a1=='b','ad':dd.a1=='c'}">{{dd.state}}</span></p>
+                        <p class="time1">启动时间：{{dd.startTime | limitTo :10}}</p>
+                        <p class="time2">当前状态：<span ng-class="{'aa':dd.status=='1','as':dd.status=='0','ad':dd.status=='2'}">{{ dd.status | crawlerstatus}}</span></p>
                     </div>
-                    <div class="admin">管理</div>
+                    <div class="admin" ng-click="guanli(dd.appid)">管理</div>
                 </div>
             </div>
         </div>
@@ -154,8 +156,7 @@
         <div class="overSet">
             <div class="over_logo">
                 <div class="contain">
-                    <img src="static/img/whale.png" alt="">
-                    <span>鲸鱼爬虫</span>
+                    <img src="static/img/whale_o.png" alt="">
                 </div>
             </div>
             <div class="over_set">

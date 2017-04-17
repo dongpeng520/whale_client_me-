@@ -3,6 +3,7 @@
  */
 whaleModule.controller("ResultController",["$scope","$rootScope","$window","$http","$interval","$location","DateCenter", function($scope,$rootScope,$window,$http,$interval,$location,DateCenter){
     $scope.allcenter=DateCenter;
+    $scope.taskname=["所有","舆情监控","在线电商品牌","天猫","京东"];
     $scope.selectCategory=function(index){//选择爬虫类型结果
         $scope.current=DateCenter[index];
         $scope.$broadcast('sendParent',index);
@@ -125,7 +126,8 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             return
         }
         if(sel!=null){
-            ele.html(sel);
+            $scope.taskName=sel;
+            //ele.html(sel);
             //$scope.$broadcast('sendParent',sel);
 
         }

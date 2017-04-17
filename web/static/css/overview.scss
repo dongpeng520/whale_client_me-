@@ -31,8 +31,14 @@
           img{
             vertical-align: middle;
           }
-          span{
-
+          .aa{
+            color: #60b027;
+          }
+          .as{
+            color: #464646;
+          }
+          .ad{
+            color: #a94442;
           }
         }
       }
@@ -112,7 +118,13 @@
     }
     .shuju3{
       .p1{
-        color: #60b027!important;
+        .span1{
+          font-size: 30px!important;
+          color: #60b027!important;
+          .span2{
+            margin-left: 10px;
+          }
+        }
       }
     }
     .shuju4{
@@ -123,7 +135,13 @@
     .shuju5{
       margin-right: 0!important;
       .p1{
-        color: #9933cc!important;
+        .span1{
+          font-size: 30px!important;
+          color: #9933cc!important;
+          .span2{
+            margin-left: 10px;
+          }
+        }
       }
     }
   }

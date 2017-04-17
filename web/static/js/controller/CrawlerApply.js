@@ -11,24 +11,11 @@ whaleModule.controller("CrawlerApplycontroller",["$scope","$rootScope","$window"
             "overflow" : 'initial'
         })
     }
-    $scope.data=[
-        {
-           "a1":"a",
-            "state":"爬取中"
-        },
-        {
-            "a1":"b",
-            "state":"待命中"
-        },
-        {
-            "a1":"c",
-            "state":"已结束"
-        },
-        {
-            "a1":"a",
-            "state":"爬取中"
-        }
-
-    ]
-
+    $scope.guanli=function(data){
+        whale.store("appid",data);
+        $rootScope.crawler_close=false;
+        $location.path('/overview');
+        window.history.go(0);
+        location.reload()
+    }
 }])

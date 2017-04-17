@@ -8,10 +8,6 @@ whaleModule.config(['$routeProvider','$locationProvider',function ($routeProvide
         controller: "HomeController",
         templateUrl: 'static/template/home.html'
     }).
-    when('/picture',{
-        controller: "PictureController",
-        templateUrl: 'static/template/picture.html'
-    }).
     when('/overview',{
         controller: "OverviewController",
         templateUrl: 'static/template/overview.html'
@@ -28,10 +24,6 @@ whaleModule.config(['$routeProvider','$locationProvider',function ($routeProvide
         controller: "ResultController",
         templateUrl: 'static/template/result.html'
     }).
-    when('/h5/contact',{
-        controller: "ContactController",
-        templateUrl: 'static/template/contact.html'
-    }).
     otherwise({
         redirectTo: '/'
     });
@@ -46,6 +38,24 @@ whaleModule.factory('DateCenter', function() {
     return factory;
 });
 
+/*app.factory('userData',['$http','$q',function($http,$q){
+    return {
+        query:function(){
+            var deferred = $q.defer();
+            $http.get('tpl/user.json').then(function(response){
+                deferred.resolve(response);
+            })
+            return deferred.promise;
+        }
+    }
+}]);
+app.controller('myCtrl',['userData','$scope',function(userData,$scope){
+    var pro = userData.query();
+    pro.then(function(response){
+        $scope.user = response.data;
+        $scope.name = response.data.name;
+    })
+}]);*/
 whaleModule.directive('repeatFinish',function(){
     return {
         link: function(scope,element,attr){
