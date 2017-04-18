@@ -2,7 +2,7 @@
   width: calc(100% - 200px);
   width: -moz-calc(100% - 200px);
   width:-webkit-calc(100% - 200px);
-  min-height: 1500px;
+  min-height: 990px;
   float: left;
   background: #e2e5ec;
   padding-left: 40px;
@@ -141,6 +141,9 @@
         margin: 0;
         width: 90px;
       }
+    }
+    .con3{
+      min-height: 625px;
     }
   }
   .contain3{

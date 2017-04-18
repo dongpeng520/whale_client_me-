@@ -59,33 +59,63 @@ whaleModule.directive('homeKmg', ['$rootScope',"$filter",
 ]);
 whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$http){
     var linkFunction=function(scope,element,attr){
-        function httpquery(data){
+        function httpquery(pin,index,flag){
             $http.get("/task/taskcontroller/querybycategory",{
                 params: {
                     orgId: whale.store("orgId"),
                     appId: whale.store("appid"),
                     taskId: whale.store("taskid"),
-                    category:data,
+                    category:pin,
+                    PageIndex:index,
+                    PageSize:15,
                     startTime:"",
                     endTime:""
                 }
             }).success(function (data) {
                 if (data.code == 10200) {
                     scope.order=data.data;
+                    $rootScope.$broadcast('delivery.page', data.total,flag);  //发送给pagemiddle  页码长度
                 }
             })
         }
-        scope.$on('sendParent_over',function(event,data){//监听在子控制器中定义的 sendParent 事件
-
+        scope.$on('sendParent_over',function(event,data){//监听在子控制器中定义的 点击切换品类 事件
             if(data=="所有"){
-                httpquery("");
+                httpquery("",1);
             }else{
-                httpquery(data);
+                httpquery(data,1);
             }
-
         });
-
-
+        scope.$on('pageMiddle.request', function (e, req,flag) { //监听在子控制器中定义的 分页点击 事件
+            if(whale.store("category")=="所有"){
+                httpquery("",req,flag);
+            }else{
+                httpquery(whale.store("category"),req,flag);
+            }
+        });
+        scope.$on('sendParent_time', function (e, req1,req2) { //监听在子控制器中定义的 时间查询 事件
+            if(whale.store("category")=="所有"){
+                var category="";
+            }else{
+                var category=whale.store("category");
+            }
+            $http.get("/task/taskcontroller/querybycategory",{
+                params: {
+                    orgId: whale.store("orgId"),
+                    appId: whale.store("appid"),
+                    taskId: whale.store("taskid"),
+                    category:category,
+                    PageIndex:1,
+                    PageSize:15,
+                    startTime:req1,
+                    endTime:req2
+                }
+            }).success(function (data) {
+                if (data.code == 10200) {
+                    scope.order=data.data;
+                    $rootScope.$broadcast('delivery.page', data.total);  //发送给pagemiddle  页码长度
+                }
+            })
+        });
     }
     return {
         restrict: "E",
@@ -114,13 +144,10 @@ whaleModule.directive('detailList',["$http",function($http){
                 }
             }).success(function (data) {
                 if (data.code == 10200) {
-                    scope.details=data;
+                    scope.details=data.data;
                 }
             })
 
-        });
-        scope.$on('page.request', function (e, req) {
-            alert(req+"11");
         });
     }
     return {
@@ -142,26 +169,40 @@ whaleModule.directive('detailList',["$http",function($http){
 }])
 whaleModule.directive('pageMiddle',["$rootScope",function($rootScope){
     var linkFunction=function(scope,element,attr){
-        scope.$on('sendParent',function(event,data){//监听在子控制器中定义的 sendParent 事件
-            console.log(data);
+        scope.$on('sendParent_pagemiddle',function(event,data){//监听在子控制器中定义的 最初加载页码 事件
+            scope.count=data;
+            //初始化第一页
+            scope.p_current = 1;
+            scope._get(scope.p_current,scope.p_pernum);
+        });
+        scope.$on('delivery.page', function (e, req,flag) { //监听在不同品类变化页码
+            if(flag){
+                scope.count=req;
+                scope._get(scope.p_current,scope.p_pernum);
+            }else{
+                scope.count=req;
+                //初始化第一页
+                scope.p_current = 1;
+                scope._get(scope.p_current,scope.p_pernum);
+            }
         });
     }
     return {
         restrict: "E",
         controller : ["$scope",function($scope){
-            var res={
+            /*var res={
                 "count":240,
-            }
+            }*/
             //配置
             $scope.count = 0;
-            $scope.p_pernum = 10;
+            $scope.p_pernum = 15;
             //变量
             $scope.p_current = 1;
             $scope.p_all_page =0;
             $scope.pages = [];
 
             //分页算法
-            var calculateIndexes = function (current, length, displayLength) {
+            $scope.calculateIndexes = function (current, length, displayLength) {
                 var indexes = [];
                 var start = Math.round(current - displayLength / 2);
                 var end = Math.floor(current + displayLength / 2);
@@ -185,18 +226,17 @@ whaleModule.directive('pageMiddle',["$rootScope",function($rootScope){
                 return indexes;
             };
             //初始化页码
-            var reloadPnofun = function(){
-                $scope.pages=calculateIndexes($scope.p_current,$scope.p_all_page,5);
+            $scope.reloadPnofun = function(){
+                $scope.pages=$scope.calculateIndexes($scope.p_current,$scope.p_all_page,5);
             };
             //获取数据
-            var _get = function(page,size){
-                $scope.count=res.count;
+            $scope._get = function(page,size){
+                //$scope.count=res.count;
                 $scope.p_current = page;
                 $scope.p_all_page =Math.ceil($scope.count/$scope.p_pernum);
-                reloadPnofun();
+                $scope.reloadPnofun();
             }
-            //初始化第一页
-            _get($scope.p_current,$scope.p_pernum);
+
             //首页
             $scope.p_index = function(){
                 $scope.load_page(1);
@@ -207,8 +247,8 @@ whaleModule.directive('pageMiddle',["$rootScope",function($rootScope){
             }
             //加载某一页
             $scope.load_page = function(page){
-                _get(page,$scope.p_pernum);
-                $rootScope.$broadcast('page.request', page);
+                $scope._get(page,$scope.p_pernum);
+                $rootScope.$broadcast('pageMiddle.request', page,true);//true 表示点击页面换数据的时候，不需要重载页面
             };
         }],
         replace:true,

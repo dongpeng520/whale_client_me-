@@ -65,6 +65,8 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
                 whale.store("username",data.name);
                 whale.store("creattime",data.data.createTime);
                 whale.store("orgId",data.orgId);
+                whale.store("user_id",data.data.user_id);
+                whale.store("accessToken",data.data.accessToken);
                 $scope.closedlogin();
                 $scope.username_flag=true;
                 task1()

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/4/11.
  */
-whaleModule.controller("overHeadcontroller",["$scope","$rootScope","$window","$http","$interval","$location", function($scope,$rootScope,$window,$http,$interval,$location){
+whaleModule.controller("overHeadcontroller",["$scope","$rootScope","$window","$http","$interval","$location","$timeout", function($scope,$rootScope,$window,$http,$interval,$location,$timeout){
     $scope.openlogin=function(){
         $scope.openflag=true;
         $("body").css("overflow","hidden");
@@ -72,17 +72,48 @@ whaleModule.controller("overHeadcontroller",["$scope","$rootScope","$window","$h
         }
         //submit
         var datt={
-            username: whale.Trim($scope.loginInfo.name1),
-            password: hex_md5(hex_md5($scope.loginInfo.password1))
+            id:whale.store("user_id"),
+            oldpwd: hex_md5(hex_md5($scope.loginInfo.name1)),
+            newpwd: hex_md5(hex_md5($scope.loginInfo.password1))
         }
-        $http.post("/account/usercontroller/editPwd",datt).success(function (data) {
+        $http.post("/account/usercontroller/editPwd"+"?accessToken="+whale.store("accessToken"),datt).success(function (data) {
             console.log(data);
-            if (data.status === 200) {
-            } else if (data.status == 407) {
-            } else if (data.status == 408) {
-            }else if (data.status == 406) {
-            } else {
-                console.log(data);
+            if (data.code == 10200) {
+                $rootScope.errormsg = '修改成功';
+                $timeout(function() {
+                    $rootScope.errormsg = null;
+                    whale.removestore("orgId");
+                    whale.removestore("appid");
+                    $location.path('/');
+                }, 1500);
+                $scope.closedlogin();
+            }else if (data.code == 42122||data.code == 42123||data.code == 42124) {
+                $scope.error_wenzi=data.note;
+                $scope.error=true;
+                return
+            }else {
+                $scope.error_wenzi="网络异常，请稍后重试";
+                $scope.error=true;
+                return
+            }
+        });
+    }
+    $scope.loginout=function(){
+        $http.post("/account/usercontroller/loginout"+"?accessToken="+whale.store("accessToken")).success(function (data) {
+            if (data.code == 10200) {
+                $rootScope.errormsg = '退出成功';
+                $timeout(function() {
+                    $rootScope.errormsg = null;
+                    whale.removestore("orgId");
+                    whale.removestore("appid");
+                    $location.path('/');
+                }, 1500);
+            }else {
+                $rootScope.errormsg = '网络异常，请稍后重试';
+                $timeout(function() {
+                    $rootScope.errormsg = null;
+                }, 1500);
+                return
             }
         });
     }

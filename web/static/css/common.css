@@ -12,7 +12,8 @@ ul {
     list-style: none; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
 
 img {
   border: 0;
@@ -232,7 +233,8 @@ img {
   .overSet .over_set {
     width: 100%;
     background: #0d3b75;
-    padding-top: 20px; }
+    padding-top: 20px;
+    min-height: 980px; }
     .overSet .over_set .set1 {
       text-align: center;
       margin-bottom: 20px; }
@@ -250,8 +252,7 @@ img {
       .overSet .over_set .set1 .span1 {
         margin-right: 10px; }
     .overSet .over_set .set2 {
-      width: 100%;
-      height: 1000px; }
+      width: 100%; }
       .overSet .over_set .set2 .s1 {
         padding-left: 20px;
         height: 40px;

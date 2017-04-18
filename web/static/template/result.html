@@ -30,13 +30,13 @@
         <div class="con">
             <div class="zt">
                 <div class="zt1">
-                    本轮爬取任务启动于<span>2017/03/01 02:00</span>，
+                    本轮爬取任务启动于<span>{{overCurrentTask.startTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>，
                 </div>
-                <div class="zt2">
-                    结束于<span>2017/03/01 05:40</span>，
+                <div class="zt2" ng-if="!overCurrentTask.status=='1'">
+                    结束于<span>{{overCurrentTask.endTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>，
                 </div>
                 <div class="zt3">
-                    共爬取<span>12,000</span>条数据
+                    共爬取<span>{{overApplyDetail.totalCount}}</span>条数据
                 </div>
             </div>
             <div class="set1" ng-click="closeDown(true)">爬取文件下载</div>
@@ -45,18 +45,18 @@
     </div>
     <div class="contain2">
         <div class="con1">
-            <div class="sele" ng-repeat="a in allcenter" ng-click="selectCategory($index)" ng-class="{'categoryActive':current === a}">{{a}}</div>
+            <div class="sele" ng-repeat="a in DataCategory" ng-click="selectCategory(a)" ng-class="{'categoryActive':current === a}">{{a}}</div>
         </div>
         <div class="con2">
             <div class="time1">开始时间</div>
-            <div class="time2"><input class="form-control" id="starttime" type="text" placeholder="过滤开始时间"></div>
+            <div class="time2"><input class="form-control" id="starttime" type="text" ng-model="result.starttime" placeholder="过滤开始时间"></div>
             <div class="time1">结束时间</div>
-            <div class="time2"><input class="form-control" id="endtime" type="text" placeholder="过滤结束时间"></div>
-            <div class="time5">查询</div>
+            <div class="time2"><input class="form-control" id="endtime" type="text" ng-model="result.endtime" placeholder="过滤结束时间"></div>
+            <div class="time5" ng-click="timeChangeResult()">查询</div>
             <div class="time6 time5">导出结果</div>
         </div>
         <div class="con3">
-            <order-list orderlist="order1"></order-list>
+            <order-list orderlist="querybycategory"></order-list>
         </div>
     </div>
     <div class="contain3">

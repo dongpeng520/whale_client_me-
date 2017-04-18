@@ -3,7 +3,7 @@
  */
 whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$http","$interval","$location", function($scope,$rootScope,$window,$http,$interval,$location){
     // 基于准备好的dom，初始化echarts实例
-    if(whale.store("orgId")){
+    if(whale.store("orgId")&&whale.store("appid")){
 
         var myChart_zhe = echarts.init(document.getElementById('echarts_zhe'));
         var myChart_zhu = echarts.init(document.getElementById('echarts_zhu'));
@@ -113,11 +113,14 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     }
                 }).success(function (data) {
                     if (data.code == 10200) {
-                        var category=data.data[1].category;
+                        var obj=data.data[0].category;
+                        /*obj=JSON.stringify(obj);
+                        var category=JSON.parse(obj);*/
+                        var category = eval('(' + obj + ')');
                         $scope.DataCategory=[];
                         for(var s in category){
+                            $scope.DataCategory.push(category[s])
                         }
-                        $scope.DataCategory=["商品信息","评论信息"];
                     }
                 })
                 //根据orgId,appId,taskId,品类,.查询mongo数据信息
@@ -127,6 +130,8 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                         appId: whale.store("appid"),
                         taskId: whale.store("taskid"),
                         category:"",
+                        PageIndex:1,
+                        PageSize:15,
                         startTime:"",
                         endTime:""
                     }

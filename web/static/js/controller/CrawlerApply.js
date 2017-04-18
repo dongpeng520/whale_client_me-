@@ -14,8 +14,11 @@ whaleModule.controller("CrawlerApplycontroller",["$scope","$rootScope","$window"
     $scope.guanli=function(data){
         whale.store("appid",data);
         $rootScope.crawler_close=false;
-        $location.path('/overview');
-        window.history.go(0);
-        location.reload()
+        if(window.location.href.indexOf("/overview") !== -1){
+            window.history.go(0);
+            location.reload()
+        }else{
+            $location.path('/overview');
+        }
     }
 }])
