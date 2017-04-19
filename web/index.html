@@ -161,26 +161,26 @@
             </div>
             <div class="over_set">
                 <div class="set1">
-                    <span class="span1">刷新</span>
+                    <span class="span1" ng-click="shuaxin()">刷新</span>
                     <span class="span2" ng-click="Crawler_close()">切换</span>
                 </div>
                 <div class="set2">
-                    <div class="s1">
+                    <a ng-href="#/overview" class="s1 a1">
                         <img src="static/img/set1.png" alt="">
                         <span>总览</span>
-                    </div>
-                    <div class="s1">
+                    </a>
+                    <a ng-href="#/setup" class="s1 a2">
                         <img src="static/img/set2.png" alt="">
                         <span>爬虫设置</span>
-                    </div>
-                    <div class="s1">
+                    </a>
+                    <a ng-href="#/history" class="s1 a3">
                         <img src="static/img/set3.png" alt="">
                         <span>爬虫历史</span>
-                    </div>
-                    <div class="s1">
+                    </a>
+                    <a ng-href="#/result" class="s1 a4">
                         <img src="static/img/set4.png" alt="">
                         <span>爬虫结果</span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -195,13 +195,13 @@
                 <div class="close"><span id="loginclosed" ng-click="closedlogin()">&times;</span></div>
                 <div class="title">修改密码</div>
                 <div class="input_name">
-                    <input type="text" ng-model="loginInfo.name1" placeholder="旧密码" autofocus="autofocus">
+                    <input type="password" ng-model="loginInf.name1" placeholder="旧密码" autofocus="autofocus">
                 </div>
                 <div class="input_password">
-                    <input type="password" ng-model="loginInfo.password1" placeholder="新密码">
+                    <input type="password" ng-model="loginInf.password1" placeholder="新密码">
                 </div>
                 <div class="input_password">
-                    <input type="password" ng-model="loginInfo.password2" placeholder="确认密码">
+                    <input type="password" ng-model="loginInf.password2" placeholder="确认密码">
                 </div>
                 <div class="login_error" ng-if="error">{{error_wenzi}}</div>
                 <div class="submit" ng-click="submit()">确认</div>

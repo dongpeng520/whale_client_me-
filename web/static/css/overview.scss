@@ -45,15 +45,18 @@
       }
       .set{
         float: right;
-        text-align: center;
-        width: 80px;
-        height: 30px;
-        background: #1085e4;
-        line-height: 30px;
-        border-radius: 4px;
-        font-size: 14px;
-        color: #fff;
-        cursor: pointer;
+        a{
+          display: block;
+          text-align: center;
+          width: 80px;
+          height: 30px;
+          background: #1085e4;
+          line-height: 30px;
+          border-radius: 4px;
+          font-size: 14px;
+          color: #fff;
+          cursor: pointer;
+        }
       }
     }
   }

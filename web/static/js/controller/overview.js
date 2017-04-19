@@ -113,6 +113,9 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     }
                 }).success(function (data) {
                     if (data.code == 10200) {
+                        if(data.data[0]==null){
+                            return
+                        }
                         var obj=data.data[0].category;
                         /*obj=JSON.stringify(obj);
                         var category=JSON.parse(obj);*/

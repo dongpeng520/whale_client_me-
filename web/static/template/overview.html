@@ -12,8 +12,8 @@
             <div class="zt">
                 <div class="zt1">
                     <img ng-if="overCurrentTask.status=='1'" ng-src="static/img/going1.png" alt="">
-                    <img ng-if="overCurrentTask.status=='0'" ng-src="static/img/going1.png" alt="">
-                    <img ng-if="overCurrentTask.status=='2'" ng-src="static/img/going1.png" alt="">
+                    <img ng-if="overCurrentTask.status=='0'" ng-src="static/img/going2.png" alt="">
+                    <img ng-if="overCurrentTask.status=='2'" ng-src="static/img/going2.png" alt="">
                     <span ng-class="{'aa':overCurrentTask.status=='1','as':overCurrentTask.status=='0','ad':overCurrentTask.status=='2'}">{{ overCurrentTask.status | crawlerstatus}}</span>
                 </div>
                 <div class="zt2">
@@ -26,7 +26,7 @@
                     定时运行（每天2:00开始）
                 </div>
             </div>
-            <div class="set">设置</div>
+            <div class="set"><a ng-href="#/setup">设置</a></div>
         </div>
     </div>
     <div class="contain2">
@@ -86,7 +86,7 @@
         <div class="history today">
             <div class="title">
                 爬取历史
-                <a>详情</a>
+                <a ng-href="#/history">详情</a>
             </div>
             <div id="echarts_zhu"></div>
         </div>
@@ -101,7 +101,7 @@
                     <div class="select1" ng-repeat="list in DataCategory" ng-click="select(list,$event)">{{list}}</div>
                 </div>
             </div>
-            <div class="all"><a href="">全部</a></div>
+            <div class="all"><a ng-href="#/result">全部</a></div>
         </div>
         <order-list orderlist="querybycategory"></order-list>
     </div>

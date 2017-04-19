@@ -14,6 +14,18 @@ ul {
 a {
   text-decoration: none;
   cursor: pointer; }
+  a:link {
+    cursor: pointer;
+    text-decoration: none; }
+  a:visited {
+    cursor: pointer;
+    text-decoration: none; }
+  a:hover {
+    cursor: pointer;
+    text-decoration: none; }
+  a:active {
+    cursor: pointer;
+    text-decoration: none; }
 
 img {
   border: 0;
@@ -253,7 +265,10 @@ img {
         margin-right: 10px; }
     .overSet .over_set .set2 {
       width: 100%; }
+      .overSet .over_set .set2 .a1:hover, .overSet .over_set .set2 .a2:hover, .overSet .over_set .set2 .a3:hover, .overSet .over_set .set2 .a4:hover {
+        background: #1085e4; }
       .overSet .over_set .set2 .s1 {
+        display: block;
         padding-left: 20px;
         height: 40px;
         cursor: pointer; }

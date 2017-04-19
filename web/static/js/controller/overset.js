@@ -16,5 +16,8 @@ whaleModule.controller("overSetcontroller",["$scope","$rootScope","$window","$ht
             }
         })
     }
-
+    $scope.shuaxin=function(){
+        window.history.go(0);
+        location.reload()
+    }
 }])

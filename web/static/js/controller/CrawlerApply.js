@@ -18,6 +18,11 @@ whaleModule.controller("CrawlerApplycontroller",["$scope","$rootScope","$window"
             window.history.go(0);
             location.reload()
         }else{
+            $("body").css({
+                "margin-top" : '0px',
+                "margin-right" : '0px',
+                "overflow" : 'initial'
+            })
             $location.path('/overview');
         }
     }

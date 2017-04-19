@@ -18,72 +18,74 @@
     margin-bottom: 30px; }
     #historyContain .contain1 .title2 span {
       color: #993300; }
-  #historyContain .contain2 .con {
-    height: 150px;
-    background: #fff;
-    border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 20px; }
-    #historyContain .contain2 .con .con1 {
-      width: 80%;
-      height: 30px;
-      margin-bottom: 40px; }
-      #historyContain .contain2 .con .con1 div {
-        display: inline-block;
+  #historyContain .contain2 {
+    min-height: 830px; }
+    #historyContain .contain2 .con {
+      height: 150px;
+      background: #fff;
+      border-radius: 4px;
+      padding: 20px;
+      margin-bottom: 20px; }
+      #historyContain .contain2 .con .con1 {
+        width: 80%;
         height: 30px;
-        line-height: 30px;
-        font-size: 14px;
-        color: #5b5b5b; }
-      #historyContain .contain2 .con .con1 .co1 {
-        font-size: 30px;
-        margin-right: 5px; }
-      #historyContain .contain2 .con .con1 .co2 {
-        padding-left: 35px;
-        color: #60b027;
-        vertical-align: 5px;
-        background: url("../img/going1.png") no-repeat left center;
-        margin-right: 40px; }
-      #historyContain .contain2 .con .con1 .co3 {
-        padding-left: 35px;
-        color: #761c19;
-        vertical-align: 5px;
-        background: url("../img/going1.png") no-repeat left center;
-        margin-right: 40px; }
-      #historyContain .contain2 .con .con1 .co4 {
-        vertical-align: 5px;
-        margin-right: 20px; }
-      #historyContain .contain2 .con .con1 .co5 {
-        vertical-align: 5px; }
-    #historyContain .contain2 .con .con2 {
-      width: 80%;
-      color: #464646;
-      font-size: 14px; }
-      #historyContain .contain2 .con .con2 div {
-        display: inline-block; }
-        #historyContain .contain2 .con .con2 div span {
-          color: #1085e4; }
-      #historyContain .contain2 .con .con2 .co1 {
-        width: 200px; }
-      #historyContain .contain2 .con .con2 .co2 {
-        width: 255px;
-        text-align: center;
-        border-left: 1px solid #999999;
-        border-right: 1px solid #999999; }
-      #historyContain .contain2 .con .con2 .co3 {
-        width: 200px;
-        text-align: center; }
-    #historyContain .contain2 .con .con3 {
-      width: 100px;
-      height: 110px;
-      float: right;
-      cursor: pointer;
-      background: url("../img/down_his.png") no-repeat center; }
-    #historyContain .contain2 .con .con4 {
-      display: block;
-      width: 100px;
-      height: 110px;
-      float: right;
-      cursor: pointer;
-      background: url("../img/making_his.png") no-repeat center; }
+        margin-bottom: 40px; }
+        #historyContain .contain2 .con .con1 div {
+          display: inline-block;
+          height: 30px;
+          line-height: 30px;
+          font-size: 14px;
+          color: #5b5b5b; }
+        #historyContain .contain2 .con .con1 .co1 {
+          font-size: 30px;
+          margin-right: 5px; }
+        #historyContain .contain2 .con .con1 .co2 {
+          padding-left: 35px;
+          color: #60b027;
+          vertical-align: 5px;
+          background: url("../img/going1.png") no-repeat left center;
+          margin-right: 40px; }
+        #historyContain .contain2 .con .con1 .co3 {
+          padding-left: 35px;
+          color: #761c19;
+          vertical-align: 5px;
+          background: url("../img/going2.png") no-repeat left center;
+          margin-right: 40px; }
+        #historyContain .contain2 .con .con1 .co4 {
+          vertical-align: 5px;
+          margin-right: 20px; }
+        #historyContain .contain2 .con .con1 .co5 {
+          vertical-align: 5px; }
+      #historyContain .contain2 .con .con2 {
+        width: 80%;
+        color: #464646;
+        font-size: 14px; }
+        #historyContain .contain2 .con .con2 div {
+          display: inline-block; }
+          #historyContain .contain2 .con .con2 div span {
+            color: #1085e4; }
+        #historyContain .contain2 .con .con2 .co1 {
+          width: 200px; }
+        #historyContain .contain2 .con .con2 .co2 {
+          width: 255px;
+          text-align: center;
+          border-left: 1px solid #999999;
+          border-right: 1px solid #999999; }
+        #historyContain .contain2 .con .con2 .co3 {
+          width: 200px;
+          text-align: center; }
+      #historyContain .contain2 .con .con3 {
+        width: 100px;
+        height: 110px;
+        float: right;
+        cursor: pointer;
+        background: url("../img/down_his.png") no-repeat center; }
+      #historyContain .contain2 .con .con4 {
+        display: block;
+        width: 100px;
+        height: 110px;
+        float: right;
+        cursor: pointer;
+        background: url("../img/making_his.png") no-repeat center; }
 
 /*# sourceMappingURL=history.css.map */

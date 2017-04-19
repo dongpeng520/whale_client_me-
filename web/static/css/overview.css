@@ -35,16 +35,18 @@
         #overContain .contain1 .con .zt .zt1 .ad {
           color: #a94442; }
     #overContain .contain1 .con .set {
-      float: right;
-      text-align: center;
-      width: 80px;
-      height: 30px;
-      background: #1085e4;
-      line-height: 30px;
-      border-radius: 4px;
-      font-size: 14px;
-      color: #fff;
-      cursor: pointer; }
+      float: right; }
+      #overContain .contain1 .con .set a {
+        display: block;
+        text-align: center;
+        width: 80px;
+        height: 30px;
+        background: #1085e4;
+        line-height: 30px;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #fff;
+        cursor: pointer; }
   #overContain .contain2 {
     width: 100%;
     overflow: hidden;

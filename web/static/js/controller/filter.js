@@ -133,3 +133,9 @@ whaleModule.filter('historyTime', ['$filter', function($filter) {
         return time;
     };
 }]);
+//用于计算时间taskname
+whaleModule.filter('fitertaskname', ['$filter', function($filter) {
+    return function(data) {
+        return "#"+data.taskName+" "+$filter('date')(data.endTime,'yyyy-MM-dd HH:mm:ss');
+    };
+}]);

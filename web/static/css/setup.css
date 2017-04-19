@@ -22,7 +22,7 @@
       margin-left: 50px;
       margin-right: 50px;
       padding-top: 50px;
-      height: 330px;
+      height: 375px;
       border-bottom: 1px solid #eeeeee; }
       #setupContain .contain .contain1 .contitle {
         width: 240px;
@@ -53,6 +53,16 @@
         #setupContain .contain .contain1 .coninput .coninput2 textarea {
           width: 450px;
           height: 192px !important; }
+    #setupContain .contain .contain2 .login_error {
+      width: 450px;
+      margin: 20px auto 15px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      color: #e87171;
+      font-size: 16px;
+      background: #f2dedf;
+      border-radius: 4px; }
     #setupContain .contain .contain2 .coninput3 {
       width: 132px;
       height: 30px;

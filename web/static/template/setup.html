@@ -11,16 +11,17 @@
             <div class="contitle">基本信息</div>
             <div class="conname">爬虫名称：</div>
             <div class="coninput">
-                <div class="coninput1"><input type="text" class="form-control"></div>
-                <div class="coninput2"><textarea class="form-control" rows="3" placeholder="描述信息"></textarea></div>
+                <div class="coninput1"><input type="text" onkeyup="value=value.replace(/[!;'@#%&$<>=+\-\*\(\)\^\\{}]*/, '')" ng-model="setup.appname" class="form-control"></div>
+                <div class="coninput2"><textarea class="form-control" onkeyup="value=value.replace(/[!;'@#%&$<>=+\-\*\(\)\^\\{}]*/, '')" rows="3" ng-model="setup.appdesc"  placeholder="描述信息"></textarea></div>
             </div>
         </div>
         <div class="contain2 contain1">
             <div class="contitle">应用配置</div>
             <div class="conname"></div>
             <div class="coninput">
-                <div class="coninput2"><textarea class="form-control" rows="3" placeholder="描述信息"></textarea></div>
-                <div class="coninput3">保存</div>
+                <div class="coninput2"><textarea class="form-control" disabled rows="3" placeholder="管理员配置"></textarea></div>
+                <div class="login_error" ng-if="error1">{{error_wenzi1}}</div>
+                <div class="coninput3" ng-click="sumbit()">保存</div>
             </div>
         </div>
     </div>
