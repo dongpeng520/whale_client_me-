@@ -279,6 +279,7 @@ img{
       text-align: center;
       font-size: 23px;
       color: #fff;
+      cursor: pointer;
     }
   }
   .over_set{
@@ -327,6 +328,19 @@ img{
           font-size: 14px;
           color: #fff;
           margin-left: 5px;
+        }
+        .span2{
+          display: inline-block;
+          float: right;
+          margin-right: 15px;
+          min-width: 48px;
+          height: 40px;
+          line-height: 40px;
+          font-size: 14px;
+          color: #fff;
+          margin-left: 20px;
+          text-align: center;
+          background: url("../img/red.png") no-repeat center;
         }
       }
     }
@@ -505,6 +519,7 @@ img{
 }
 .task{
   width: 100%;
+  min-height: 235px;
   .task_list1{
     width: 24%;
     border-right: 1px solid #f5f3f3;

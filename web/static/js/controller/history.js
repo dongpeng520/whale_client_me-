@@ -25,47 +25,20 @@ whaleModule.controller("HistoryController",["$scope","$rootScope","$window","$ht
         $scope.historyNum=req2-5*req3+5;*/
     });
     //$scope.historyCenter=[1,2,3,4,5];
-    $scope.order2=[
-        {
-            "time":"2017-03-01_001.zip",
-            "modifytime":"2017-03-01 12:09:09",
-            "size":"100M",
-            "num":"100"
-        },
-        {
-            "time":"2017-03-01_001.zip",
-            "modifytime":"2017-03-01 12:09:09",
-            "size":"100M",
-            "num":"200"
-        },
-        {
-            "time":"2017-03-01_001.zip",
-            "modifytime":"2017-03-01 12:09:09",
-            "size":"100M",
-            "num":"400"
-        },
-        {
-            "time":"2017-03-01_001.zip",
-            "modifytime":"2017-03-01 12:09:09",
-            "size":"100M",
-            "num":"500"
-        },
-        {
-            "time":"2017-03-01_001.zip",
-            "modifytime":"2017-03-01 12:09:09",
-            "size":"100M",
-            "num":"100"
-        }
-    ]
-
     $scope.selecttaskName=function(sel,event){//选择下载任务名
         $scope.over_selecttaskName=!$scope.over_selecttaskName;
         $scope.selecttaskName_change=!$scope.selecttaskName_change;
         event.stopPropagation();
         var ele=angular.element("#selectedtaskName");
+        if(sel==null){
+            return
+        }
+        if(ele.html()==sel){
+            return
+        }
         if(sel!=null&&sel=="所有"&&(ele.html())!=sel){
             ele.html(sel);
-            $scope.$broadcast('sendParent_history',sel);//监听在子控制器中定义的 最初加载页码 事件
+            $scope.$broadcast('sendParent_history',sel);//监听在子控制器中定义的 切换品类最初加载页码 事件
             return
         }
         var taskName="#"+sel.taskName+" "+$filter('date')(sel.endTime,'yyyy-MM-dd HH:mm:ss');
@@ -73,8 +46,8 @@ whaleModule.controller("HistoryController",["$scope","$rootScope","$window","$ht
             return
         }
         if(sel!=null){
-            ele.html(sel);
-            $scope.$broadcast('sendParent_history',sel.id);//监听在子控制器中定义的 最初加载页码 事件
+            ele.html(taskName);
+            $scope.$broadcast('sendParent_history',sel.taskid);//监听在子控制器中定义的 切换品类 最初加载页码 事件
 
         }
 
@@ -89,12 +62,12 @@ whaleModule.controller("HistoryController",["$scope","$rootScope","$window","$ht
         })
     })
 
-    $scope.closeDown=function(flag,data){
+    $scope.closeDown=function(flag,dd){
         if(flag){
             $scope.down_flag=flag;//打开下载页面
             $("body").css("overflow","hidden");
             //获取task列表
-            $scope.taskName="#"+data.taskName+" "+$filter('date')(data.endTime,'yyyy-MM-dd HH:mm:ss');
+            $scope.taskName="#"+dd.taskName+" "+$filter('date')(dd.endTime,'yyyy-MM-dd HH:mm:ss');
             $http.get("/task/taskcontroller/queryHisttaskid",{
                 params: {
                     orgId: whale.store("orgId"),
@@ -103,9 +76,10 @@ whaleModule.controller("HistoryController",["$scope","$rootScope","$window","$ht
             }).success(function (data) {
                 if (data.code == 10200) {
                     $scope.taskname=data.data;
+                    $scope.$broadcast('sendParent_history',dd.id);//监听在子控制器中定义的 最初加载页码 事件
                 }
             })
-            $scope.$broadcast('sendParent_history',data.id);//监听在子控制器中定义的 最初加载页码 事件
+
         }else{
             $scope.down_flag=flag;//关闭下载页面
             $("body").css({

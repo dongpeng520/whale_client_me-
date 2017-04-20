@@ -5,15 +5,15 @@
             <li class="task_list2">修改时间</li>
             <li class="task_list3">大小</li>
             <li class="task_list4">数据条数</li>
-            <li class="task_list5"></li>
+            <li class="task_list5">{{nihao}}</li>
         </ul>
         <ul class="task_list" ng-class="{task_listeven: !$even, task_listodd: !$odd}" ng-repeat="list in order">
-            <li class="task_list1" ng-bind="list.time"></li>
-            <li class="task_list2" ng-bind="list.modifytime"></li>
-            <li class="task_list3" ng-bind="list.size"></li>
-            <li class="task_list4" ng-bind="list.num"></li>
+            <li class="task_list1">{{list.fileName}}</li>
+            <li class="task_list2">{{list.updateTime| date:"yyyy-MM-dd HH:mm:ss"}}</li>
+            <li class="task_list3">{{list.fileSize | fiterKM }}</li>
+            <li class="task_list4" ng-bind="list.totalNum"></li>
             <li class="task_list5">
-                <span ng-click="details_change($index)" ng-bind="'下载'"></span>
+                <span ng-click="download(list.taskID,list.id)" ng-bind="'下载'"></span>
             </li>
         </ul>
     </div>

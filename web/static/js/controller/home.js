@@ -122,5 +122,24 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
             }
         })
     }
-
+    $scope.loginout=function(){
+        $http.post("/account/usercontroller/loginout"+"?accessToken="+whale.store("accessToken")).success(function (data) {
+            if (data.code == 10200) {
+                $rootScope.errormsg = '退出成功';
+                $timeout(function() {
+                    $rootScope.errormsg = null;
+                    whale.removestore("orgId");
+                    whale.removestore("appid");
+                    window.history.go(0);
+                    location.reload()
+                }, 1500);
+            }else {
+                $rootScope.errormsg = '网络异常，请稍后重试';
+                $timeout(function() {
+                    $rootScope.errormsg = null;
+                }, 1500);
+                return
+            }
+        });
+    }
 }])

@@ -22,6 +22,7 @@
         <span ng-class="{'msg-active':errormsg}" ng-bind="errormsg"></span>
     </div>
     <ng-view></ng-view>
+    <iframe src="" frameborder="0" style="display:none;" id="OpenPhotos"></iframe>
     <script type="text/javascript" src="static/js/libs/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="static/js/libs/bootstrap.min.js"></script>
     <script type="text/javascript" src="static/js/libs/jquery.datetimepicker.full.js"></script>
@@ -107,7 +108,7 @@
                                 </div>
                                 <div class="col-md-12 mtop">
                                     <div class="form-group has-feedback">
-                                        <textarea class="form-control" rows="3" placeholder="描述信息（可选）"></textarea>
+                                        <textarea class="form-control" id="notenote" rows="3" placeholder="描述信息（可选）"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +156,7 @@
     <script type="text/ng-template" id="overSet.html">
         <div class="overSet">
             <div class="over_logo">
-                <div class="contain">
+                <div class="contain" ng-click="gotohome()">
                     <img src="static/img/whale_o.png" alt="">
                 </div>
             </div>
@@ -180,6 +181,7 @@
                     <a ng-href="#/result" class="s1 a4">
                         <img src="static/img/set4.png" alt="">
                         <span>爬虫结果</span>
+                        <span class="span2">{{Crawlerresult | number}}</span>
                     </a>
                 </div>
             </div>

@@ -7,7 +7,7 @@
 
 <div id="overContain">
     <div class="contain1">
-        <div class="title">{{overCurrentTask.appName}}</div>
+        <div class="title" title="{{overCurrentTask.appDesc}}">{{overCurrentTask.appName}}</div>
         <div class="con">
             <div class="zt">
                 <div class="zt1">
@@ -19,7 +19,7 @@
                 <div class="zt2">
                     启用于 {{overCurrentTask.startTime | date:"yyyy-MM-dd HH:mm:ss"}}
                 </div>
-                <div class="zt2" ng-if="!overCurrentTask.status=='1'">
+                <div class="zt2" ng-if="overCurrentTask.status!='1'">
                     结束于 {{overCurrentTask.endTime | date:"yyyy-MM-dd HH:mm:ss"}}
                 </div>
                 <div class="zt3">

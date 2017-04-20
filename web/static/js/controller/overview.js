@@ -168,11 +168,9 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                 $scope.overHistTask1=[];
                 $scope.overHistTask2=[];
                 angular.forEach(data.data,function(d,index,array){
-                    $scope.overHistTask1.push("#"+index);
+                    $scope.overHistTask1.push("#"+d.taskName);
                     $scope.overHistTask2.push(d.totalCount);
                 })
-                $scope.overHistTask1=["#1","#2","#3"];
-                $scope.overHistTask2=["199","200","19"];
                 myChart_zhu.setOption({
                     yAxis: {
                         type: 'category',

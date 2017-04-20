@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/4/10.
  */
-whaleModule.controller("ResultController",["$scope","$rootScope","$window","$http","$interval","$location","DateCenter","$timeout" ,function($scope,$rootScope,$window,$http,$interval,$location,DateCenter,$timeout){
+whaleModule.controller("ResultController",["$scope","$rootScope","$window","$http","$interval","$location","DateCenter","$timeout" ,"$filter",function($scope,$rootScope,$window,$http,$interval,$location,DateCenter,$timeout,$filter){
 
     if(whale.store("orgId")==null&&whale.store("appid")==null){
         $location.path('/');
@@ -135,95 +135,6 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         $scope.$broadcast('sendParent_time',starttime,endtime);//监听在子控制器中定义的 时间查询 事件
     }
 
-    $scope.order2=[
-        {
-            "time":"2017-03-01_001.zip",
-            "modifytime":"2017-03-01 12:09:09",
-            "size":"100M",
-            "num":"100"
-        },
-        {
-            "time":"2017-03-01_001.zip",
-            "modifytime":"2017-03-01 12:09:09",
-            "size":"100M",
-            "num":"200"
-        },
-        {
-            "time":"2017-03-01_001.zip",
-            "modifytime":"2017-03-01 12:09:09",
-            "size":"100M",
-            "num":"400"
-        },
-        {
-            "time":"2017-03-01_001.zip",
-            "modifytime":"2017-03-01 12:09:09",
-            "size":"100M",
-            "num":"500"
-        },
-        {
-            "time":"2017-03-01_001.zip",
-            "modifytime":"2017-03-01 12:09:09",
-            "size":"100M",
-            "num":"100"
-        }
-    ]
-    $scope.order1=[
-        {
-            "time":"2017-03-01 12:09:09",
-            "aa":"在线电商品牌",
-            "url":"https://www.hao123.com/"
-        },
-        {
-            "time":"2017-03-02 12:09:09",
-            "aa":"舆情监控",
-            "url":"https://www.hao123.com/"
-        },
-        {
-            "time":"2017-03-03 12:09:09",
-            "aa":"舆情监控",
-            "url":"https://www.hao123.com/"
-        },
-        {
-            "time":"2017-03-06 12:09:09",
-            "aa":"在线电商品牌",
-            "url":"https://www.hao123.com/"
-        },
-        {
-            "time":"2017-03-11 12:09:09",
-            "aa":"舆情监控",
-            "url":"https://www.hao123.com/"
-        },
-        {
-            "time":"2017-03-21 12:09:09",
-            "aa":"在线电商品牌",
-            "url":"https://www.hao123.com/"
-        },
-        {
-            "time":"2017-03-01 12:09:09",
-            "aa":"在线电商品牌",
-            "url":"https://www.hao123.com/"
-        },
-        {
-            "time":"2017-03-02 12:09:09",
-            "aa":"舆情监控",
-            "url":"https://www.hao123.com/"
-        },
-        {
-            "time":"2017-03-03 12:09:09",
-            "aa":"舆情监控",
-            "url":"https://www.hao123.com/"
-        },
-        {
-            "time":"2017-03-06 12:09:09",
-            "aa":"在线电商品牌",
-            "url":"https://www.hao123.com/"
-        },
-        {
-            "time":"2017-03-11 12:09:09",
-            "aa":"舆情监控",
-            "url":"https://www.hao123.com/"
-        }
-    ]
 
     $scope.selecttaskName=function(sel,event){//选择下载任务名
         $scope.over_selecttaskName=!$scope.over_selecttaskName;
@@ -255,6 +166,20 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         if(flag){
             $scope.down_flag=flag;//打开下载页面
             $("body").css("overflow","hidden");
+            //获取task列表
+            $scope.taskName="所有";
+            $http.get("/task/taskcontroller/queryHisttaskid",{
+                params: {
+                    orgId: whale.store("orgId"),
+                    appId: whale.store("appid")
+                }
+            }).success(function (data) {
+                if (data.code == 10200) {
+                    $scope.taskname=data.data;
+                    $scope.$broadcast('sendParent_history',"所有");//监听在子控制器中定义的 最初加载页码 事件
+                }
+            })
+
         }else{
             $scope.down_flag=flag;//关闭下载页面
             $("body").css({
@@ -262,6 +187,32 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                 "margin-right" : '0px',
                 "overflow" : 'initial'
             })
+        }
+    }
+    $scope.selecttaskName=function(sel,event){//选择下载任务名
+        $scope.over_selecttaskName=!$scope.over_selecttaskName;
+        $scope.selecttaskName_change=!$scope.selecttaskName_change;
+        event.stopPropagation();
+        var ele=angular.element("#selectedtaskName");
+        if(sel==null){
+            return
+        }
+        if(ele.html()==sel){
+            return
+        }
+        if(sel!=null&&sel=="所有"&&(ele.html())!=sel){
+            ele.html(sel);
+            $scope.$broadcast('sendParent_history',sel);//监听在子控制器中定义的 切换品类最初加载页码 事件
+            return
+        }
+        var taskName="#"+sel.taskName+" "+$filter('date')(sel.endTime,'yyyy-MM-dd HH:mm:ss');
+        if(ele.html()==taskName){
+            return
+        }
+        if(sel!=null){
+            ele.html(taskName);
+            $scope.$broadcast('sendParent_history',sel.taskid);//监听在子控制器中定义的 切换品类 最初加载页码 事件
+
         }
 
     }

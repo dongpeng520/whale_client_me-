@@ -241,7 +241,8 @@ img {
     .overSet .over_logo .contain {
       text-align: center;
       font-size: 23px;
-      color: #fff; }
+      color: #fff;
+      cursor: pointer; }
   .overSet .over_set {
     width: 100%;
     background: #0d3b75;
@@ -281,6 +282,18 @@ img {
           font-size: 14px;
           color: #fff;
           margin-left: 5px; }
+        .overSet .over_set .set2 .s1 .span2 {
+          display: inline-block;
+          float: right;
+          margin-right: 15px;
+          min-width: 48px;
+          height: 40px;
+          line-height: 40px;
+          font-size: 14px;
+          color: #fff;
+          margin-left: 20px;
+          text-align: center;
+          background: url("../img/red.png") no-repeat center; }
 
 .overHead {
   width: calc(100% - 200px);
@@ -425,7 +438,8 @@ img {
     background: #ffffff; }
 
 .task {
-  width: 100%; }
+  width: 100%;
+  min-height: 235px; }
   .task .task_list1 {
     width: 24%;
     border-right: 1px solid #f5f3f3; }

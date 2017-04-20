@@ -4,5 +4,4 @@
         <li ng-repeat="page in pages" ng-class="{true:'page_active'}[p_current==page]"><a href="javascript:void(0);" ng-click="load_page(page)">{{ page }}</a></li>
         <li ng-class="{true:'page_disabled'}[p_current==p_all_page]"><a href="javascript:void(0);" ng-click="p_last()">尾页</a></li>
     </ul>
-    <span>  共：{{count}} 条</span>
 </div>

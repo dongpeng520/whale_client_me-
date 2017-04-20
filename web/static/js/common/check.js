@@ -71,17 +71,10 @@ var send=function(){
             phone:nat,//8615655566161
             type:0
         };
-        console.log(datas);
-
         $.ajax({
             type : 'POST',
             url : url,
-            data : {
-                realName : realName,
-                phone : phone,
-                accout : accout,
-                city : city
-            },
+            data : datas,
             dataType : 'json',
             success : function(data){
                 if (data.status === 200) {
@@ -192,20 +185,24 @@ var checkForm = function(){
 }
 
 var ajaxForm = function(){
-    $('#button').attr({"disabled":"disabled"});
-    var url = "/rest/accout/checkForm";
+    $('#button_home').attr({"disabled":"disabled"});
+    var url = "/accout/applycontroller/addApply";
     var realName = $('#realName').val();
     var phone = $('#phone').val();
     var accout = $('#accout').val();
     var city = $('#citySelect').val();
+    var note = $('#notenote').val();
+    var YZM = $('#YZM').val();
     $.ajax({
         type : 'POST',
         url : url,
         data : {
-            realName : realName,
+            name : realName,
             phone : phone,
-            accout : accout,
-            city : city
+            company : accout,
+            address : city,
+            note:note,
+            sms_code:YZM
         },
         dataType : 'json',
         success : function(data){
@@ -221,7 +218,7 @@ var ajaxForm = function(){
                 showDiv.removeClass('alert-success');
                 showDiv.addClass('alert-danger');
                 showDiv.css('display' , '');
-                $("#button").removeAttr("disabled");
+                $("#button_home").removeAttr("disabled");
             }
 
         },
@@ -231,7 +228,7 @@ var ajaxForm = function(){
             showDiv.removeClass('alert-success');
             showDiv.removeClass('alert-danger');
             showDiv.css('display' , '');
-            $("#button").removeAttr("disabled");
+            $("#button_home").removeAttr("disabled");
         }
 
     })

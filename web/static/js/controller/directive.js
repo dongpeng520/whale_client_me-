@@ -356,31 +356,44 @@ whaleModule.directive('taskList',["$rootScope","$http",function($rootScope,$http
             }).success(function (data) {
                 if (data.code == 10200) {
                     scope.order=data.data;
-                    //$rootScope.$broadcast('history.page', data.total,flag);  //发送给pagemiddle  页码长度
+                    $rootScope.$broadcast('history.page', data.total,flag);  //发送给pagemiddle  页码长度
                 }
             })
         }
         scope.$on('sendParent_history',function(event,data){//监听在子控制器中定义的 点击切换品类 事件
             if(data=="所有"){
                 httpquery("",1);
+                whale.store("taskidHistory","所有")
             }else{
                 httpquery(data,1);
+                whale.store("taskidHistory",data)
             }
-
         });
-        scope.$on('pageMiddle.request', function (e, req,flag) { //监听在子控制器中定义的 分页点击 事件
-            if(whale.store("category")=="所有"){
+        scope.$on('pagehistory.request', function (e, req,flag) { //监听在子控制器中定义的 分页点击 事件
+            if(whale.store("taskidHistory")=="所有"){
                 httpquery("",req,flag);
             }else{
-                httpquery(whale.store("category"),req,flag);
+                httpquery(whale.store("taskidHistory"),req,flag);
             }
         });
     }
     return {
         restrict: "E",
-        controller : ["$scope",function($scope){
-            $scope.details_change=function(index){
-                $rootScope.$broadcast('delivery.request', index);
+        controller : ["$scope","$timeout",function($scope,$timeout){
+            $scope.download=function(taskid,id){
+                $http.get("/downloadHistTaskData",{
+                    params: {
+                        taskid: taskid,
+                        fileid:id
+                    }
+                }).success(function (data) {
+                    $('#OpenPhotos').attr('src',"http://192.168.100.143:10081/downloadHistTaskData?taskid="+taskid+"&fileid="+id);
+                    //window.location.href="http://192.168.100.143:10081/downloadHistTaskData?taskid="+taskid+"&fileid="+id;
+                    $rootScope.errormsg = '下载成功';
+                    $timeout(function() {
+                        $rootScope.errormsg = null;
+                    }, 1500);
+                })
             }
         }],
         replace:true,
@@ -390,13 +403,7 @@ whaleModule.directive('taskList',["$rootScope","$http",function($rootScope,$http
 }])
 whaleModule.directive('historytaskpageMiddle',["$rootScope",function($rootScope){
     var linkFunction=function(scope,element,attr){
-        scope.$on('sendParent_pagemiddle',function(event,data){//监听在子控制器中定义的 最初加载页码 事件
-            scope.count=data;
-            //初始化第一页
-            scope.p_current = 1;
-            scope._get(scope.p_current,scope.p_pernum);
-        });
-        scope.$on('delivery.page', function (e, req,flag) { //监听在不同品类变化页码
+        scope.$on('history.page', function (e, req,flag) { //监听在不同品类变化页码
             if(flag){
                 scope.count=req;
                 scope._get(scope.p_current,scope.p_pernum);
@@ -418,7 +425,7 @@ whaleModule.directive('historytaskpageMiddle',["$rootScope",function($rootScope)
 
             //配置
             $scope.count = 0;
-            $scope.p_pernum = 15;
+            $scope.p_pernum = 5;
             //变量
             $scope.p_current = 1;
             $scope.p_all_page =0;
@@ -470,11 +477,11 @@ whaleModule.directive('historytaskpageMiddle',["$rootScope",function($rootScope)
             //加载某一页
             $scope.load_page = function(page){
                 $scope._get(page,$scope.p_pernum);
-                $rootScope.$broadcast('pageMiddle.request', page,true);//true 表示点击页面换数据的时候，不需要重载页面
+                $rootScope.$broadcast('pagehistory.request', page,true);//true 表示点击页面换数据的时候，不需要重载页面
             };
         }],
         replace:true,
-        templateUrl: "static/template/pagemiddle.html",
+        templateUrl: "static/template/taskpage.html",
         link: linkFunction
     }
 }])

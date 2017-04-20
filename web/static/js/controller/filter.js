@@ -139,3 +139,19 @@ whaleModule.filter('fitertaskname', ['$filter', function($filter) {
         return "#"+data.taskName+" "+$filter('date')(data.endTime,'yyyy-MM-dd HH:mm:ss');
     };
 }]);
+//用于计算下载页面K--M
+whaleModule.filter('fiterKM', ['$filter', function($filter) {
+    return function(data) {
+        data = data*1000;
+        var dd;
+        if(data===0){
+            dd="0K"
+            return dd
+        }
+        var k = 1000,
+            sizes = ['K','M', 'G'],
+            i = Math.floor(Math.log(data) / Math.log(k));
+        dd=(data / Math.pow(k, i)).toPrecision(3)+sizes[i];
+        return dd
+    };
+}]);
