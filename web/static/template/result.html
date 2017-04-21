@@ -33,11 +33,11 @@
                 <div class="zt1">
                     本轮爬取任务启动于<span>{{overCurrentTask.startTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>，
                 </div>
-                <div class="zt2" ng-if="!overCurrentTask.status=='1'">
+                <div class="zt2" ng-if="overCurrentTask.status!='1'">
                     结束于<span>{{overCurrentTask.endTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>，
                 </div>
                 <div class="zt3">
-                    共爬取<span>{{overApplyDetail.totalCount}}</span>条数据
+                    共爬取<span>{{Crawlerresult | number}}</span>条数据
                 </div>
             </div>
             <div class="set1" ng-click="closeDown(true)">爬取文件下载</div>
@@ -54,7 +54,7 @@
             <div class="time1">结束时间</div>
             <div class="time2"><input class="form-control" id="endtime" type="text" ng-model="result.endtime" placeholder="过滤结束时间"></div>
             <div class="time5" ng-click="timeChangeResult()">查询</div>
-            <div class="time6 time5">导出结果</div>
+            <div class="time6 time5" ng-click="exportResults()">导出结果</div>
         </div>
         <div class="con3">
             <order-list orderlist="querybycategory"></order-list>

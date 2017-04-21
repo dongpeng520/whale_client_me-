@@ -62,18 +62,6 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             })
         }
     })
-    //通过orgId,appId查询应用信息(累计数据量,占用内存，爬虫数等)
-    $http.get("/task/taskcontroller/queryApplicationDetail",{
-        params: {
-            orgId: whale.store("orgId"),
-            appid: whale.store("appid")
-        }
-    }).success(function (data) {
-        if (data.code == 10200) {
-            $scope.overApplyDetail=data.data;
-        }
-    })
-
 
     $scope.allcenter=DateCenter;
     $scope.taskname=["所有","舆情监控","在线电商品牌","天猫","京东"];
@@ -135,23 +123,6 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         $scope.$broadcast('sendParent_time',starttime,endtime);//监听在子控制器中定义的 时间查询 事件
     }
 
-
-    $scope.selecttaskName=function(sel,event){//选择下载任务名
-        $scope.over_selecttaskName=!$scope.over_selecttaskName;
-        $scope.selecttaskName_change=!$scope.selecttaskName_change;
-        event.stopPropagation();
-        var ele=angular.element("#selectedtaskName");
-        if(ele.html()==sel){
-            return
-        }
-        if(sel!=null){
-            $scope.taskName=sel;
-            //ele.html(sel);
-            //$scope.$broadcast('sendParent',sel);
-
-        }
-
-    }
     angular.element("html").on("click", function () {//解决点击关闭任务栏
         if($scope.over_selecttaskName==false||$scope.selecttaskName_change==false){
             return
@@ -189,6 +160,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             })
         }
     }
+
     $scope.selecttaskName=function(sel,event){//选择下载任务名
         $scope.over_selecttaskName=!$scope.over_selecttaskName;
         $scope.selecttaskName_change=!$scope.selecttaskName_change;
@@ -214,6 +186,50 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             $scope.$broadcast('sendParent_history',sel.taskid);//监听在子控制器中定义的 切换品类 最初加载页码 事件
 
         }
+    }
+    $scope.exportResults=function(){
+        var starttime=new Date($scope.result.starttime).getTime();
+        var endtime=new Date($scope.result.endtime).getTime();
+        if($scope.result.starttime == ''&&$scope.result.endtime != ''){
+            $rootScope.errormsg = '请选择开始时间';
+            $timeout(function() {
+                $rootScope.errormsg = null;
+            }, 1500);
+            return;
+        }
+        if($scope.result.starttime != ''&&$scope.result.endtime == ''){
+            $rootScope.errormsg = '请选择结束时间';
+            $timeout(function() {
+                $rootScope.errormsg = null;
+            }, 1500);
+            return;
+        }
+        if(endtime-starttime<0){
+            $rootScope.errormsg = '结束时间应该大于开始时间';
+            $timeout(function() {
+                $rootScope.errormsg = null;
+            }, 1500);
+            return;
+        }
+        if(starttime==NaN){
+            starttime=""
+        }
+        if(endtime==NaN){
+            endtime=""
+        }
+        $http.get("/task/taskcontroller/queryHisttaskid",{
+            params: {
+                orgId: whale.store("orgId"),
+                appId: whale.store("appid"),
+                taskId: whale.store("taskid"),
+                category:whale.store("category"),
+                startTime:starttime,
+                endTime:endtime
+            }
+        }).success(function (data) {
+            if (data.code == 10200) {
 
+            }
+        })
     }
 }])

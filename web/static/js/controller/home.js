@@ -6,6 +6,21 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
         $scope.username_flag=true;
         task1();
     }
+    $(".homerightX1").smoove({
+        offset  : '10%',
+    });
+    $(".homerightX2").smoove({
+        offset  : '20%',
+    });
+    $(".homerightX3").smoove({
+        offset  : '40%',
+    });
+    $(".homerightX4").smoove({
+        offset  : '50%',
+    });
+    $(".homerightX5").smoove({
+        offset  : '10%',
+    });
     $scope.closedlogin=function(){
         $scope.loginInfo={
             name1:"",

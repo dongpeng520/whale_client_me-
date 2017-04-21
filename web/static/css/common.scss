@@ -308,6 +308,9 @@ img{
     }
     .set2{
       width: 100%;
+      .blue{
+        background: #1085e4;
+      }
       .a1,.a2,.a3,.a4{
         &:hover{
           background: #1085e4;
@@ -318,6 +321,7 @@ img{
         padding-left: 20px;
         height: 40px;
         cursor: pointer;
+        margin-bottom: 5px;
         img{
           vertical-align: middle;
         }
@@ -338,7 +342,6 @@ img{
           line-height: 40px;
           font-size: 14px;
           color: #fff;
-          margin-left: 20px;
           text-align: center;
           background: url("../img/red.png") no-repeat center;
         }

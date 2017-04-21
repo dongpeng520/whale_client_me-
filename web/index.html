@@ -7,6 +7,7 @@
     <link type="text/css" rel="stylesheet" href="static/js/libs/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="static/js/libs/jquery.datetimepicker.css">
     <link type="text/css" rel="stylesheet" href="static/css/common.css">
+    <link type="text/css" rel="stylesheet" href="static/css/animation.css">
     <link type="text/css" rel="stylesheet" href="static/css/global.css">
     <link type="text/css" rel="stylesheet" href="static/css/home.css">
     <link type="text/css" rel="stylesheet" href="static/css/overview.css">
@@ -25,6 +26,7 @@
     <iframe src="" frameborder="0" style="display:none;" id="OpenPhotos"></iframe>
     <script type="text/javascript" src="static/js/libs/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="static/js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/js/libs/jquery.smoove.js"></script>
     <script type="text/javascript" src="static/js/libs/jquery.datetimepicker.full.js"></script>
     <script type="text/javascript" src="static/js/libs/echarts.min.js"></script>
     <script src="static/js/libs/angular.js"></script>
@@ -166,19 +168,19 @@
                     <span class="span2" ng-click="Crawler_close()">切换</span>
                 </div>
                 <div class="set2">
-                    <a ng-href="#/overview" class="s1 a1">
+                    <a ng-href="#/overview" ng-class="{'blue':change_blue=='overview'}" class="s1 a1">
                         <img src="static/img/set1.png" alt="">
                         <span>总览</span>
                     </a>
-                    <a ng-href="#/setup" class="s1 a2">
+                    <a ng-href="#/setup" ng-class="{'blue':change_blue=='setup'}" class="s1 a2">
                         <img src="static/img/set2.png" alt="">
                         <span>爬虫设置</span>
                     </a>
-                    <a ng-href="#/history" class="s1 a3">
+                    <a ng-href="#/history" ng-class="{'blue':change_blue=='history'}" class="s1 a3">
                         <img src="static/img/set3.png" alt="">
                         <span>爬虫历史</span>
                     </a>
-                    <a ng-href="#/result" class="s1 a4">
+                    <a ng-href="#/result" ng-class="{'blue':change_blue=='result'}" class="s1 a4">
                         <img src="static/img/set4.png" alt="">
                         <span>爬虫结果</span>
                         <span class="span2">{{Crawlerresult | number}}</span>

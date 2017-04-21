@@ -30,7 +30,29 @@ whaleModule.controller("overSetcontroller",["$scope","$rootScope","$window","$ht
         }
     }).success(function (data) {
         if (data.code == 10200) {
-            $scope.Crawlerresult=data.data[0].totalCount;
+            //$scope.Crawlerresult=data.data[0].totalCount;
+            //总计
+            var oldP = 0,
+                newP = data.data[0].totalCount;
+            var int = setInterval(function() {
+                oldP += (newP - oldP) * 0.3;
+                $scope.Crawlerresult = parseInt(oldP);
+                if (Math.abs(newP - oldP) < 1) {
+                    $scope.Crawlerresult = data.data[0].totalCount;
+                    $rootScope.Crawlerresult = data.data[0].totalCount;
+                    clearInterval(int);
+                }
+                $scope.$apply();
+            }, 50);
         }
     })
+    if(window.location.href.indexOf("/overview") !== -1){
+        $scope.change_blue="overview";
+    }else if(window.location.href.indexOf("/setup") !== -1){
+        $scope.change_blue="setup";
+    }else if(window.location.href.indexOf("/history") !== -1){
+        $scope.change_blue="history";
+    }else if(window.location.href.indexOf("/result") !== -1){
+        $scope.change_blue="result";
+    }
 }])

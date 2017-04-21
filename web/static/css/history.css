@@ -65,14 +65,17 @@
           #historyContain .contain2 .con .con2 div span {
             color: #1085e4; }
         #historyContain .contain2 .con .con2 .co1 {
-          width: 200px; }
+          width: 25%;
+          max-width: 200px; }
         #historyContain .contain2 .con .con2 .co2 {
-          width: 255px;
+          width: 30%;
+          max-width: 255px;
           text-align: center;
           border-left: 1px solid #999999;
           border-right: 1px solid #999999; }
         #historyContain .contain2 .con .con2 .co3 {
-          width: 200px;
+          width: 25%;
+          max-width: 200px;
           text-align: center; }
       #historyContain .contain2 .con .con3 {
         width: 100px;

@@ -1,10 +1,9 @@
 /**
  * Created by Administrator on 2017/4/10.
  */
-whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$http","$interval","$location", function($scope,$rootScope,$window,$http,$interval,$location){
+whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$http","$interval","$location","$filter","$timeout", function($scope,$rootScope,$window,$http,$interval,$location,$filter,$timeout){
     // 基于准备好的dom，初始化echarts实例
     if(whale.store("orgId")&&whale.store("appid")){
-
         var myChart_zhe = echarts.init(document.getElementById('echarts_zhe'));
         var myChart_zhu = echarts.init(document.getElementById('echarts_zhu'));
         // 绘制图表
@@ -153,7 +152,52 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
             }
         }).success(function (data) {
             if (data.code == 10200) {
+                function shuju1(shuju){
+                    var total=shuju;
+                    var oldP = 0,
+                        newP = total;
+                    var int = setInterval(function() {
+                        oldP += (newP - oldP) * 0.3;
+                        $scope.overApplyDetail.totalCount = parseInt(oldP);
+                        if (Math.abs(newP - oldP) < 1) {
+                            $scope.overApplyDetail.totalCount = total;
+                            clearInterval(int);
+                        }
+                        $scope.$apply();
+                    }, 50);
+                }
+                function shuju2(shuju){
+                    var total=shuju;
+                    var oldP = 0,
+                        newP = total;
+                    var int = setInterval(function() {
+                        oldP += (newP - oldP) * 0.3;
+                        $scope.overApplyDetail.speed = $filter('number')(oldP, 2);
+                        if (Math.abs(newP - oldP) < 0.05) {
+                            $scope.overApplyDetail.speed = total;
+                            clearInterval(int);
+                        }
+                        $scope.$apply();
+                    }, 50);
+                }
+                function shuju3(shuju){
+                    var total=shuju;
+                    var oldP = 0,
+                        newP = total;
+                    var int = setInterval(function() {
+                        oldP += (newP - oldP) * 0.3;
+                        $scope.overApplyDetail.crawlNum = parseInt(oldP);
+                        if (Math.abs(newP - oldP) < 1) {
+                            $scope.overApplyDetail.crawlNum = total;
+                            clearInterval(int);
+                        }
+                        $scope.$apply();
+                    }, 50);
+                }
                 $scope.overApplyDetail=data.data;
+                shuju1(data.data.totalCount)
+                shuju2(data.data.speed)
+                shuju3(data.data.crawlNum)
             }
         })
 
@@ -223,4 +267,8 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
             $scope.select_change=false;
         })
     })
+    $timeout(function() {
+        window.history.go(0);
+        location.reload()
+    }, 10000);
 }])

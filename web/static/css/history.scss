@@ -79,17 +79,20 @@
           }
         }
         .co1{
-          width: 200px;
+          width: 25%;
+          max-width: 200px;
 
         }
         .co2{
-          width: 255px;
+          width: 30%;
+          max-width: 255px;
           text-align: center;
           border-left: 1px solid #999999;
           border-right: 1px solid #999999;
         }
         .co3{
-          width: 200px;
+          width: 25%;
+          max-width: 200px;
           text-align: center;
         }
       }

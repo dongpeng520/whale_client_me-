@@ -12,6 +12,20 @@ whaleModule.directive('homeHours', ['$rootScope',"$filter",
             template: "<span class='span1'>{{timeshow1}}<span class='span2'>{{timeshow2}}</span></span>",
             replace:true,
             link: function(scope, element, attrs) {
+                function shuju(shuju){
+                    var total=shuju;
+                    var oldP = 0,
+                        newP = total;
+                    var int1 = setInterval(function() {
+                        oldP += (newP - oldP) * 0.3;
+                        scope.timeshow1 = $filter('number')(oldP, 1);
+                        if (Math.abs(newP - oldP) < 0.1) {
+                            scope.timeshow1 = total;
+                            clearInterval(int1);
+                        }
+                        scope.$apply();
+                    }, 50);
+                }
                 if(scope.date===0){
                     scope.timeshow1=0;
                     scope.timeshow2="秒";
@@ -20,12 +34,16 @@ whaleModule.directive('homeHours', ['$rootScope',"$filter",
                 scope.timeshow1 = parseInt(scope.date) ;
                 scope.timeshow2="秒";
                 if( parseInt(scope.date )> 60){
-                    scope.timeshow1=$filter('number')(scope.date / 60, 1) ;
-                    scope.timeshow2="分钟";
                     var min = parseInt(scope.date / 60);
                     if( min > 60 ||min == 60){
-                        scope.timeshow1=$filter('number')((scope.date / 60) /60, 1);
+                        //scope.timeshow1=$filter('number')((scope.date / 60) /60, 1);
+                        var d=$filter('number')((scope.date / 60) /60, 1);
+                        shuju(d);
                         scope.timeshow2="小时";
+                    }else{
+                        //scope.timeshow1=$filter('number')(scope.date / 60, 1);
+                        shuju($filter('number')(scope.date / 60, 1));
+                        scope.timeshow2="分钟";
                     }
                 }
             }
@@ -44,6 +62,20 @@ whaleModule.directive('homeKmg', ['$rootScope',"$filter",
             link: function(scope, element, attrs) {
                 //在link函数中进行操作scope时要注意dom和父级scope的加载顺序，解决办法是ng-if
                 //如果是改变scope.name的话，可以直接实现，如果有一些操作如下，则需要用到ng-if 先传值在加载指令
+                function shuju(shuju){
+                    var total=shuju;
+                    var oldP = 0,
+                        newP = total;
+                    var int = setInterval(function() {
+                        oldP += (newP - oldP) * 0.3;
+                        scope.timeshow1 = $filter('number')(oldP, 0);
+                        if (Math.abs(newP - oldP) < 0.1) {
+                            scope.timeshow1 = total;
+                            clearInterval(int);
+                        }
+                        scope.$apply();
+                    }, 50);
+                }
                 if(scope.date===0){
                     scope.timeshow1=0;
                     scope.timeshow2="K";
@@ -52,7 +84,8 @@ whaleModule.directive('homeKmg', ['$rootScope',"$filter",
                 var k = 1024,
                     sizes = ['K', 'M', 'G'],
                     i = Math.floor(Math.log(scope.date) / Math.log(k));
-                scope.timeshow1=(scope.date / Math.pow(k, i)).toPrecision(3);
+                //scope.timeshow1=(scope.date / Math.pow(k, i)).toPrecision(3);
+                shuju((scope.date / Math.pow(k, i)).toPrecision(3));
                 scope.timeshow2=sizes[i];
             }
         };
@@ -141,6 +174,8 @@ whaleModule.directive('detailList',["$http",function($http){
             //根据orgId,appId,taskId,dataid品类,.查询具体数据信息
             $http.get("/task/taskcontroller/getCrawlData",{
                 params: {
+                    orgId: whale.store("orgId"),
+                    appId: whale.store("appid"),
                     dataid: req
                 }
             }).success(function (data) {

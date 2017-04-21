@@ -206,6 +206,7 @@ var ajaxForm = function(){
         },
         dataType : 'json',
         success : function(data){
+            console.log(data);
             if(data.success){
                 var showDiv = $('#showDiv');
                 showDiv.text('申请成功，聚信立小秘书稍后会与您联系')

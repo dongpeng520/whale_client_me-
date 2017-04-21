@@ -266,13 +266,16 @@ img {
         margin-right: 10px; }
     .overSet .over_set .set2 {
       width: 100%; }
+      .overSet .over_set .set2 .blue {
+        background: #1085e4; }
       .overSet .over_set .set2 .a1:hover, .overSet .over_set .set2 .a2:hover, .overSet .over_set .set2 .a3:hover, .overSet .over_set .set2 .a4:hover {
         background: #1085e4; }
       .overSet .over_set .set2 .s1 {
         display: block;
         padding-left: 20px;
         height: 40px;
-        cursor: pointer; }
+        cursor: pointer;
+        margin-bottom: 5px; }
         .overSet .over_set .set2 .s1 img {
           vertical-align: middle; }
         .overSet .over_set .set2 .s1 span {
@@ -291,7 +294,6 @@ img {
           line-height: 40px;
           font-size: 14px;
           color: #fff;
-          margin-left: 20px;
           text-align: center;
           background: url("../img/red.png") no-repeat center; }
 
