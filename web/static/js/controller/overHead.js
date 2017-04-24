@@ -8,26 +8,26 @@ whaleModule.controller("overHeadcontroller",["$scope","$rootScope","$window","$h
     }
     $scope.closedlogin=function(){
         $scope.loginInf={
-            name1:"",
-            password1:"",
-            password2:""
+            name11:"",
+            password11:"",
+            password21:""
         }
         $scope.error=false;
         $scope.openflag=false;
         $("body").css({
             "margin-top" : '0px',
             "margin-right" : '0px',
-            "overflow" : 'initial'
+            "overflow" : 'visible'
         })
     }
     $scope.loginInf={
-        name1:"",
-        password1:"",
-        password2:""
+        name11:"",
+        password11:"",
+        password21:""
     }
     $scope.submit=function(){
-        if ($scope.loginInf.name1&&$scope.loginInf.name1.length>0) {
-            if(!(whale.password_bat).test($scope.loginInf.name1)){
+        if ($scope.loginInf.name11&&$scope.loginInf.name11.length>0) {
+            if(!(whale.password_bat).test($scope.loginInf.name11)){
                 $scope.error_wenzi="密码格式不正确(6-22位，且不包含特殊字符)";
                 $scope.error=true;
                 return
@@ -39,8 +39,8 @@ whaleModule.controller("overHeadcontroller",["$scope","$rootScope","$window","$h
             $scope.error=true;
             return
         }
-        if ($scope.loginInf.password1&&$scope.loginInf.password1.length>0) {
-            if(!(whale.password_bat).test($scope.loginInf.password1)){
+        if ($scope.loginInf.password11&&$scope.loginInf.password11.length>0) {
+            if(!(whale.password_bat).test($scope.loginInf.password11)){
                 $scope.error_wenzi="密码格式不正确(6-22位，且不包含特殊字符)";
                 $scope.error=true;
                 return
@@ -52,13 +52,13 @@ whaleModule.controller("overHeadcontroller",["$scope","$rootScope","$window","$h
             $scope.error=true;
             return
         }
-        if ($scope.loginInf.password2&&$scope.loginInf.password2.length>0) {
-            if(!(whale.password_bat).test($scope.loginInf.password2)){
+        if ($scope.loginInf.password21&&$scope.loginInf.password21.length>0) {
+            if(!(whale.password_bat).test($scope.loginInf.password21)){
                 $scope.error_wenzi="密码格式不正确(6-22位，且不包含特殊字符)";
                 $scope.error=true;
                 return
             }else{
-                if($scope.loginInf.password2!=$scope.loginInf.password1){
+                if($scope.loginInf.password21!=$scope.loginInf.password11){
                     $scope.error_wenzi="密码不一致";
                     $scope.error=true;
                     return
@@ -73,8 +73,8 @@ whaleModule.controller("overHeadcontroller",["$scope","$rootScope","$window","$h
         //submit
         var datt={
             id:whale.store("user_id"),
-            oldpwd: hex_md5(hex_md5($scope.loginInf.name1)),
-            newpwd: hex_md5(hex_md5($scope.loginInf.password1))
+            oldpwd: hex_md5(hex_md5($scope.loginInf.name11)),
+            newpwd: hex_md5(hex_md5($scope.loginInf.password11))
         }
         $http.post("/account/usercontroller/editPwd"+"?accessToken="+whale.store("accessToken"),datt).success(function (data) {
             console.log(data);

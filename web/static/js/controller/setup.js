@@ -27,6 +27,7 @@ whaleModule.controller("SetupController",["$scope","$rootScope","$window","$http
                 $rootScope.errormsg = '保存成功';
                 $timeout(function() {
                     $rootScope.errormsg = null;
+                    $location.path('/overview');
                 }, 1500);
             }else {
                 $rootScope.errormsg = '网络错误，请重试';

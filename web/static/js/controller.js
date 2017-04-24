@@ -29,7 +29,7 @@ whaleModule.config(['$routeProvider','$locationProvider',function ($routeProvide
     });
     //$locationProvider.html5Mode(true);
 }]);
-whaleModule.run(['$rootScope',function($rootScope){
+whaleModule.run(['$rootScope','$interval',function($rootScope,$interval){
 
 }])
 

@@ -6,6 +6,7 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
         $scope.username_flag=true;
         task1();
     }
+
     $(".homerightX1").smoove({
         offset  : '10%',
     });
@@ -21,6 +22,8 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
     $(".homerightX5").smoove({
         offset  : '10%',
     });
+
+
     $scope.closedlogin=function(){
         $scope.loginInfo={
             name1:"",
@@ -31,7 +34,7 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
         $("body").css({
             "margin-top" : '0px',
             "margin-right" : '0px',
-            "overflow" : 'initial'
+            "overflow" : 'visible'
         })
     }
     $scope.loginInfo={

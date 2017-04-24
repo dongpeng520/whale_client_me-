@@ -156,7 +156,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             $("body").css({
                 "margin-top" : '0px',
                 "margin-right" : '0px',
-                "overflow" : 'initial'
+                "overflow" : 'visible'
             })
         }
     }

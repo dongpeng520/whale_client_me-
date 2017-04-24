@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5,maximum-scale=1.0, user-scalable=no">
     <title>whale client</title>
+    <link rel="icon" href="static/img/whale_ico.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="static/img/whale_ico.ico" type="image/x-icon">
     <link type="text/css" rel="stylesheet" href="static/js/libs/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="static/js/libs/jquery.datetimepicker.css">
     <link type="text/css" rel="stylesheet" href="static/css/common.css">
@@ -199,18 +201,35 @@
                 <div class="close"><span id="loginclosed" ng-click="closedlogin()">&times;</span></div>
                 <div class="title">修改密码</div>
                 <div class="input_name">
-                    <input type="password" ng-model="loginInf.name1" placeholder="旧密码" autofocus="autofocus">
+                    <input type="password" ng-model="loginInf.name11" placeholder="旧密码" autofocus="autofocus">
                 </div>
                 <div class="input_password">
-                    <input type="password" ng-model="loginInf.password1" placeholder="新密码">
+                    <input type="password" ng-model="loginInf.password11" placeholder="新密码">
                 </div>
                 <div class="input_password">
-                    <input type="password" ng-model="loginInf.password2" placeholder="确认密码">
+                    <input type="password" ng-model="loginInf.password21" placeholder="确认密码">
                 </div>
                 <div class="login_error" ng-if="error">{{error_wenzi}}</div>
                 <div class="submit" ng-click="submit()">确认</div>
             </div>
         </div>
+    </script>
+    <script>
+        $(".homerightX1").smoove({
+            offset  : '10%',
+        });
+        $(".homerightX2").smoove({
+            offset  : '20%',
+        });
+        $(".homerightX3").smoove({
+            offset  : '40%',
+        });
+        $(".homerightX4").smoove({
+            offset  : '50%',
+        });
+        $(".homerightX5").smoove({
+            offset  : '10%',
+        });
     </script>
 </body>
 </html>

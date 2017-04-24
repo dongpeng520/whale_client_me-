@@ -267,8 +267,194 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
             $scope.select_change=false;
         })
     })
-    $timeout(function() {
-        window.history.go(0);
-        location.reload()
+    $scope.timer1=$interval(function() {
+        myChart_zhe.setOption({
+            tooltip: {
+                trigger: 'axis'
+            },
+            itemStyle: {
+                normal: {
+                    color: '#60b027'
+                }
+            },
+            textStyle: {
+                color: '#464646',
+                fontSize:14
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: []
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name:'爬取数量',
+                    type:'line',
+                    stack: '总量',
+                    data:[]
+                }
+            ]
+        });
+        myChart_zhu.setOption({
+            tooltip: {
+                trigger: 'axis',
+            },
+            itemStyle: {
+                normal: {
+                    color: '#f6b797'
+                }
+            },
+            textStyle: {
+                color: '#464646',
+                fontSize:14
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: []
+            },
+            series: [
+                {
+                    name: '爬取历史',
+                    type: 'bar',
+                    data: []
+                }
+            ]
+        });
+        $http.get("/task/taskcontroller/queryCurrentTask",{
+            params: {
+                orgId: whale.store("orgId"),
+                appid: whale.store("appid")
+            }
+        }).success(function (data) {
+            if (data.code == 10200) {
+                $scope.overCurrentTask=data.data[0];
+                whale.store("taskid",data.data[0].taskid);
+                //通过orgId,appId,taskid今日爬取概况
+                $http.get("/task/taskcontroller/queryCurretnTaskByHour",{
+                    params: {
+                        orgId: whale.store("orgId"),
+                        appId: whale.store("appid"),
+                        taskId: whale.store("taskid")
+                    }
+                }).success(function (data) {
+                    if (data.code == 10200) {
+                        $scope.overTaskByHour1=[];
+                        $scope.overTaskByHour2=[];
+                        for(var s in data.data){
+                            $scope.overTaskByHour1.push(s);
+                            $scope.overTaskByHour2.push(data.data[s]);
+                        }
+                        myChart_zhe.setOption({
+                            xAxis: {
+                                data: $scope.overTaskByHour1
+                            },
+                            series: [{
+                                // 根据名字对应到相应的系列
+                                name: '销量',
+                                data: $scope.overTaskByHour2
+                            }]
+                        });
+                    }
+                })
+            }
+        })
+        $scope.overApplyDetail=false;
+        //通过orgId,appId查询应用信息(累计数据量,占用内存，爬虫数等)
+        $http.get("/task/taskcontroller/queryApplicationDetail",{
+            params: {
+                orgId: whale.store("orgId"),
+                appid: whale.store("appid")
+            }
+        }).success(function (data) {
+            if (data.code == 10200) {
+                function shuju1(shuju){
+                    var total=shuju;
+                    var oldP = 0,
+                        newP = total;
+                    var int = setInterval(function() {
+                        oldP += (newP - oldP) * 0.3;
+                        $scope.overApplyDetail.totalCount = parseInt(oldP);
+                        if (Math.abs(newP - oldP) < 1) {
+                            $scope.overApplyDetail.totalCount = total;
+                            clearInterval(int);
+                        }
+                        $scope.$apply();
+                    }, 50);
+                }
+                function shuju2(shuju){
+                    var total=shuju;
+                    var oldP = 0,
+                        newP = total;
+                    var int = setInterval(function() {
+                        oldP += (newP - oldP) * 0.3;
+                        $scope.overApplyDetail.speed = $filter('number')(oldP, 2);
+                        if (Math.abs(newP - oldP) < 0.05) {
+                            $scope.overApplyDetail.speed = total;
+                            clearInterval(int);
+                        }
+                        $scope.$apply();
+                    }, 50);
+                }
+                function shuju3(shuju){
+                    var total=shuju;
+                    var oldP = 0,
+                        newP = total;
+                    var int = setInterval(function() {
+                        oldP += (newP - oldP) * 0.3;
+                        $scope.overApplyDetail.crawlNum = parseInt(oldP);
+                        if (Math.abs(newP - oldP) < 1) {
+                            $scope.overApplyDetail.crawlNum = total;
+                            clearInterval(int);
+                        }
+                        $scope.$apply();
+                    }, 50);
+                }
+                $scope.overApplyDetail=data.data;
+                shuju1(data.data.totalCount)
+                shuju2(data.data.speed)
+                shuju3(data.data.crawlNum)
+            }
+        })
+
+        //通过orgId,appId 爬取历史
+        $http.get("/task/taskcontroller/queryHistTask",{
+            params: {
+                orgId: whale.store("orgId"),
+                appid: whale.store("appid")
+            }
+        }).success(function (data) {
+            if (data.code == 10200) {
+                $scope.overHistTask1=[];
+                $scope.overHistTask2=[];
+                angular.forEach(data.data,function(d,index,array){
+                    $scope.overHistTask1.push("#"+d.taskName);
+                    $scope.overHistTask2.push(d.totalCount);
+                })
+                myChart_zhu.setOption({
+                    yAxis: {
+                        type: 'category',
+                        data: $scope.overHistTask1
+                    },
+                    series: [
+                        {
+                            name: '爬取历史',
+                            type: 'bar',
+                            data: $scope.overHistTask2
+                        }
+                    ]
+                });
+            }
+        })
+
     }, 10000);
+    $scope.$on('$locationChangeStart', function(){
+        $interval.cancel($scope.timer1);
+    });
 }])

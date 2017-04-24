@@ -8,7 +8,7 @@ whaleModule.controller("CrawlerApplycontroller",["$scope","$rootScope","$window"
         $("body").css({
             "margin-top" : '0px',
             "margin-right" : '0px',
-            "overflow" : 'initial'
+            "overflow" : 'visible'
         })
     }
     $scope.guanli=function(data){
@@ -21,7 +21,7 @@ whaleModule.controller("CrawlerApplycontroller",["$scope","$rootScope","$window"
             $("body").css({
                 "margin-top" : '0px',
                 "margin-right" : '0px',
-                "overflow" : 'initial'
+                "overflow" : 'visible'
             })
             $location.path('/overview');
         }
