@@ -8,7 +8,7 @@
             <li class="task_list5">{{nihao}}</li>
         </ul>
         <ul class="task_list" ng-class="{task_listeven: !$even, task_listodd: !$odd}" ng-repeat="list in order">
-            <li class="task_list1">{{list.fileName}}</li>
+            <li class="task_list1" title="{{list.fileName}}">{{list.fileName}}</li>
             <li class="task_list2">{{list.updateTime| date:"yyyy-MM-dd HH:mm:ss"}}</li>
             <li class="task_list3">{{list.fileSize | fiterKM }}</li>
             <li class="task_list4" ng-bind="list.totalNum"></li>

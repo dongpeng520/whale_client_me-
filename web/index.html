@@ -147,7 +147,7 @@
                         <img ng-if="dd.status=='0'" ng-src="static/img/waiting.png" alt="">
                         <img ng-if="dd.status=='2'" ng-src="static/img/end.png" alt="">
                     </div>
-                    <div class="name">{{dd.CrawlerApply}}</div>
+                    <div class="name">{{dd.appName}}</div>
                     <div class="time">
                         <p class="time1">启动时间：{{dd.startTime | limitTo :10}}</p>
                         <p class="time2">当前状态：<span ng-class="{'aa':dd.status=='1','as':dd.status=='0','ad':dd.status=='2'}">{{ dd.status | crawlerstatus}}</span></p>
@@ -196,7 +196,7 @@
             <span class="head_span1" ng-click="openlogin()">修改密码</span>
             <span class="head_span2" ng-click="loginout()">退出</span>
         </div>
-        <div id="password" ng-if="openflag">
+        <div id="password" ng-if="openflag_1">
             <div class="contain">
                 <div class="close"><span id="loginclosed" ng-click="closedlogin()">&times;</span></div>
                 <div class="title">修改密码</div>

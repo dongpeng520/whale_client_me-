@@ -444,7 +444,11 @@ img {
   min-height: 235px; }
   .task .task_list1 {
     width: 24%;
-    border-right: 1px solid #f5f3f3; }
+    border-right: 1px solid #f5f3f3;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 10px; }
   .task .task_list2 {
     width: 24%;
     border-right: 1px solid #f5f3f3; }
@@ -599,7 +603,10 @@ img {
   #taskpaging span {
     display: inline-block;
     height: 35px;
-    line-height: 35px; }
+    line-height: 35px;
+    background: #fff;
+    border-radius: 4px;
+    padding: 0 10px; }
 
 #download {
   position: fixed;

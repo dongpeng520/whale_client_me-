@@ -363,7 +363,7 @@
                     <div class="con3">案例描述案例描述案例描述案例描述案例描述案例描述案例描述案例描述案例描述案例描述案例描述案例描述案例描述案例描述案例描述案例描述</div>
                     <div class="con4">详情</div>
                 </div>
-                <div class="contain2 contain1 homerightX4" data-rotate-x="90deg">
+                <div class="contain2 contain1 homerightX4" data-rotate-y="90deg">
                     <div class="con1">
                         <div ng-include="'lovestory.html'" class="hexagon_include"></div>
                     </div>
@@ -408,6 +408,24 @@
         </div>
         <div class="login_error" ng-if="error">{{error_wenzi}}</div>
         <div class="submit" ng-click="submit()">登录</div>
+    </div>
+</div>
+<!--修改密码 激活-->
+<div id="password" ng-if="openflag_1">
+    <div class="contain">
+        <div class="close"><span ng-click="closedpassword()">&times;</span></div>
+        <div class="title">修改密码</div>
+        <div class="input_name">
+            <input type="password" ng-model="loginInf.name11" placeholder="旧密码" autofocus="autofocus">
+        </div>
+        <div class="input_password">
+            <input type="password" ng-model="loginInf.password11" placeholder="新密码">
+        </div>
+        <div class="input_password">
+            <input type="password" ng-model="loginInf.password21" placeholder="确认密码">
+        </div>
+        <div class="login_error" ng-if="error">{{error_wenzi}}</div>
+        <div class="submit" ng-click="submitpassword()">确认</div>
     </div>
 </div>
 
