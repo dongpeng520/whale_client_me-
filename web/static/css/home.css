@@ -99,7 +99,11 @@
               #home1 .home_header .username .username_img .username_xin .title .name .p1 {
                 font-size: 18px;
                 color: #fff;
-                margin-bottom: 10px; }
+                margin-bottom: 10px;
+                width: 200px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis; }
               #home1 .home_header .username .username_img .username_xin .title .name .p2 {
                 font-size: 12px;
                 color: #fff;

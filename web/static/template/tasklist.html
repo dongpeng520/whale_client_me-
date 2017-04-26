@@ -1,14 +1,14 @@
 <div>
     <div class="task">
         <ul class="task_title">
-            <li class="task_list1">爬取时间</li>
+            <li class="task_list1">文件名</li>
             <li class="task_list2">修改时间</li>
             <li class="task_list3">大小</li>
             <li class="task_list4">数据条数</li>
-            <li class="task_list5">{{nihao}}</li>
+            <li class="task_list5"></li>
         </ul>
         <ul class="task_list" ng-class="{task_listeven: !$even, task_listodd: !$odd}" ng-repeat="list in order">
-            <li class="task_list1" title="{{list.fileName}}">{{list.fileName}}</li>
+            <li class="task_list1" title="{{list.fileName |fiterflie}}">{{list.fileName|fiterflie}}</li>
             <li class="task_list2">{{list.updateTime| date:"yyyy-MM-dd HH:mm:ss"}}</li>
             <li class="task_list3">{{list.fileSize | fiterKM }}</li>
             <li class="task_list4" ng-bind="list.totalNum"></li>

@@ -4,7 +4,10 @@ html, body {
 * {
   margin: 0;
   padding: 0;
-  outline: none; }
+  outline: none;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
 
 ul {
   margin: 0 !important; }
@@ -247,7 +250,7 @@ img {
     width: 100%;
     background: #0d3b75;
     padding-top: 20px;
-    min-height: 980px; }
+    min-height: 1055px; }
     .overSet .over_set .set1 {
       text-align: center;
       margin-bottom: 20px; }
@@ -302,15 +305,15 @@ img {
   width: -moz-calc(100% - 200px);
   width: -webkit-calc(100% - 200px);
   float: left;
-  height: 90px;
+  height: 60px;
   background: #eeeeee;
   text-align: right; }
   .overHead span {
     display: inline-block;
     font-size: 14px;
     color: #5b5b5b;
-    height: 90px;
-    line-height: 90px;
+    height: 60px;
+    line-height: 60px;
     cursor: pointer; }
   .overHead .head_span1 {
     margin-right: 50px; }
@@ -534,12 +537,20 @@ img {
         border: 0;
         color: #464646;
         line-height: 3; }
+        #details .contain .details_contain pre .jsonview .prop {
+          color: #464646;
+          font-size: 16px; }
+        #details .contain .details_contain pre .jsonview ul {
+          list-style: none;
+          margin: 0 0 0 2em !important;
+          padding: 0; }
 
 #paging {
   float: right;
   height: 35px;
   width: 450px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  text-align: right; }
   #paging .pagingcontain {
     display: inline-block; }
     #paging .pagingcontain .page_disabled {
@@ -574,7 +585,9 @@ img {
   float: right;
   height: 35px;
   width: 450px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  text-align: right;
+  margin-right: 10px; }
   #taskpaging .pagingcontain {
     display: inline-block; }
     #taskpaging .pagingcontain .page_disabled {
@@ -683,5 +696,8 @@ img {
             font-size: 25px; }
         #download .contain .contain1 .title .select_change .selected {
           background: url(../img/up.png) no-repeat 170px center; }
+    #download .contain .contain2 {
+      height: 60px;
+      background: #e2e5ec; }
 
 /*# sourceMappingURL=common.css.map */

@@ -121,6 +121,10 @@
                   font-size: 18px;
                   color: #fff;
                   margin-bottom: 10px;
+                  width: 200px;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
                 }
                 .p2{
                   font-size: 12px;

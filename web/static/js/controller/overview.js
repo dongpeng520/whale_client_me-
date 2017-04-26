@@ -74,6 +74,10 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
             }
         }).success(function (data) {
             if (data.code == 10200) {
+
+                var a=angular.element("#overContain").height()+180;
+                $(".over_set").css("height",a+"px");
+
                 $scope.overCurrentTask=data.data[0];
                 whale.store("taskid",data.data[0].taskid);
                 //通过orgId,appId,taskid今日爬取概况
@@ -302,6 +306,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
             tooltip: {
                 trigger: 'axis',
             },
+            animation:false,
             itemStyle: {
                 normal: {
                     color: '#f6b797'

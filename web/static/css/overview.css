@@ -12,7 +12,11 @@
     height: 80px;
     line-height: 80px;
     font-size: 30px;
-    color: #5b5b5b; }
+    color: #5b5b5b;
+    width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
   #overContain .contain1 .con {
     overflow: hidden;
     clear: both;

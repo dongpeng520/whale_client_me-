@@ -2,7 +2,6 @@
  * Created by Administrator on 2017/4/10.
  */
 whaleModule.controller("ResultController",["$scope","$rootScope","$window","$http","$interval","$location","DateCenter","$timeout" ,"$filter",function($scope,$rootScope,$window,$http,$interval,$location,DateCenter,$timeout,$filter){
-
     if(whale.store("orgId")==null&&whale.store("appid")==null){
         $location.path('/');
         return
@@ -26,6 +25,8 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                 }
             }).success(function (data) {
                 if (data.code == 10200) {
+                    $scope.DataCategory=["所有"];
+                    $scope.current=$scope.DataCategory[0];
                     if(data.data[0]==null){
                         return
                     }
@@ -33,11 +34,9 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                     /*obj=JSON.stringify(obj);
                      var category=JSON.parse(obj);*/
                     var category = eval('(' + obj + ')');
-                    $scope.DataCategory=["所有"];
                     for(var s in category){
                         $scope.DataCategory.push(category[s])
                     }
-                    $scope.current=$scope.DataCategory[0];
                 }
             })
             //根据orgId,appId,taskId,品类,.查询mongo数据信息
@@ -63,8 +62,6 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         }
     })
 
-    $scope.allcenter=DateCenter;
-    $scope.taskname=["所有","舆情监控","在线电商品牌","天猫","京东"];
     $scope.selectCategory=function(index){//选择爬虫类型结果
         $scope.current=index;
         whale.store("category",index);

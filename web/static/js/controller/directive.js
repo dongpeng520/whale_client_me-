@@ -180,7 +180,8 @@ whaleModule.directive('detailList',["$http",function($http){
                 }
             }).success(function (data) {
                 if (data.code == 10200) {
-                    scope.details=data.data;
+                    //scope.details=data.data;
+                    $("#custom-spacing").JSONView(data.data, { collapsed: true, nl2br: true, recursive_collapser: true });
                 }
             })
 

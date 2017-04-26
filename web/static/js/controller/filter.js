@@ -155,3 +155,14 @@ whaleModule.filter('fiterKM', ['$filter', function($filter) {
         return dd
     };
 }]);
+
+//用于计算下载页面文件名字截取
+whaleModule.filter('fiterflie', ['$filter', function($filter) {
+    return function(data) {
+        var a=data.split(")")[0].split("_");
+        var b = $filter('date')(a[1], "yyyy-MM-dd");
+        a[1]=b;
+        var c= a.join("_")+").zip";
+        return c
+    };
+}]);

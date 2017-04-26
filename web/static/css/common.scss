@@ -5,6 +5,9 @@ html,body{
   margin: 0;
   padding: 0;
   outline: none;
+  box-sizing: border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
 }
 ul{
   margin: 0!important;
@@ -286,7 +289,7 @@ img{
     width:100%;
     background: #0d3b75;
     padding-top: 20px;
-    min-height: 980px;
+    min-height: 1055px;
     .set1{
       text-align: center;
       margin-bottom: 20px;
@@ -354,15 +357,15 @@ img{
   width: -moz-calc(100% - 200px);
   width:-webkit-calc(100% - 200px);
   float: left;
-  height: 90px;
+  height: 60px;
   background: #eeeeee;
   text-align: right;
   span{
     display: inline-block;
     font-size: 14px;
     color: #5b5b5b;
-    height: 90px;
-    line-height: 90px;
+    height: 60px;
+    line-height: 60px;
     cursor: pointer;
   }
   .head_span1{
@@ -633,6 +636,17 @@ img{
         border: 0;
         color: #464646;
         line-height: 3;
+        .jsonview{
+          .prop{
+            color: #464646;
+            font-size: 16px;
+          }
+          ul{
+            list-style: none;
+            margin: 0 0 0 2em!important;
+            padding: 0;
+          }
+        }
       }
     }
   }
@@ -643,6 +657,7 @@ img{
   height: 35px;
   width: 450px;
   margin-top: 20px;
+  text-align: right;
   .pagingcontain{
     display: inline-block;
     .page_disabled{
@@ -687,6 +702,8 @@ img{
   height: 35px;
   width: 450px;
   margin-top: 20px;
+  text-align: right;
+  margin-right: 10px;
   .pagingcontain{
     display: inline-block;
     .page_disabled{
@@ -817,6 +834,10 @@ img{
           }
         }
       }
+    }
+    .contain2{
+      height: 60px;
+      background: #e2e5ec;
     }
   }
 

@@ -206,6 +206,20 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
                 whale.store("accessToken",data.data.accessToken);
                 $scope.closedlogin();
                 $scope.username_flag=true;
+                //直接打开爬虫应用
+                $rootScope.crawler_close=true;
+                $("body").css("overflow","hidden");
+
+                $http.get("/task/taskcontroller/queryApplicationHead",{
+                    params: {
+                        orgId: whale.store("orgId")
+                    }
+                }).success(function (data) {
+                    if (data.code == 10200) {
+                        $scope.CrawlerApply=data.data;
+                    }
+                })
+
                 task1()
             }else if (data.code == 42104||data.code == 42100||data.code == 42103||data.code == 42101||data.code == 42117) {
                 $scope.error_wenzi=data.note;
@@ -270,6 +284,16 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
                 count.crawlNum=data.data.crawlNum;
                 count.username=whale.store("username");
                 count.time=whale.store("creattime");
+                $scope.usercount=count;
+            }else if(data.code == 60100){
+                $scope.usercount={};
+                var count={};
+                count.costTime=0;
+                count.appcount=0;
+                count.totalCount=0;
+                count.crawlNum=0;
+                count.username=whale.store("username");
+                count.time=0;
                 $scope.usercount=count;
             }
         })
