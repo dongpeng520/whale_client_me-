@@ -293,7 +293,7 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
                 count.totalCount=0;
                 count.crawlNum=0;
                 count.username=whale.store("username");
-                count.time=0;
+                count.time=new Date().getTime();
                 $scope.usercount=count;
             }
         })

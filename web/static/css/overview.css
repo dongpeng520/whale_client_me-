@@ -93,7 +93,8 @@
           -o-transform: translateY(-50%); }
           #overContain .contain2 .shuju1 .s2 .ss .p1 {
             font-size: 30px;
-            color: #f79769; }
+            color: #f79769;
+            height: 42px; }
             #overContain .contain2 .shuju1 .s2 .ss .p1 span {
               font-size: 14px;
               color: #464646; }

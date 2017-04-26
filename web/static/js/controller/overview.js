@@ -215,6 +215,9 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
             if (data.code == 10200) {
                 $scope.overHistTask1=[];
                 $scope.overHistTask2=[];
+                if(data.data.length==0){
+                    return
+                }
                 angular.forEach(data.data,function(d,index,array){
                     $scope.overHistTask1.push("#"+d.taskName);
                     $scope.overHistTask2.push(d.totalCount);
@@ -438,6 +441,9 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
             if (data.code == 10200) {
                 $scope.overHistTask1=[];
                 $scope.overHistTask2=[];
+                if(data.data.length==0){
+                    return
+                }
                 angular.forEach(data.data,function(d,index,array){
                     $scope.overHistTask1.push("#"+d.taskName);
                     $scope.overHistTask2.push(d.totalCount);

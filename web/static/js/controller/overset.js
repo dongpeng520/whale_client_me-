@@ -32,6 +32,11 @@ whaleModule.controller("overSetcontroller",["$scope","$rootScope","$window","$ht
         if (data.code == 10200) {
             //$scope.Crawlerresult=data.data[0].totalCount;
             //总计
+            if(data.data.length==0){
+                $scope.Crawlerresult = 0;
+                $rootScope.Crawlerresult = 0;
+                return
+            }
             if(!data.data[0].totalCount&&data.data[0].totalCount!=0){
                 return
             }
@@ -59,6 +64,11 @@ whaleModule.controller("overSetcontroller",["$scope","$rootScope","$window","$ht
             if (data.code == 10200) {
                 //$scope.Crawlerresult=data.data[0].totalCount;
                 //总计
+                if(data.data.length==0){
+                    $scope.Crawlerresult = 0;
+                    $rootScope.Crawlerresult = 0;
+                    return
+                }
                 if(!data.data[0].totalCount&&data.data[0].totalCount!=0||$scope.Crawlerresult==data.data[0].totalCount){
                     return
                 }
