@@ -2,7 +2,16 @@
  * Created by peter.dong on 17/3/28.
  */
 whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http","$interval","$location","$timeout", function($scope,$rootScope,$window,$http,$interval,$location,$timeout){
-
+    $(function(){
+        $('.responsive').slick({
+            dots: true,
+            autoplay:true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+        });
+    });
     if(window.location.href.indexOf("?user_id=") !== -1){
         var code=window.location.href.split("?user_id=")[1];
         console.log(code);
@@ -310,7 +319,7 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
                     location.reload()
                 }, 1500);
             }else if(data.code == 41400||data.code==41401){
-                $rootScope.errormsg = '无效的accessToken,请重新登录';
+                $rootScope.errormsg = '退出成功';
                 $timeout(function() {
                     $rootScope.errormsg = null;
                     whale.removestore("orgId");

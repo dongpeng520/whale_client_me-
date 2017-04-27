@@ -149,33 +149,38 @@ img {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #ededed;
-  padding-top: 100px; }
-  #Crawler .Crawler_close {
-    width: 95%;
-    overflow: hidden;
-    clear: both; }
-    #Crawler .Crawler_close .close {
-      font-size: 30px; }
-  #Crawler .Crawler_title {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 70px; }
-    #Crawler .Crawler_title img {
-      height: 60px; }
+  background: rgba(0, 0, 0, 0.65); }
   #Crawler .contain {
     width: 1170px;
-    margin: 0 auto; }
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -585px;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    background: #fff;
+    border-radius: 4px; }
+    #Crawler .contain .Crawler_close {
+      overflow: hidden;
+      clear: both;
+      padding-right: 34px;
+      padding-top: 24px; }
+      #Crawler .contain .Crawler_close .close1 {
+        width: 31px;
+        height: 31px;
+        float: right;
+        background: url("../img/crawler_close.png") no-repeat center;
+        cursor: pointer; }
     #Crawler .contain .contain1 {
       text-align: center;
       font-size: 45px;
-      color: #1085e4;
-      height: 197px;
-      line-height: 197px;
+      color: #464646;
+      height: 100px;
+      line-height: 100px;
       background: #fff;
-      margin-bottom: 20px;
-      border-radius: 4px;
-      box-shadow: 0px 0px 10px #cde0ee; }
+      margin-bottom: 20px; }
     #Crawler .contain .contain2 {
       height: 480px;
       margin-bottom: 20px;
@@ -295,7 +300,7 @@ img {
           min-width: 48px;
           height: 40px;
           line-height: 40px;
-          font-size: 14px;
+          font-size: 12px;
           color: #fff;
           text-align: center;
           background: url("../img/red.png") no-repeat center; }

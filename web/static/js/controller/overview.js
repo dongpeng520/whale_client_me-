@@ -89,8 +89,8 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     }
                 }).success(function (data) {
                     if (data.code == 10200) {
-                        $scope.overTaskByHour1=[];
-                        $scope.overTaskByHour2=[];
+                        $scope.overTaskByHour1=[0];
+                        $scope.overTaskByHour2=[0];
                         for(var s in data.data){
                             $scope.overTaskByHour1.push(s);
                             $scope.overTaskByHour2.push(data.data[s]);
@@ -353,8 +353,8 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     }
                 }).success(function (data) {
                     if (data.code == 10200) {
-                        $scope.overTaskByHour1=[];
-                        $scope.overTaskByHour2=[];
+                        $scope.overTaskByHour1=[0];
+                        $scope.overTaskByHour2=[0];
                         for(var s in data.data){
                             $scope.overTaskByHour1.push(s);
                             $scope.overTaskByHour2.push(data.data[s]);

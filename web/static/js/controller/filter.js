@@ -151,7 +151,7 @@ whaleModule.filter('fiterKM', ['$filter', function($filter) {
         var k = 1000,
             sizes = ['K','M', 'G'],
             i = Math.floor(Math.log(data) / Math.log(k));
-        dd=(data / Math.pow(k, i)).toPrecision(3)+sizes[i];
+        dd=$filter('number')((data / Math.pow(k, i)),"1")+sizes[i];
         return dd
     };
 }]);

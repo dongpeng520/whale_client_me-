@@ -603,7 +603,8 @@
   #home2 .home2_contain8 {
     padding: 100px 0; }
     #home2 .home2_contain8 .contain img {
-      margin-right: 35px; }
+      margin: 0 auto;
+      height: 50px; }
 
 #footer {
   background: #4b5861; }
