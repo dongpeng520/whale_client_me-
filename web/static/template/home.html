@@ -26,7 +26,7 @@
                         </div>
                         <div class="shuju">
                             <div class="shuju1 bor mar">爬虫应用数<span>{{usercount.appcount}}</span></div>
-                            <div class="shuju1 mar">爬取数据量<span>{{usercount.totalCount}}</span></div>
+                            <div class="shuju1 mar">爬取数据量<span>{{usercount.totalCount |usercount_wan }}</span></div>
                             <div class="shuju1 bor">爬虫节点数<span>{{usercount.crawlNum}}</span></div>
                             <div class="shuju1">爬取总耗时<span>{{ usercount.costTime | changeKMG1}}</span></div>
                             <!--<home-hours creattime="totaltime"></home-hours>-->

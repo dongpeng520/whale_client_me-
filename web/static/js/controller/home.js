@@ -294,7 +294,7 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
                 count.username=whale.store("username");
                 count.time=whale.store("creattime");
                 $scope.usercount=count;
-            }else if(data.code == 60100){
+            }else if(data.code == 60100||data.code == 60110){
                 $scope.usercount={};
                 var count={};
                 count.costTime=0;

@@ -2,6 +2,18 @@
  * Created by Administrator on 2017/4/16.
  */
 
+
+
+//用于  筛选status
+whaleModule.filter('usercount_wan', ['$filter',  function($filter) {
+    return function(data) {
+        if(data>10000){
+            data=data/10000;
+            data=$filter('number')(data, 2)+"万";
+        }
+        return data;
+    };
+}]);
 //用于  筛选status
 whaleModule.filter('crawlerstatus', ['$filter',  function($filter) {
     return function(date) {
