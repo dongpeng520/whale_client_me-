@@ -199,25 +199,26 @@ var checkForm = function(){
 }
 
 var ajaxForm = function(){
-    $('#button_home').attr({"disabled":"disabled"});
-    var url = "/accout/applycontroller/addApply";
+    var url = "/account/applycontroller/addApply";
     var realName = $('#realName').val();
     var phone = $('#phone').val();
     var accout = $('#accout').val();
     var city = $('#citySelect').val();
     var note = $('#notenote').val();
     var YZM = $('#YZM').val();
+    var setData={
+        name : realName,
+        phone : phone,
+        company : accout,
+        address : city,
+        note:note,
+        code:YZM
+    }
     $.ajax({
         type : 'POST',
         url : url,
-        data : {
-            name : realName,
-            phone : phone,
-            company : accout,
-            address : city,
-            note:note,
-            code:YZM
-        },
+        contentType: "application/json",
+        data :JSON.stringify(setData),
         dataType : 'json',
         success : function(data){
             console.log(data);
@@ -227,13 +228,12 @@ var ajaxForm = function(){
                 showDiv.removeClass('alert-danger');
                 showDiv.addClass('alert-success');
                 showDiv.css('display' , '');
-            }else if(data.code ==50500){
+            }else if(data.code ==50500||data.code ==20104||data.code ==430100||data.code ==20102){
                 var showDiv = $('#showDiv');
-                showDiv.text('申请失败，系统异常，请稍后重试');
+                showDiv.text(data.note);
                 showDiv.removeClass('alert-success');
                 showDiv.addClass('alert-danger');
                 showDiv.css('display' , '');
-                $("#button_home").removeAttr("disabled");
             }
 
         },
@@ -243,7 +243,6 @@ var ajaxForm = function(){
             showDiv.removeClass('alert-success');
             showDiv.addClass('alert-danger');
             showDiv.css('display' , '');
-            $("#button_home").removeAttr("disabled");
         }
 
     })

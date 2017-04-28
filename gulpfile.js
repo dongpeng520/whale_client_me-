@@ -18,14 +18,55 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'), //遍历所有找到的文件
     imagemin = require('gulp-imagemin'),
     browserSync = require('browser-sync');
-
+    connect = require('gulp-connect');
+    proxy = require('http-proxy-middleware');
 
 var config = {
-    buildPath: "pictureAir",
+    buildPath: "whale",
     revPathCSS: "web/static/rev/revCSS",
     revPathJS: "web/static/rev/revJS"
 }
 
+
+gulp.task('webserver', function () {
+    connect.server({
+        root: 'web',
+        livereload: true,
+        port: 5050,
+        middleware: function (connect, opt) {
+            return [
+
+                proxy('/account', {
+                    // target: 'http://192.168.21.205:8082/',
+                    // target: 'http://172.16.8.121:8081',
+                    // target:'http://192.168.100.210:8081/',
+                    //target: 'http://106.39.181.188:8081',
+                    //target: 'http://192.168.100.143:8081',
+                    target: 'http://106.39.181.188:8081',
+                    changeOrigin: true
+                }),
+                proxy('/task', {
+
+                    //target: 'http://192.168.100.143:8080',
+                    target: 'http://106.39.181.188:8080',
+                    changeOrigin: true
+                }),
+                proxy('/downloadHistTaskData', {
+                    // target: 'http://192.168.21.205:8082/',
+                    // target: 'http://172.16.8.121:8081',
+                    // target:'http://192.168.100.210:8081/',
+
+                    target: 'http://192.168.100.143:10081',
+                    //target: 'http://106.39.181.188:8080',
+                    changeOrigin: true
+                })
+
+            ];
+
+
+        }
+    });
+});
 
 
 
@@ -75,13 +116,6 @@ gulp.task('minify-md5-css', function () {                                //- 创
             //        transform: rotate(45deg);
             remove: true //是否去掉不必要的前缀 默认：true
         }))
-        // .pipe(spriter({
-        //     // The path and file name of where we will save the sprite sheet
-        //     'spriteSheet': 'pictureAir/static/img/sprite_'+date+'.png', //这是雪碧图自动合成的图。 很重要
-        //     // Because we don't know where you will end up saving the CSS file at this point in the pipe,
-        //     // we need a litle help identifying where it will be.
-        //     'pathToSpriteSheetFromCSS': '../img/sprite_'+date+'.png' //这是在css引用的图片路径，很重要
-        // }))
         .pipe(sass())
         .pipe(minifyCss())
         .pipe(rev())                                            //- 文件名加MD5后缀
@@ -94,8 +128,10 @@ gulp.task('minify-md5-css', function () {                                //- 创
 
 
 gulp.task('image_min', function () {                                //- 创建一个名为 concat 的 task
-    gulp.src(['web/static/img/*.*'], {base: 'web'})                                 //- 需要处理的css文件，放到一个字符串数组里
+    gulp.src(['web/static/img/*.*', '!web/static/img/banner.png'], {base: 'web'})                                 //- 需要处理的css文件，放到一个字符串数组里
         .pipe(imagemin())
+        .pipe(gulp.dest(config.buildPath))
+    gulp.src([ 'web/static/img/banner.png'], {base: 'web'})                                 //- 需要处理的css文件，放到一个字符串数组里
         .pipe(gulp.dest(config.buildPath))
 
 });
@@ -131,8 +167,6 @@ gulp.task('replace-minify-html',['minify-md5-css', 'minify-md5-js'], function ()
         .pipe(minifyHtml())                                     //使用gzip压缩是更好的方式
         .pipe(gulp.dest(config.buildPath))                       //- 替换后的文件输出的目录
         .pipe(browserSync.reload({stream: true})); //自动进行同步操作
-
-
     gulp.src(['web/static/rev/**/*.json', 'web/static/template/*.*'], {base: 'web'})      //- 读取 rev-manifest.json 文件以及需要进行css名替换的文件
         .pipe(revColletor())                                   //- 执行文件内css名的替换
         .pipe(minifyHtml())                                     //使用gzip压缩是更好的方式
@@ -161,6 +195,6 @@ gulp.task('minify-js-controller', function () {
 
 gulp.task('default', ['clean'], function () {
     gulp.start('filecopy','image_min', 'minify-md5-css', 'minify-md5-js', 'replace-minify-html');
-    gulp.run("autoUpdateSource")
+    //gulp.run("autoUpdateSource")
 });
 
