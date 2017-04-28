@@ -2,15 +2,15 @@
   width: calc(100% - 200px);
   width: -moz-calc(100% - 200px);
   width: -webkit-calc(100% - 200px);
-  min-height: 1100px;
+  min-height: 1085px;
   float: left;
   background: #e2e5ec;
   padding-left: 40px;
   padding-right: 20px; }
   #historyContain .contain1 .title1 {
-    height: 80px;
-    line-height: 80px;
-    font-size: 30px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 28px;
     color: #5b5b5b; }
   #historyContain .contain1 .title2 {
     font-size: 14px;
@@ -19,13 +19,13 @@
     #historyContain .contain1 .title2 span {
       color: #993300; }
   #historyContain .contain2 {
-    min-height: 830px; }
+    min-height: 730px; }
     #historyContain .contain2 .con {
-      height: 150px;
+      height: 130px;
       background: #fff;
       border-radius: 4px;
-      padding: 20px;
-      margin-bottom: 20px; }
+      padding: 15px;
+      margin-bottom: 10px; }
       #historyContain .contain2 .con .con1 {
         width: 80%;
         height: 30px;
@@ -37,7 +37,7 @@
           font-size: 14px;
           color: #5b5b5b; }
         #historyContain .contain2 .con .con1 .co1 {
-          font-size: 30px;
+          font-size: 28px;
           margin-right: 5px; }
         #historyContain .contain2 .con .con1 .co2 {
           padding-left: 35px;

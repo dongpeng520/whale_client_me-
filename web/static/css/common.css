@@ -38,6 +38,9 @@ img {
   width: 1170px;
   margin: 0 auto; }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important; }
+
 .error-msg {
   top: 10%;
   left: 5%;
@@ -175,7 +178,7 @@ img {
         cursor: pointer; }
     #Crawler .contain .contain1 {
       text-align: center;
-      font-size: 45px;
+      font-size: 35px;
       color: #464646;
       height: 100px;
       line-height: 100px;
@@ -209,17 +212,18 @@ img {
         #Crawler .contain .contain2 .apply .name {
           width: 282px;
           margin: 0 auto 50px;
-          font-size: 30px;
+          font-size: 28px;
           color: #464646;
           text-align: center;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis; }
         #Crawler .contain .contain2 .apply .time {
-          width: 145px;
+          width: 220px;
           margin: 0 auto 30px;
           color: #464646;
-          font-size: 14px; }
+          font-size: 14px;
+          padding-left: 40px; }
           #Crawler .contain .contain2 .apply .time .time2 .aa {
             color: #60b027; }
           #Crawler .contain .contain2 .apply .time .time2 .as {
@@ -255,7 +259,7 @@ img {
     width: 100%;
     background: #0d3b75;
     padding-top: 20px;
-    min-height: 1055px; }
+    min-height: 1035px; }
     .overSet .over_set .set1 {
       text-align: center;
       margin-bottom: 20px; }
@@ -310,15 +314,15 @@ img {
   width: -moz-calc(100% - 200px);
   width: -webkit-calc(100% - 200px);
   float: left;
-  height: 60px;
+  height: 50px;
   background: #eeeeee;
   text-align: right; }
   .overHead span {
     display: inline-block;
     font-size: 14px;
     color: #5b5b5b;
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
+    line-height: 50px;
     cursor: pointer; }
   .overHead .head_span1 {
     margin-right: 50px; }
@@ -590,7 +594,7 @@ img {
   float: right;
   height: 35px;
   width: 450px;
-  margin-top: 20px;
+  margin-top: 15px;
   text-align: right;
   margin-right: 10px; }
   #taskpaging .pagingcontain {

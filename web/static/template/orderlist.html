@@ -6,7 +6,7 @@
             <li class="order_list3">来源URL</li>
             <li class="order_list4"></li>
         </ul>
-        <ul class="order_list" ng-class="{order_listeven: !$even, order_listodd: !$odd}" ng-repeat="list in order |limitTo :15">
+        <ul class="order_list" ng-class="{order_listeven: !$even, order_listodd: !$odd}" ng-repeat="list in order |limitTo :15" repeat-finish="renderFinish()">
             <li class="order_list1">{{list.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</li>
             <li class="order_list2" ng-bind="list.category"></li>
             <li class="order_list3" ng-bind="list.url"></li>

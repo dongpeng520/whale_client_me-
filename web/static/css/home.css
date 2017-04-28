@@ -148,7 +148,8 @@
               line-height: 20px;
               cursor: pointer; }
   #home1 .home_content_middle {
-    margin-top: 109px; }
+    margin-top: 109px;
+    padding: 0 65px; }
     #home1 .home_content_middle .middle1 {
       color: #fff;
       font-size: 46px;

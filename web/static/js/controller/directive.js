@@ -157,6 +157,10 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
             $scope.details_change=function(index){
                 $rootScope.$broadcast('delivery.request', index);
             }
+            $scope.renderFinish = function(){
+                var a=angular.element("#overContain").height()+30;
+                $(".over_set").css("height",a+"px");
+            }
         }],
         scope: {
             order:'=orderlist'

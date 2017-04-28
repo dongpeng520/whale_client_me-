@@ -67,18 +67,24 @@ var send=function(){
         var nat=$('#phone').val();
         var resend=$("#SEND");
         var datas = {
-            access_token:whale.store("access_token"),
-            phone:nat,//8615655566161
-            type:0
+            Phone:nat//8615655566161
         };
         $.ajax({
-            type : 'POST',
-            url : url,
+            type : 'GET',
+            url : '/account/applycontroller/sendMsgCode',
             data : datas,
             dataType : 'json',
             success : function(data){
-                if (data.status === 200) {
+                if (data.code === 10200) {
                     whale.store("sendtimes", "no");
+                    var showDiv = $('#showDiv');
+                    showDiv.text('发送成功，请注意查收');
+                    showDiv.removeClass('alert-danger');
+                    showDiv.addClass('alert-success');
+                    showDiv.css('display' , '');
+                    setTimeout(function(){
+                        showDiv.css('display' , 'none');
+                    },2000)
                     var count = 60;
                     var inter=setInterval(thst,1000)
                     function thst() {
@@ -91,18 +97,26 @@ var send=function(){
                             whale.removestore("sendtimes");
                         }
                     }
-                }else if(data.status === 425){
-                    alert($scope.languagePack.error_eraxin6);
-                }else if(data.status === 426){
-                    alert($scope.languagePack.error_eraxin1);
-                }else if(data.status === 407){
-                    alert($scope.languagePack.error_eraxin4);
-                } else {
-                    alert($scope.languagePack.error_er4);
+                }else if(data.code === 10010){
+                    var showDiv = $('#showDiv');
+                    showDiv.text('发送验证码失败');
+                    showDiv.removeClass('alert-success');
+                    showDiv.addClass('alert-danger');
+                    showDiv.css('display' , '');
+                }else{
+                    var showDiv = $('#showDiv');
+                    showDiv.text('网络错误，请稍后重试');
+                    showDiv.removeClass('alert-success');
+                    showDiv.addClass('alert-danger');
+                    showDiv.css('display' , '');
                 }
             },
             error : function(data){
-
+                var showDiv = $('#showDiv');
+                showDiv.text('网络错误，请稍后重试');
+                showDiv.removeClass('alert-success');
+                showDiv.addClass('alert-danger');
+                showDiv.css('display' , '');
             }
 
         })
@@ -120,7 +134,7 @@ var checkYZM=function(){
         accoutSpan.addClass('glyphicon-remove');
         return false;
     }
-    if(!(/^([0-9]{4}$)/.test(accout) && accout.length > 1)){
+    if(!(/^([0-9]{6}$)/.test(accout) && accout.length > 1)){
         parent.removeClass('has-success');
         parent.addClass('has-error');
         accoutSpan.removeClass('glyphicon-ok');
@@ -202,18 +216,18 @@ var ajaxForm = function(){
             company : accout,
             address : city,
             note:note,
-            sms_code:YZM
+            code:YZM
         },
         dataType : 'json',
         success : function(data){
             console.log(data);
-            if(data.success){
+            if(data.code ==10200){
                 var showDiv = $('#showDiv');
                 showDiv.text('申请成功，聚信立小秘书稍后会与您联系')
                 showDiv.removeClass('alert-danger');
                 showDiv.addClass('alert-success');
                 showDiv.css('display' , '');
-            }else{
+            }else if(data.code ==50500){
                 var showDiv = $('#showDiv');
                 showDiv.text('申请失败，系统异常，请稍后重试');
                 showDiv.removeClass('alert-success');
@@ -227,7 +241,7 @@ var ajaxForm = function(){
             var showDiv = $('#showDiv');
             showDiv.text('申请失败，系统异常，请稍后重试');
             showDiv.removeClass('alert-success');
-            showDiv.removeClass('alert-danger');
+            showDiv.addClass('alert-danger');
             showDiv.css('display' , '');
             $("#button_home").removeAttr("disabled");
         }

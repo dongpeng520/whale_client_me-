@@ -75,8 +75,9 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
         }).success(function (data) {
             if (data.code == 10200) {
 
-                var a=angular.element("#overContain").height()+180;
-                $(".over_set").css("height",a+"px");
+                /*var a=angular.element("#overContain").height()+30;
+                alert(angular.element("#overContain").height())
+                $(".over_set").css("height",a+"px");*/
 
                 $scope.overCurrentTask=data.data[0];
                 whale.store("taskid",data.data[0].taskid);
@@ -105,6 +106,14 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                                 data: $scope.overTaskByHour2
                             }]
                         });
+                        setTimeout(function (){
+                            window.onresize = function () {
+                                myChart_zhe.resize();
+                                myChart_zhu.resize();
+                                var a=angular.element("#overContain").height()+30;
+                                $(".over_set").css("height",a+"px");
+                            }
+                        },200)
                     }
                 })
                 //根据orgId,appid,taskid查询品类
@@ -235,6 +244,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                         }
                     ]
                 });
+
             }
         })
 

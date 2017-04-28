@@ -2,16 +2,16 @@
   width: calc(100% - 200px);
   width: -moz-calc(100% - 200px);
   width:-webkit-calc(100% - 200px);
-  min-height: 1100px;
+  min-height: 1085px;
   float: left;
   background: #e2e5ec;
   padding-left: 40px;
   padding-right: 20px;
   .contain1{
     .title1{
-      height:80px;
-      line-height: 80px;
-      font-size: 30px;
+      height:70px;
+      line-height:70px;
+      font-size: 28px;
       color: #5b5b5b;
     }
     .title2{
@@ -24,13 +24,13 @@
     }
   }
   .contain2{
-    min-height: 830px;
+    min-height: 730px;
     .con{
-      height:150px;
+      height: 130px;
       background: #fff;
       border-radius: 4px;
-      padding: 20px;
-      margin-bottom: 20px;
+      padding: 15px;
+      margin-bottom: 10px;
       .con1{
         width: 80%;
         height: 30px;
@@ -43,7 +43,7 @@
           color: #5b5b5b;
         }
         .co1{
-          font-size: 30px;
+          font-size: 28px;
           margin-right: 5px;
         }
         .co2{
