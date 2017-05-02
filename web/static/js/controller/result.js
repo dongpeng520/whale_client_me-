@@ -39,6 +39,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                     }
                 }
             })
+            $scope.pic_loading=true;
             //根据orgId,appId,taskId,品类,.查询mongo数据信息
             $http.get("/task/taskcontroller/querybycategory",{
                 params: {
@@ -53,16 +54,20 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                 }
             }).success(function (data) {
                 if (data.code == 10200) {
+                    $scope.pic_loading=false;
                     $scope.querybycategory=data.data;//这样传，直接改变scope，没有进行一些函数操作，不需要ng-if
                     whale.store("category","所有");
                     $scope.$broadcast('sendParent_pagemiddle',data.total);//监听在子控制器中定义的 最初加载页码 事件
-                    //这样传改变scope，on里面有进行一些函数操作，如果想用scope{name:"=name"}方式，则需要ng-if
+                    //上面这样传改变scope，on监听事件里面有进行一些函数操作。如果用scope{name:"=name"}方式，则需要ng-if
                 }
             })
         }
     })
 
     $scope.selectCategory=function(index){//选择爬虫类型结果
+        if($scope.current==index){
+            return
+        }
         $scope.current=index;
         whale.store("category",index);
         if(whale.store("starttime")&&whale.store("endtime")){

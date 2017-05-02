@@ -138,6 +138,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                         }
                     }
                 })
+                $scope.pic_loading=true;
                 //根据orgId,appId,taskId,品类,.查询mongo数据信息
                 $http.get("/task/taskcontroller/querybycategory",{
                     params: {
@@ -152,6 +153,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     }
                 }).success(function (data) {
                     if (data.code == 10200) {
+                        $scope.pic_loading=false;
                         $scope.querybycategory=data.data;
                     }
                 })

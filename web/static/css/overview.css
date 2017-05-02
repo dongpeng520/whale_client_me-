@@ -178,8 +178,9 @@
           background: url(../img/down.png) no-repeat 100px center; }
         #overContain .contain4 .title .title2 .select {
           position: absolute;
+          z-index: 2;
           width: 150px;
-          left: 0px;
+          left: -1px;
           border: 1px solid #e2e5ec;
           border-top: none;
           background: #fff; }

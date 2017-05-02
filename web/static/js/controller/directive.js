@@ -18,7 +18,7 @@ whaleModule.directive('homeHours', ['$rootScope',"$filter",
                         newP = total;
                     var int1 = setInterval(function() {
                         oldP += (newP - oldP) * 0.3;
-                        scope.timeshow1 = $filter('number')(oldP, 1);
+                        scope.timeshow1 = $filter('number')(oldP, 0);
                         if (Math.abs(newP - oldP) < 0.1) {
                             scope.timeshow1 = total;
                             clearInterval(int1);
@@ -45,6 +45,9 @@ whaleModule.directive('homeHours', ['$rootScope',"$filter",
                         shuju($filter('number')(scope.date / 60, 1));
                         scope.timeshow2="分钟";
                     }
+                }else{
+                    shuju($filter('number')(scope.date));
+                    scope.timeshow2="秒";
                 }
             }
         };
@@ -107,6 +110,7 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
                 }
             }).success(function (data) {
                 if (data.code == 10200) {
+                    scope.pic_loading=false;
                     scope.order=data.data;
                     $rootScope.$broadcast('delivery.page', data.total,flag);  //发送给pagemiddle  页码长度
                 }
@@ -115,15 +119,19 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
         scope.$on('sendParent_over',function(event,data){//监听在子控制器中定义的 点击切换品类 事件
             if(data=="所有"){
                 httpquery("",1);
+                scope.pic_loading=true;
             }else{
                 httpquery(data,1);
+                scope.pic_loading=true;
             }
         });
         scope.$on('pageMiddle.request', function (e, req,flag) { //监听在子控制器中定义的 分页点击 事件
             if(whale.store("category")=="所有"){
                 httpquery("",req,flag);
+                scope.pic_loading=true;
             }else{
                 httpquery(whale.store("category"),req,flag);
+                scope.pic_loading=true;
             }
         });
         scope.$on('sendParent_time', function (e, req1,req2) { //监听在子控制器中定义的 时间查询 事件
@@ -132,6 +140,7 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
             }else{
                 var category=whale.store("category");
             }
+            scope.pic_loading=true;
             $http.get("/task/taskcontroller/querybycategory",{
                 params: {
                     orgId: whale.store("orgId"),
@@ -145,6 +154,7 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
                 }
             }).success(function (data) {
                 if (data.code == 10200) {
+                    scope.pic_loading=false;
                     scope.order=data.data;
                     $rootScope.$broadcast('delivery.page', data.total);  //发送给pagemiddle  页码长度
                 }
@@ -163,7 +173,8 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
             }
         }],
         scope: {
-            order:'=orderlist'
+            order:'=orderlist',
+            pic_loading:'=picloading'//在父级contro中改变scope.pic_loading（不管指令加载顺序）,模板里的{{pic_loading}}不能加载（父级里的{{}}可以加载），必须采用这个方法
         },
         replace:true,
         templateUrl: "static/template/orderlist.html",
