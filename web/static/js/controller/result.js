@@ -219,12 +219,17 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         if($scope.result.endtime==""){
             endtime=""
         }
+        if(whale.store("category")=="所有"){
+            var category1=""
+        }else{
+            var category1=whale.store("category");
+        }
         $http.get("/downloadCurrentTaskData",{
             params: {
                 orgId: whale.store("orgId"),
                 appId: whale.store("appid"),
                 taskid: whale.store("taskid"),
-                category:whale.store("category"),
+                category:category1,
                 startTime:starttime,
                 endTime:endtime
             }
@@ -242,7 +247,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                     return
                 }, 1500);
             }else{
-                $('#OpenPhotos').attr('src',"http://192.168.100.143:10081/downloadCurrentTaskData?taskid="+whale.store("taskid")+"&orgId="+whale.store("orgId")+"&appId="+whale.store("appid")+"&category="+whale.store("category")+"&startTime="+starttime+"&endTime="+endtime);
+                $('#OpenPhotos').attr('src',"http://192.168.100.143:10081/downloadCurrentTaskData?taskid="+whale.store("taskid")+"&orgId="+whale.store("orgId")+"&appId="+whale.store("appid")+"&category="+category1+"&startTime="+starttime+"&endTime="+endtime);
                 $rootScope.errormsg = '导出成功';
                 $timeout(function() {
                     $rootScope.errormsg = null;
