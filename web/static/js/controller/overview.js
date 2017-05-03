@@ -106,14 +106,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                                 data: $scope.overTaskByHour2
                             }]
                         });
-                        setTimeout(function (){
-                            window.onresize = function () {
-                                myChart_zhe.resize();
-                                myChart_zhu.resize();
-                                var a=angular.element("#overContain").height()+30;
-                                $(".over_set").css("height",a+"px");
-                            }
-                        },200)
+
                     }
                 })
                 //根据orgId,appid,taskid查询品类
@@ -246,7 +239,14 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                         }
                     ]
                 });
-
+                setTimeout(function (){
+                    window.onresize = function () {
+                        myChart_zhe.resize();
+                        myChart_zhu.resize();
+                        var a=angular.element("#overContain").height()+30;
+                        $(".over_set").css("height",a+"px");
+                    }
+                },200)
             }
         })
 
