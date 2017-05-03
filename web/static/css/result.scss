@@ -86,8 +86,9 @@
       }
     }
     .con2{
-      height: 60px;
       padding: 15px 0;
+      overflow: hidden;
+      clear: both;
       .time1{
         width: 100px;
         height: 30px;
@@ -95,10 +96,10 @@
         font-size: 14px;
         color: #464646;
         text-align: center;
-        display: inline-block;
+        float: left;
       }
       .time2{
-        display: inline-block;
+        float: left;
         input{
           width: 160px;
           height: 30px;
@@ -126,7 +127,7 @@
         }
       }
       .time5{
-        display: inline-block;
+        float: left;
         margin: 0px 20px;
         width: 60px;
         height:30px;

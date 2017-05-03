@@ -39,7 +39,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                     }
                 }
             })
-            $scope.pic_loading=true;
+            $scope.picloading=true;
             //根据orgId,appId,taskId,品类,.查询mongo数据信息
             $http.get("/task/taskcontroller/querybycategory",{
                 params: {
@@ -54,7 +54,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                 }
             }).success(function (data) {
                 if (data.code == 10200) {
-                    $scope.pic_loading=false;
+                    $scope.picloading=false;
                     $scope.querybycategory=data.data;//这样传，直接改变scope，没有进行一些函数操作，不需要ng-if
                     whale.store("category","所有");
                     $scope.$broadcast('sendParent_pagemiddle',data.total);//监听在子控制器中定义的 最初加载页码 事件
@@ -213,25 +213,46 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             }, 1500);
             return;
         }
-        if(starttime==NaN){
+        if($scope.result.starttime==""){
             starttime=""
         }
-        if(endtime==NaN){
+        if($scope.result.endtime==""){
             endtime=""
         }
-        $http.get("/task/taskcontroller/queryHisttaskid",{
+        $http.get("/downloadCurrentTaskData",{
             params: {
                 orgId: whale.store("orgId"),
                 appId: whale.store("appid"),
-                taskId: whale.store("taskid"),
+                taskid: whale.store("taskid"),
                 category:whale.store("category"),
                 startTime:starttime,
                 endTime:endtime
             }
         }).success(function (data) {
-            if (data.code == 10200) {
-
+            if(data.code==50500){
+                $rootScope.errormsg = '系统异常';
+                $timeout(function() {
+                    $rootScope.errormsg = null;
+                    return
+                }, 1500);
+            }else if(data.code==80404){
+                $rootScope.errormsg = '请求地址未找到';
+                $timeout(function() {
+                    $rootScope.errormsg = null;
+                    return
+                }, 1500);
+            }else{
+                $('#OpenPhotos').attr('src',"http://192.168.100.143:10081/downloadCurrentTaskData?taskid="+whale.store("taskid")+"&orgId="+whale.store("orgId")+"&appId="+whale.store("appid")+"&category="+whale.store("category")+"&startTime="+starttime+"&endTime="+endtime);
+                $rootScope.errormsg = '导出成功';
+                $timeout(function() {
+                    $rootScope.errormsg = null;
+                }, 1500);
             }
+        }).error(function(){
+            $rootScope.errormsg = '系统繁忙，请稍后重试';
+            $timeout(function() {
+                $rootScope.errormsg = null;
+            }, 1500);
         })
     }
 }])

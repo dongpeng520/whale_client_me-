@@ -59,6 +59,15 @@ gulp.task('webserver', function () {
                     target: 'http://192.168.100.143:10081',
                     //target: 'http://106.39.181.188:8080',
                     changeOrigin: true
+                }),
+                proxy('/downloadCurrentTaskData', {
+                    // target: 'http://192.168.21.205:8082/',
+                    // target: 'http://172.16.8.121:8081',
+                    // target:'http://192.168.100.210:8081/',
+
+                    target: 'http://192.168.100.143:10081',
+                    //target: 'http://106.39.181.188:8080',
+                    changeOrigin: true
                 })
 
             ];

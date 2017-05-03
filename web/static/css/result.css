@@ -68,8 +68,9 @@
         display: inline-block;
         cursor: pointer; }
     #resultContain .contain2 .con2 {
-      height: 60px;
-      padding: 15px 0; }
+      padding: 15px 0;
+      overflow: hidden;
+      clear: both; }
       #resultContain .contain2 .con2 .time1 {
         width: 100px;
         height: 30px;
@@ -77,9 +78,9 @@
         font-size: 14px;
         color: #464646;
         text-align: center;
-        display: inline-block; }
+        float: left; }
       #resultContain .contain2 .con2 .time2 {
-        display: inline-block; }
+        float: left; }
         #resultContain .contain2 .con2 .time2 input {
           width: 160px;
           height: 30px;
@@ -99,7 +100,7 @@
         #resultContain .contain2 .con2 .time2 input:-ms-input-placeholder {
           color: #6ec3fb; }
       #resultContain .contain2 .con2 .time5 {
-        display: inline-block;
+        float: left;
         margin: 0px 20px;
         width: 60px;
         height: 30px;

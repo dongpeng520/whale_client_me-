@@ -110,7 +110,7 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
                 }
             }).success(function (data) {
                 if (data.code == 10200) {
-                    scope.pic_loading=false;
+                    scope.picloading=false;
                     scope.order=data.data;
                     $rootScope.$broadcast('delivery.page', data.total,flag);  //发送给pagemiddle  页码长度
                 }
@@ -119,19 +119,19 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
         scope.$on('sendParent_over',function(event,data){//监听在子控制器中定义的 点击切换品类 事件
             if(data=="所有"){
                 httpquery("",1);
-                scope.pic_loading=true;
+                scope.picloading=true;
             }else{
                 httpquery(data,1);
-                scope.pic_loading=true;
+                scope.picloading=true;
             }
         });
         scope.$on('pageMiddle.request', function (e, req,flag) { //监听在子控制器中定义的 分页点击 事件
             if(whale.store("category")=="所有"){
                 httpquery("",req,flag);
-                scope.pic_loading=true;
+                scope.picloading=true;
             }else{
                 httpquery(whale.store("category"),req,flag);
-                scope.pic_loading=true;
+                scope.picloading=true;
             }
         });
         scope.$on('sendParent_time', function (e, req1,req2) { //监听在子控制器中定义的 时间查询 事件
@@ -140,7 +140,7 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
             }else{
                 var category=whale.store("category");
             }
-            scope.pic_loading=true;
+            scope.picloading=true;
             $http.get("/task/taskcontroller/querybycategory",{
                 params: {
                     orgId: whale.store("orgId"),
@@ -154,7 +154,7 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
                 }
             }).success(function (data) {
                 if (data.code == 10200) {
-                    scope.pic_loading=false;
+                    scope.picloading=false;
                     scope.order=data.data;
                     $rootScope.$broadcast('delivery.page', data.total);  //发送给pagemiddle  页码长度
                 }
@@ -174,13 +174,13 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
         }],
         scope: {
             order:'=orderlist',
-            pic_loading:'=picloading'//在父级contro中改变scope.pic_loading（不管指令加载顺序）,模板里的{{pic_loading}}不能加载（父级里的{{}}可以加载），必须采用这个方法
+            picloading:'=picloading'
         },
         replace:true,
         templateUrl: "static/template/orderlist.html",
         link: linkFunction
     }
-}])
+}])//在父级contro中改变scope.picloading（不管指令加载顺序）,模板里的{{picloading}}不能加载（父级里的{{}}可以加载），必须采用这个方法
 whaleModule.directive('detailList',["$http",function($http){
     var linkFunction=function(scope,element,attr){
         scope.$on('delivery.request', function (e, req) {
@@ -438,9 +438,29 @@ whaleModule.directive('taskList',["$rootScope","$http",function($rootScope,$http
                         fileid:id
                     }
                 }).success(function (data) {
-                    $('#OpenPhotos').attr('src',"http://192.168.100.143:10081/downloadHistTaskData?taskid="+taskid+"&fileid="+id);
-                    //window.location.href="http://192.168.100.143:10081/downloadHistTaskData?taskid="+taskid+"&fileid="+id;
-                    $rootScope.errormsg = '下载成功';
+                    if(data.code==50500){
+                        $rootScope.errormsg = '系统异常';
+                        $timeout(function() {
+                            $rootScope.errormsg = null;
+                            return
+                        }, 1500);
+                    }else if(data.code==80404){
+                        $rootScope.errormsg = '请求地址未找到';
+                        $timeout(function() {
+                            $rootScope.errormsg = null;
+                            return
+                        }, 1500);
+                    }else{
+                        $('#OpenPhotos').attr('src',"http://192.168.100.143:10081/downloadHistTaskData?taskid="+taskid+"&fileid="+id);
+                        //window.location.href="http://192.168.100.143:10081/downloadHistTaskData?taskid="+taskid+"&fileid="+id;
+                        $rootScope.errormsg = '下载成功';
+                        $timeout(function() {
+                            $rootScope.errormsg = null;
+                        }, 1500);
+                    }
+
+                }).error(function(){
+                    $rootScope.errormsg = '系统繁忙，请稍后重试';
                     $timeout(function() {
                         $rootScope.errormsg = null;
                     }, 1500);
