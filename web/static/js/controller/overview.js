@@ -243,7 +243,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     window.onresize = function () {
                         myChart_zhe.resize();
                         myChart_zhu.resize();
-                        var a=angular.element("#overContain").height()+30;
+                        var a=angular.element("#overContain").height()+80;
                         $(".over_set").css("height",a+"px");
                     }
                 },200)

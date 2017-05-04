@@ -2,7 +2,7 @@
     <ul class="pagingcontain">
         <li ng-class="{true:'page_disabled'}[p_current==1]"><a href="javascript:void(0);" ng-click="p_index()">首页</a></li>
         <li ng-repeat="page in pages" ng-class="{true:'page_active'}[p_current==page]"><a href="javascript:void(0);" ng-click="load_page(page)">{{ page }}</a></li>
-        <li ng-class="{true:'page_disabled'}[p_current==p_all_page]"><a href="javascript:void(0);" ng-click="p_last()">尾页</a></li>
+        <li ng-class="{'page_disabled':p_current==p_all_page,'page_disabled1':p_all_page=='0'}"><a href="javascript:void(0);" ng-click="p_last()">尾页</a></li>
     </ul>
     <span>  共：{{p_all_page}} 页</span>
 </div>

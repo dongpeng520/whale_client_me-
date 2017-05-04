@@ -91,11 +91,29 @@ whaleModule.controller("overHeadcontroller",["$scope","$rootScope","$window","$h
                 $scope.error_wenzi=data.note;
                 $scope.error=true;
                 return
+            }else if(data.code == 41400||data.code==41401){
+                $rootScope.errormsg = '无效的accessToken,请重新登录';
+                $timeout(function() {
+                    $rootScope.errormsg = null;
+                    whale.removestore("orgId");
+                    whale.removestore("appid");
+                    $location.path('/');
+                }, 1500);
+                return
             }else {
                 $scope.error_wenzi="网络异常，请稍后重试";
                 $scope.error=true;
                 return
             }
+        }).error(function(){
+            $rootScope.errormsg = '无效的accessToken,请重新登录';
+            $timeout(function() {
+                $rootScope.errormsg = null;
+                whale.removestore("orgId");
+                whale.removestore("appid");
+                $location.path('/');
+            }, 1500);
+            return
         });
     }
     $scope.loginout=function(){

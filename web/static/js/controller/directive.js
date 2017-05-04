@@ -168,7 +168,7 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
                 $rootScope.$broadcast('delivery.request', index);
             }
             $scope.renderFinish = function(){
-                var a=angular.element("#overContain").height()+30;
+                var a=angular.element("#overContain").height()+80;
                 $(".over_set").css("height",a+"px");
             }
         }],
@@ -210,7 +210,7 @@ whaleModule.directive('detailList',["$http",function($http){
                 $("body").css({
                     "margin-top" : '0px',
                     "margin-right" : '0px',
-                    "overflow" : 'initial'
+                    "overflow" : 'visible'
                 })
             }
         }],
@@ -292,14 +292,23 @@ whaleModule.directive('pageMiddle',["$rootScope",function($rootScope){
             }
             //首页
             $scope.p_index = function(){
+                if($scope.p_current==1){
+                    return
+                }
                 $scope.load_page(1);
             }
             //尾页
             $scope.p_last = function(){
+                if($scope.p_current==$scope.p_all_page||$scope.p_all_page==0){
+                    return
+                }
                 $scope.load_page($scope.p_all_page);
             }
             //加载某一页
             $scope.load_page = function(page){
+                if(page==$scope.p_current){
+                    return
+                }
                 $scope._get(page,$scope.p_pernum);
                 $rootScope.$broadcast('pageMiddle.request', page,true);//true 表示点击页面换数据的时候，不需要重载页面
             };
@@ -377,14 +386,23 @@ whaleModule.directive('taskpageMiddle',["$rootScope",function($rootScope){
             reloadPnofun();
             //首页
             $scope.p_index = function(){
+                if($scope.p_current==1){
+                    return
+                }
                 $scope.load_page(1);
             }
             //尾页
             $scope.p_last = function(){
+                if($scope.p_current==$scope.p_all_page||$scope.p_all_page==0){
+                    return
+                }
                 $scope.load_page($scope.p_all_page);
             }
             //加载某一页
             $scope.load_page = function(page){
+                if(page==$scope.p_current){
+                    return
+                }
                 _get(page,$scope.p_pernum);
             };
         }],
@@ -451,7 +469,7 @@ whaleModule.directive('taskList',["$rootScope","$http",function($rootScope,$http
                             return
                         }, 1500);
                     }else{
-                        $('#OpenPhotos').attr('src',"http://192.168.100.143:10081/downloadHistTaskData?taskid="+taskid+"&fileid="+id);
+                        $('#OpenPhotos').attr('src',"http://192.168.100.143:10000/downloadHistTaskData?taskid="+taskid+"&fileid="+id);
                         //window.location.href="http://192.168.100.143:10081/downloadHistTaskData?taskid="+taskid+"&fileid="+id;
                         $rootScope.errormsg = '下载成功';
                         $timeout(function() {
@@ -539,14 +557,23 @@ whaleModule.directive('historytaskpageMiddle',["$rootScope",function($rootScope)
             }
             //首页
             $scope.p_index = function(){
+                if($scope.p_current==1){
+                    return
+                }
                 $scope.load_page(1);
             }
             //尾页
             $scope.p_last = function(){
+                if($scope.p_current==$scope.p_all_page||$scope.p_all_page==0){
+                    return
+                }
                 $scope.load_page($scope.p_all_page);
             }
             //加载某一页
             $scope.load_page = function(page){
+                if(page==$scope.p_current){
+                    return
+                }
                 $scope._get(page,$scope.p_pernum);
                 $rootScope.$broadcast('pagehistory.request', page,true);//true 表示点击页面换数据的时候，不需要重载页面
             };

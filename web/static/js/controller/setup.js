@@ -10,6 +10,17 @@ whaleModule.controller("SetupController",["$scope","$rootScope","$window","$http
         appname:"",
         appdesc:""
     }
+    $http.get("/task/taskcontroller/queryCurrentTask",{
+        params: {
+            orgId: whale.store("orgId"),
+            appid: whale.store("appid")
+        }
+    }).success(function(data){
+        if (data.code == 10200) {
+            $scope.setup.appname=data.data[0].appName;
+            $scope.setup.appdesc=data.data[0].appDesc;
+        }
+    })
     $scope.sumbit=function(){
         if($scope.setup.appname == "" || $scope.setup.appname == null||$scope.setup.appdesc==""||$scope.setup.appdesc == null){
             $scope.error_wenzi1="请填写完整";

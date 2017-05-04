@@ -247,7 +247,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                     return
                 }, 1500);
             }else{
-                $('#OpenPhotos').attr('src',"http://192.168.100.143:10081/downloadCurrentTaskData?taskid="+whale.store("taskid")+"&orgId="+whale.store("orgId")+"&appId="+whale.store("appid")+"&category="+category1+"&startTime="+starttime+"&endTime="+endtime);
+                $('#OpenPhotos').attr('src',"http://192.168.100.143:10000/downloadCurrentTaskData?taskid="+whale.store("taskid")+"&orgId="+whale.store("orgId")+"&appId="+whale.store("appid")+"&category="+category1+"&startTime="+starttime+"&endTime="+endtime);
                 $rootScope.errormsg = '导出成功';
                 $timeout(function() {
                     $rootScope.errormsg = null;
