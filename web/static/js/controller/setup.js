@@ -10,7 +10,7 @@ whaleModule.controller("SetupController",["$scope","$rootScope","$window","$http
         appname:"",
         appdesc:""
     }
-    $http.get("/task/taskcontroller/queryCurrentTask",{
+    $http.get("/task/taskcontroller/queryCurrentTask"+"?accessToken="+whale.store("accessToken"),{
         params: {
             orgId: whale.store("orgId"),
             appid: whale.store("appid")
@@ -20,7 +20,7 @@ whaleModule.controller("SetupController",["$scope","$rootScope","$window","$http
             $scope.setup.appname=data.data[0].appName;
             $scope.setup.appdesc=data.data[0].appDesc;
         }
-    })
+    });
     $scope.sumbit=function(){
         if($scope.setup.appname == "" || $scope.setup.appname == null||$scope.setup.appdesc==""||$scope.setup.appdesc == null){
             $scope.error_wenzi1="请填写完整";
@@ -29,7 +29,7 @@ whaleModule.controller("SetupController",["$scope","$rootScope","$window","$http
         }else{
             $scope.error1=false;
         }
-        $http.post("/task/appcontroller/updateApp",{
+        $http.post("/task/appcontroller/updateApp"+"?accessToken="+whale.store("accessToken"),{
             appName:$scope.setup.appname,
             appDesc:$scope.setup.appdesc,
             appid:whale.store("appid")
@@ -45,6 +45,18 @@ whaleModule.controller("SetupController",["$scope","$rootScope","$window","$http
                 $timeout(function() {
                     $rootScope.errormsg = null;
                 }, 1500);
+            }
+        }).error(function(data) {
+            if (data.code == 41400) {
+                $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                $timeout(function () {
+                    $rootScope.errormsg = null;
+                    whale.removestore("orgId");
+                    whale.removestore("appid");
+                    window.history.go(0);
+                    location.reload()
+                }, 1500);
+                return
             }
         });
     }

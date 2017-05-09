@@ -6,19 +6,19 @@ whaleModule.controller("HistoryController",["$scope","$rootScope","$window","$ht
         $location.path('/');
         return
     }
-    $http.get("/task/taskcontroller/getHistDetailData",{
+    $http.get("/task/taskcontroller/getHistDetailData"+"?accessToken="+whale.store("accessToken"),{
         params: {
             orgId: whale.store("orgId"),
             appId: whale.store("appid"),
             PageIndex:1,
-            PageSize:5,
+            PageSize:5
         }
     }).success(function (data) {
         if (data.code == 10200) {
             $scope.historyCenter=data;
             $scope.count=data.total;
         }
-    })
+    });
     $scope.$on('pagetopartent', function (e, req) { //监听在子控制器中定义的 分页点击 事件
         $scope.historyCenter=req;
         /*<div class="co1">爬虫任务#{{$eval('historyNum-$index')}}</div>
@@ -68,7 +68,7 @@ whaleModule.controller("HistoryController",["$scope","$rootScope","$window","$ht
             $("body").css("overflow","hidden");
             //获取task列表
             $scope.taskName="#"+dd.taskName+" "+$filter('date')(dd.endTime,'yyyy-MM-dd HH:mm:ss');
-            $http.get("/task/taskcontroller/queryHisttaskid",{
+            $http.get("/task/taskcontroller/queryHisttaskid"+"?accessToken="+whale.store("accessToken"),{
                 params: {
                     orgId: whale.store("orgId"),
                     appId: whale.store("appid")
@@ -78,7 +78,7 @@ whaleModule.controller("HistoryController",["$scope","$rootScope","$window","$ht
                     $scope.taskname=data.data;
                     $scope.$broadcast('sendParent_history',dd.id);//监听在子控制器中定义的 最初加载页码 事件
                 }
-            })
+            });
 
         }else{
             $scope.down_flag=flag;//关闭下载页面

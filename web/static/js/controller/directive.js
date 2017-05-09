@@ -94,10 +94,10 @@ whaleModule.directive('homeKmg', ['$rootScope',"$filter",
         };
     }
 ]);
-whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$http){
+whaleModule.directive('orderList',["$rootScope","$http","$timeout",function($rootScope,$http,$timeout){
     var linkFunction=function(scope,element,attr){
         function httpquery(pin,index,flag){
-            $http.get("/task/taskcontroller/querybycategory",{
+            $http.get("/task/taskcontroller/querybycategory"+"?accessToken="+whale.store("accessToken"),{
                 params: {
                     orgId: whale.store("orgId"),
                     appId: whale.store("appid"),
@@ -113,6 +113,18 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
                     scope.picloading=false;
                     scope.order=data.data;
                     $rootScope.$broadcast('delivery.page', data.total,flag);  //发送给pagemiddle  页码长度
+                }
+            }).error(function(data) {
+                if (data.code == 41400) {
+                    $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                    $timeout(function () {
+                        $rootScope.errormsg = null;
+                        whale.removestore("orgId");
+                        whale.removestore("appid");
+                        window.history.go(0);
+                        location.reload()
+                    }, 1500);
+                    return
                 }
             })
         }
@@ -141,7 +153,7 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
                 var category=whale.store("category");
             }
             scope.picloading=true;
-            $http.get("/task/taskcontroller/querybycategory",{
+            $http.get("/task/taskcontroller/querybycategory"+"?accessToken="+whale.store("accessToken"),{
                 params: {
                     orgId: whale.store("orgId"),
                     appId: whale.store("appid"),
@@ -157,6 +169,18 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
                     scope.picloading=false;
                     scope.order=data.data;
                     $rootScope.$broadcast('delivery.page', data.total);  //发送给pagemiddle  页码长度
+                }
+            }).error(function(data) {
+                if (data.code == 41400) {
+                    $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                    $timeout(function () {
+                        $rootScope.errormsg = null;
+                        whale.removestore("orgId");
+                        whale.removestore("appid");
+                        window.history.go(0);
+                        location.reload()
+                    }, 1500);
+                    return
                 }
             })
         });
@@ -181,13 +205,13 @@ whaleModule.directive('orderList',["$rootScope","$http",function($rootScope,$htt
         link: linkFunction
     }
 }])//在父级contro中改变scope.picloading（不管指令加载顺序）,模板里的{{picloading}}不能加载（父级里的{{}}可以加载），必须采用这个方法
-whaleModule.directive('detailList',["$http",function($http){
+whaleModule.directive('detailList',["$http","$rootScope","$timeout",function($http,$rootScope,$timeout){
     var linkFunction=function(scope,element,attr){
         scope.$on('delivery.request', function (e, req) {
             scope.details_seceld=true;
             $("body").css("overflow","hidden");
             //根据orgId,appId,taskId,dataid品类,.查询具体数据信息
-            $http.get("/task/taskcontroller/getCrawlData",{
+            $http.get("/task/taskcontroller/getCrawlData"+"?accessToken="+whale.store("accessToken"),{
                 params: {
                     orgId: whale.store("orgId"),
                     appId: whale.store("appid"),
@@ -197,6 +221,18 @@ whaleModule.directive('detailList',["$http",function($http){
                 if (data.code == 10200) {
                     //scope.details=data.data;
                     $("#custom-spacing").JSONView(data.data, { collapsed: true, nl2br: true, recursive_collapser: true });
+                }
+            }).error(function(data) {
+                if (data.code == 41400) {
+                    $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                    $timeout(function () {
+                        $rootScope.errormsg = null;
+                        whale.removestore("orgId");
+                        whale.removestore("appid");
+                        window.history.go(0);
+                        location.reload()
+                    }, 1500);
+                    return
                 }
             })
 
@@ -318,7 +354,7 @@ whaleModule.directive('pageMiddle',["$rootScope",function($rootScope){
         link: linkFunction
     }
 }])
-whaleModule.directive('taskpageMiddle',["$rootScope",function($rootScope){
+whaleModule.directive('taskpageMiddle',["$rootScope","$timeout",function($rootScope,$timeout){
     var linkFunction=function(scope,element,attr){
 
     }
@@ -362,12 +398,12 @@ whaleModule.directive('taskpageMiddle',["$rootScope",function($rootScope){
             };
             //获取数据
             var _get = function(page,size){
-                $http.get("/task/taskcontroller/getHistDetailData",{
+                $http.get("/task/taskcontroller/getHistDetailData"+"?accessToken="+whale.store("accessToken"),{
                     params: {
                         orgId: whale.store("orgId"),
                         appId: whale.store("appid"),
                         PageIndex:page,
-                        PageSize:size,
+                        PageSize:size
                     }
                 }).success(function (data) {
                     if (data.code == 10200) {
@@ -377,6 +413,18 @@ whaleModule.directive('taskpageMiddle',["$rootScope",function($rootScope){
                         $scope.p_current = page;
                         $scope.p_all_page =Math.ceil($scope.count/$scope.p_pernum);
                         reloadPnofun();
+                    }
+                }).error(function(data) {
+                    if (data.code == 41400) {
+                        $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                        $timeout(function () {
+                            $rootScope.errormsg = null;
+                            whale.removestore("orgId");
+                            whale.removestore("appid");
+                            window.history.go(0);
+                            location.reload()
+                        }, 1500);
+                        return
                     }
                 })
 
@@ -411,10 +459,10 @@ whaleModule.directive('taskpageMiddle',["$rootScope",function($rootScope){
         link: linkFunction
     }
 }])
-whaleModule.directive('taskList',["$rootScope","$http",function($rootScope,$http){
+whaleModule.directive('taskList',["$rootScope","$http","$timeout",function($rootScope,$http,$timeout){
     var linkFunction=function(scope,element,attr){
         function httpquery(pin,index,flag){
-            $http.get("/task/taskFileStorageconroller/queryFileStorage",{
+            $http.get("/task/taskFileStorageconroller/queryFileStorage"+"?accessToken="+whale.store("accessToken"),{
                 params: {
                     orgId: whale.store("orgId"),
                     appId: whale.store("appid"),
@@ -427,7 +475,19 @@ whaleModule.directive('taskList',["$rootScope","$http",function($rootScope,$http
                     scope.order=data.data;
                     $rootScope.$broadcast('history.page', data.total,flag);  //发送给pagemiddle  页码长度
                 }
-            })
+            }).error(function(data) {
+                if (data.code == 41400) {
+                    $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                    $timeout(function () {
+                        $rootScope.errormsg = null;
+                        whale.removestore("orgId");
+                        whale.removestore("appid");
+                        window.history.go(0);
+                        location.reload()
+                    }, 1500);
+                    return
+                }
+            });
         }
         scope.$on('sendParent_history',function(event,data){//监听在子控制器中定义的 点击切换品类 事件
             if(data=="所有"){

@@ -219,7 +219,7 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
                 $rootScope.crawler_close=true;
                 $("body").css("overflow","hidden");
 
-                $http.get("/task/taskcontroller/queryApplicationHead",{
+                $http.get("/task/taskcontroller/queryApplicationHead"+"?accessToken="+whale.store("accessToken"),{
                     params: {
                         orgId: whale.store("orgId")
                     }
@@ -227,7 +227,19 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
                     if (data.code == 10200) {
                         $scope.CrawlerApply=data.data;
                     }
-                })
+                }).error(function(data) {
+                    if (data.code == 41400) {
+                        $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                        $timeout(function () {
+                            $rootScope.errormsg = null;
+                            whale.removestore("orgId");
+                            whale.removestore("appid");
+                            window.history.go(0);
+                            location.reload()
+                        }, 1500);
+                        return
+                    }
+                });
 
                 task1()
             }else if (data.code == 42104||data.code == 42100||data.code == 42103||data.code == 42101||data.code == 42117) {
@@ -268,7 +280,7 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
         $rootScope.crawler_close=true;
         $("body").css("overflow","hidden");
 
-        $http.get("/task/taskcontroller/queryApplicationHead",{
+        $http.get("/task/taskcontroller/queryApplicationHead"+"?accessToken="+whale.store("accessToken"),{
             params: {
                 orgId: whale.store("orgId")
             }
@@ -276,10 +288,22 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
             if (data.code == 10200) {
                 $scope.CrawlerApply=data.data;
             }
-        })
+        }).error(function(data) {
+            if (data.code == 41400) {
+                $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                $timeout(function () {
+                    $rootScope.errormsg = null;
+                    whale.removestore("orgId");
+                    whale.removestore("appid");
+                    window.history.go(0);
+                    location.reload()
+                }, 1500);
+                return
+            }
+        });
     }
     function task1(){
-        $http.get("/task/appcontroller/queryFirstCrawCount",{
+        $http.get("/task/appcontroller/queryFirstCrawCount"+"?accessToken="+whale.store("accessToken"),{
             params: {
                 orgId: whale.store("orgId")
             }
@@ -305,7 +329,20 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
                 count.time=new Date().getTime();
                 $scope.usercount=count;
             }
-        })
+        }).error(function(data) {
+            if (data.code == 41400) {
+                $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                $timeout(function () {
+                    $rootScope.errormsg = null;
+                    whale.removestore("orgId");
+                    whale.removestore("appid");
+                    window.history.go(0);
+                    location.reload()
+                }, 1500);
+                return
+            }
+        });
+
     }
     $scope.loginout=function(){
         $http.post("/account/usercontroller/loginout"+"?accessToken="+whale.store("accessToken")).success(function (data) {
@@ -338,3 +375,6 @@ whaleModule.controller("HomeController",["$scope","$rootScope","$window","$http"
         });
     }
 }])
+
+
+

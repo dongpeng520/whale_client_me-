@@ -706,7 +706,7 @@ input:-webkit-autofill {
           margin-right: 10px; }
           #download .contain .contain1 .title .all .close {
             font-size: 25px; }
-        #download .contain .contain1 .title .select_change .selected {
+        #download .contain .contain1 .title .selecttaskName_change .selected {
           background: url(../img/up.png) no-repeat 170px center; }
     #download .contain .contain2 {
       height: 60px;

@@ -8,13 +8,26 @@ whaleModule.controller("overSetcontroller",["$scope","$rootScope","$window","$ht
         $("body").css("overflow","hidden");
         $http.get("/task/taskcontroller/queryApplicationHead",{
             params: {
-                orgId: whale.store("orgId")
+                orgId: whale.store("orgId"),
+                accessToken:whale.store("accessToken")
             }
         }).success(function (data) {
             if (data.code == 10200) {
                 $rootScope.CrawlerApply=data.data;
             }
-        })
+        }).error(function(data) {
+            if (data.code == 41400) {
+                $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                $timeout(function () {
+                    $rootScope.errormsg = null;
+                    whale.removestore("orgId");
+                    whale.removestore("appid");
+                    window.history.go(0);
+                    location.reload()
+                }, 1500);
+                return
+            }
+        });
     }
     $scope.shuaxin=function(){
         window.history.go(0);
@@ -23,7 +36,7 @@ whaleModule.controller("overSetcontroller",["$scope","$rootScope","$window","$ht
     $scope.gotohome=function(){
         $location.path('/');
     }
-    $http.get("/task/taskcontroller/queryHistTask",{
+    $http.get("/task/taskcontroller/queryHistTask"+"?accessToken="+whale.store("accessToken"),{
         params: {
             orgId: whale.store("orgId"),
             appid: whale.store("appid")
@@ -53,9 +66,20 @@ whaleModule.controller("overSetcontroller",["$scope","$rootScope","$window","$ht
                 $scope.$apply();
             }, 50);
         }
-    })
-    $interval(function(){
-        $http.get("/task/taskcontroller/queryHistTask",{
+    }).error(function(data) {
+        if (data.code == 41400) {
+            $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+            $timeout(function () {
+                $rootScope.errormsg = null;
+                whale.removestore("orgId");
+                whale.removestore("appid");
+                $location.path('/');
+            }, 1500);
+            return
+        }
+    });
+    $scope.timer2=$interval(function(){
+        $http.get("/task/taskcontroller/queryHistTask"+"?accessToken="+whale.store("accessToken"),{
             params: {
                 orgId: whale.store("orgId"),
                 appid: whale.store("appid")
@@ -85,7 +109,18 @@ whaleModule.controller("overSetcontroller",["$scope","$rootScope","$window","$ht
                     $scope.$apply();
                 }, 50);
             }
-        })
+        }).error(function(data) {
+            if (data.code == 41400) {
+                $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                $timeout(function () {
+                    $rootScope.errormsg = null;
+                    whale.removestore("orgId");
+                    whale.removestore("appid");
+                    $location.path('/');
+                }, 1500);
+                return
+            }
+        });
     },10000)
     if(window.location.href.indexOf("/overview") !== -1){
         $scope.change_blue="overview";
@@ -96,4 +131,7 @@ whaleModule.controller("overSetcontroller",["$scope","$rootScope","$window","$ht
     }else if(window.location.href.indexOf("/result") !== -1){
         $scope.change_blue="result";
     }
+    $scope.$on('$locationChangeStart', function(){
+        $interval.cancel($scope.timer2);
+    });
 }])

@@ -67,7 +67,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
             ]
         });
         //查询机构当前任务信息
-        $http.get("/task/taskcontroller/queryCurrentTask",{
+        $http.get("/task/taskcontroller/queryCurrentTask"+"?accessToken="+whale.store("accessToken"),{
             params: {
                 orgId: whale.store("orgId"),
                 appid: whale.store("appid")
@@ -82,7 +82,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                 $scope.overCurrentTask=data.data[0];
                 whale.store("taskid",data.data[0].taskid);
                 //通过orgId,appId,taskid今日爬取概况
-                $http.get("/task/taskcontroller/queryCurretnTaskByHour",{
+                $http.get("/task/taskcontroller/queryCurretnTaskByHour"+"?accessToken="+whale.store("accessToken"),{
                     params: {
                         orgId: whale.store("orgId"),
                         appId: whale.store("appid"),
@@ -108,9 +108,9 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                         });
 
                     }
-                })
+                });
                 //根据orgId,appid,taskid查询品类
-                $http.get("/task/taskcontroller/queryDataCategory",{
+                $http.get("/task/taskcontroller/queryDataCategory"+"?accessToken="+whale.store("accessToken"),{
                     params: {
                         orgId: whale.store("orgId"),
                         appid: whale.store("appid"),
@@ -130,10 +130,10 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                             $scope.DataCategory.push(category[s])
                         }
                     }
-                })
+                });
                 $scope.picloading=true;
                 //根据orgId,appId,taskId,品类,.查询mongo数据信息
-                $http.get("/task/taskcontroller/querybycategory",{
+                $http.get("/task/taskcontroller/querybycategory"+"?accessToken="+whale.store("accessToken"),{
                     params: {
                         orgId: whale.store("orgId"),
                         appId: whale.store("appid"),
@@ -151,9 +151,9 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     }
                 })
             }
-        })
+        });
         //通过orgId,appId查询应用信息(累计数据量,占用内存，爬虫数等)
-        $http.get("/task/taskcontroller/queryApplicationDetail",{
+        $http.get("/task/taskcontroller/queryApplicationDetail"+"?accessToken="+whale.store("accessToken"),{
             params: {
                 orgId: whale.store("orgId"),
                 appid: whale.store("appid")
@@ -207,10 +207,10 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                 shuju2(data.data.speed)
                 shuju3(data.data.crawlNum)
             }
-        })
+        });
 
         //通过orgId,appId 爬取历史
-        $http.get("/task/taskcontroller/queryHistTask",{
+        $http.get("/task/taskcontroller/queryHistTask"+"?accessToken="+whale.store("accessToken"),{
             params: {
                 orgId: whale.store("orgId"),
                 appid: whale.store("appid")
@@ -248,7 +248,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     }
                 },200)
             }
-        })
+        });
 
     }else{
        $location.path('/');
@@ -347,7 +347,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                 }
             ]
         });
-        $http.get("/task/taskcontroller/queryCurrentTask",{
+        $http.get("/task/taskcontroller/queryCurrentTask"+"?accessToken="+whale.store("accessToken"),{
             params: {
                 orgId: whale.store("orgId"),
                 appid: whale.store("appid")
@@ -357,7 +357,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                 $scope.overCurrentTask=data.data[0];
                 whale.store("taskid",data.data[0].taskid);
                 //通过orgId,appId,taskid今日爬取概况
-                $http.get("/task/taskcontroller/queryCurretnTaskByHour",{
+                $http.get("/task/taskcontroller/queryCurretnTaskByHour"+"?accessToken="+whale.store("accessToken"),{
                     params: {
                         orgId: whale.store("orgId"),
                         appId: whale.store("appid"),
@@ -382,12 +382,12 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                             }]
                         });
                     }
-                })
+                });
             }
-        })
+        });
         $scope.overApplyDetail=false;
         //通过orgId,appId查询应用信息(累计数据量,占用内存，爬虫数等)
-        $http.get("/task/taskcontroller/queryApplicationDetail",{
+        $http.get("/task/taskcontroller/queryApplicationDetail"+"?accessToken="+whale.store("accessToken"),{
             params: {
                 orgId: whale.store("orgId"),
                 appid: whale.store("appid")
@@ -444,7 +444,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
         })
 
         //通过orgId,appId 爬取历史
-        $http.get("/task/taskcontroller/queryHistTask",{
+        $http.get("/task/taskcontroller/queryHistTask"+"?accessToken="+whale.store("accessToken"),{
             params: {
                 orgId: whale.store("orgId"),
                 appid: whale.store("appid")
@@ -474,7 +474,7 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     ]
                 });
             }
-        })
+        });
 
     }, 10000);
     $scope.$on('$locationChangeStart', function(){

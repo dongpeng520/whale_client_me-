@@ -7,7 +7,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         return
     }
     //查询机构当前任务信息
-    $http.get("/task/taskcontroller/queryCurrentTask",{
+    $http.get("/task/taskcontroller/queryCurrentTask"+"?accessToken="+whale.store("accessToken"),{
         params: {
             orgId: whale.store("orgId"),
             appid: whale.store("appid")
@@ -17,7 +17,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             $scope.overCurrentTask=data.data[0];
             whale.store("taskid",data.data[0].taskid);
             //根据orgId,appid,taskid查询品类
-            $http.get("/task/taskcontroller/queryDataCategory",{
+            $http.get("/task/taskcontroller/queryDataCategory"+"?accessToken="+whale.store("accessToken"),{
                 params: {
                     orgId: whale.store("orgId"),
                     appid: whale.store("appid"),
@@ -41,7 +41,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             })
             $scope.picloading=true;
             //根据orgId,appId,taskId,品类,.查询mongo数据信息
-            $http.get("/task/taskcontroller/querybycategory",{
+            $http.get("/task/taskcontroller/querybycategory"+"?accessToken="+whale.store("accessToken"),{
                 params: {
                     orgId: whale.store("orgId"),
                     appId: whale.store("appid"),
@@ -60,9 +60,9 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                     $scope.$broadcast('sendParent_pagemiddle',data.total);//监听在子控制器中定义的 最初加载页码 事件
                     //上面这样传改变scope，on监听事件里面有进行一些函数操作。如果用scope{name:"=name"}方式，则需要ng-if
                 }
-            })
+            });
         }
-    })
+    });
 
     $scope.selectCategory=function(index){//选择爬虫类型结果
         if($scope.current==index){
@@ -141,7 +141,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             $("body").css("overflow","hidden");
             //获取task列表
             $scope.taskName="所有";
-            $http.get("/task/taskcontroller/queryHisttaskid",{
+            $http.get("/task/taskcontroller/queryHisttaskid"+"?accessToken="+whale.store("accessToken"),{
                 params: {
                     orgId: whale.store("orgId"),
                     appId: whale.store("appid")
@@ -151,7 +151,19 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                     $scope.taskname=data.data;
                     $scope.$broadcast('sendParent_history',"所有");//监听在子控制器中定义的 最初加载页码 事件
                 }
-            })
+            }).error(function(data) {
+                if (data.code == 41400) {
+                    $rootScope.errormsg = '此用户在另一设备登录，请重新登录';
+                    $timeout(function () {
+                        $rootScope.errormsg = null;
+                        whale.removestore("orgId");
+                        whale.removestore("appid");
+                        window.history.go(0);
+                        location.reload()
+                    }, 1500);
+                    return
+                }
+            });
 
         }else{
             $scope.down_flag=flag;//关闭下载页面
