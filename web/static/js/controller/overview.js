@@ -96,6 +96,15 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                             $scope.overTaskByHour1.push(s);
                             $scope.overTaskByHour2.push(data.data[s]);
                         }
+
+                        /*var obj={"name":"wjy","age":26,"sex":"female"};//定义一个object对象
+                        var keys=[];//定义一个数组用来接受key
+                        var values=[];//定义一个数组用来接受value
+                        for(var key in obj){
+                            keys.push(key);
+                            values.push(obj[key]);//取得value
+                        }*/
+
                         myChart_zhe.setOption({
                             xAxis: {
                                 data: $scope.overTaskByHour1
@@ -226,6 +235,8 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     $scope.overHistTask1.push("#"+d.taskName);
                     $scope.overHistTask2.push(d.totalCount);
                 })
+                $scope.overHistTask1.reverse();
+                $scope.overHistTask2.reverse();
                 myChart_zhu.setOption({
                     yAxis: {
                         type: 'category',
@@ -460,6 +471,8 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     $scope.overHistTask1.push("#"+d.taskName);
                     $scope.overHistTask2.push(d.totalCount);
                 })
+                $scope.overHistTask1.reverse();
+                $scope.overHistTask2.reverse();
                 myChart_zhu.setOption({
                     yAxis: {
                         type: 'category',
