@@ -90,20 +90,12 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     }
                 }).success(function (data) {
                     if (data.code == 10200) {
-                        $scope.overTaskByHour1=[0];
-                        $scope.overTaskByHour2=[0];
-                        for(var s in data.data){
+                        $scope.overTaskByHour1=[];
+                        $scope.overTaskByHour2=[];
+                        for(var s in data.data[0]){
                             $scope.overTaskByHour1.push(s);
-                            $scope.overTaskByHour2.push(data.data[s]);
+                            $scope.overTaskByHour2.push(data.data[0][s]);
                         }
-
-                        /*var obj={"name":"wjy","age":26,"sex":"female"};//定义一个object对象
-                        var keys=[];//定义一个数组用来接受key
-                        var values=[];//定义一个数组用来接受value
-                        for(var key in obj){
-                            keys.push(key);
-                            values.push(obj[key]);//取得value
-                        }*/
 
                         myChart_zhe.setOption({
                             xAxis: {
@@ -127,16 +119,16 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     }
                 }).success(function (data) {
                     if (data.code == 10200) {
-                        if(data.data[0]==null){
+                        if(data.data==null){
                             return
                         }
-                        var obj=data.data[0].category;
+                        var obj=data.data;
                         /*obj=JSON.stringify(obj);
                         var category=JSON.parse(obj);*/
-                        var category = eval('(' + obj + ')');
+                        /*var category = eval('(' + obj + ')');*/
                         $scope.DataCategory=[];
-                        for(var s in category){
-                            $scope.DataCategory.push(category[s])
+                        for(var s in obj){
+                            $scope.DataCategory.push(obj[s])
                         }
                     }
                 });
@@ -197,27 +189,35 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                         $scope.$apply();
                     }, 50);
                 }
+                $scope.overApplyDetail=data.data;
+                shuju1(data.data.totalCount)
+                shuju2(data.data.speed)
+            }
+        });
+        //通过appId查询应用信息(爬虫节点数)
+        $http.get("/task/taskcontroller/queryApplicationCrawlNum"+"?accessToken="+whale.store("accessToken"),{
+            params: {
+                appId: whale.store("appid")
+            }
+        }).success(function (data) {
+            if (data.code == 10200) {
                 function shuju3(shuju){
                     var total=shuju;
                     var oldP = 0,
                         newP = total;
                     var int = setInterval(function() {
                         oldP += (newP - oldP) * 0.3;
-                        $scope.overApplyDetail.crawlNum = parseInt(oldP);
+                        $scope.queryApplicationCrawlNum = parseInt(oldP);
                         if (Math.abs(newP - oldP) < 1) {
-                            $scope.overApplyDetail.crawlNum = total;
+                            $scope.queryApplicationCrawlNum = total;
                             clearInterval(int);
                         }
                         $scope.$apply();
                     }, 50);
                 }
-                $scope.overApplyDetail=data.data;
-                shuju1(data.data.totalCount)
-                shuju2(data.data.speed)
-                shuju3(data.data.crawlNum)
+                shuju3(data.data)
             }
         });
-
         //通过orgId,appId 爬取历史
         $http.get("/task/taskcontroller/queryHistTask"+"?accessToken="+whale.store("accessToken"),{
             params: {
@@ -376,11 +376,11 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                     }
                 }).success(function (data) {
                     if (data.code == 10200) {
-                        $scope.overTaskByHour1=[0];
-                        $scope.overTaskByHour2=[0];
-                        for(var s in data.data){
+                        $scope.overTaskByHour1=[];
+                        $scope.overTaskByHour2=[];
+                        for(var s in data.data[0]){
                             $scope.overTaskByHour1.push(s);
-                            $scope.overTaskByHour2.push(data.data[s]);
+                            $scope.overTaskByHour2.push(data.data[0][s]);
                         }
                         myChart_zhe.setOption({
                             xAxis: {
@@ -433,27 +433,35 @@ whaleModule.controller("OverviewController",["$scope","$rootScope","$window","$h
                         $scope.$apply();
                     }, 50);
                 }
+                $scope.overApplyDetail=data.data;
+                shuju1(data.data.totalCount)
+                shuju2(data.data.speed)
+            }
+        })
+        //通过appId查询应用信息(爬虫节点数)
+        $http.get("/task/taskcontroller/queryApplicationCrawlNum"+"?accessToken="+whale.store("accessToken"),{
+            params: {
+                appId: whale.store("appid")
+            }
+        }).success(function (data) {
+            if (data.code == 10200) {
                 function shuju3(shuju){
                     var total=shuju;
                     var oldP = 0,
                         newP = total;
                     var int = setInterval(function() {
                         oldP += (newP - oldP) * 0.3;
-                        $scope.overApplyDetail.crawlNum = parseInt(oldP);
+                        $scope.queryApplicationCrawlNum = parseInt(oldP);
                         if (Math.abs(newP - oldP) < 1) {
-                            $scope.overApplyDetail.crawlNum = total;
+                            $scope.queryApplicationCrawlNum = total;
                             clearInterval(int);
                         }
                         $scope.$apply();
                     }, 50);
                 }
-                $scope.overApplyDetail=data.data;
-                shuju1(data.data.totalCount)
-                shuju2(data.data.speed)
-                shuju3(data.data.crawlNum)
+                shuju3(data.data)
             }
-        })
-
+        });
         //通过orgId,appId 爬取历史
         $http.get("/task/taskcontroller/queryHistTask"+"?accessToken="+whale.store("accessToken"),{
             params: {

@@ -14,7 +14,28 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         }
     }).success(function (data) {
         if (data.code == 10200) {
+
+            laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+            laydate({
+                elem: '#starttime',
+                format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
+                festival: true, //显示节日
+                istime: true
+            });
+            laydate({
+                elem: '#endtime',
+                format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
+                festival: true, //显示节日
+                istime: true
+            });
+
             $scope.overCurrentTask=data.data[0];
+            $scope.result.starttime=$filter('date')($scope.overCurrentTask.startTime,'yyyy-MM-dd HH:mm:ss');
+            if($scope.overCurrentTask.endTime==null){
+                $scope.result.endtime=$filter('date')(new Date().getTime(),'yyyy-MM-dd HH:mm:ss');
+            }else{
+                $scope.result.endtime=$filter('date')($scope.overCurrentTask.endTime,'yyyy-MM-dd HH:mm:ss');
+            }
             whale.store("taskid",data.data[0].taskid);
             //根据orgId,appid,taskid查询品类
             $http.get("/task/taskcontroller/queryDataCategory"+"?accessToken="+whale.store("accessToken"),{
@@ -27,15 +48,12 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                 if (data.code == 10200) {
                     $scope.DataCategory=["所有"];
                     $scope.current=$scope.DataCategory[0];
-                    if(data.data[0]==null){
+                    if(data.data==null){
                         return
                     }
-                    var obj=data.data[0].category;
-                    /*obj=JSON.stringify(obj);
-                     var category=JSON.parse(obj);*/
-                    var category = eval('(' + obj + ')');
-                    for(var s in category){
-                        $scope.DataCategory.push(category[s])
+                    var obj=data.data;
+                    for(var s in obj){
+                        $scope.DataCategory.push(obj[s])
                     }
                 }
             })
@@ -78,9 +96,9 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             $scope.$broadcast('sendParent_over',index);//监听在子控制器中定义的 点击切换品类 事件
         }
     }
-    $.datetimepicker.setLocale('ch');
+    /*$.datetimepicker.setLocale('ch');
     $('#starttime').datetimepicker({
-        onShow: function(ct) {
+        onShow: function(ct) {//控件里的开始时间应该小于结束时间
             this.setOptions({
                 maxDate: $('#endtime').val() ? $('#endtime').val() : false
             })
@@ -96,7 +114,7 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         },
         step:1,
         timepicker: true
-    });
+    });*/
     $scope.result={
         starttime:"",
         endtime:""
@@ -104,9 +122,15 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
     whale.removestore("starttime");
     whale.removestore("endtime");
     $scope.timeChangeResult=function(){
+        $scope.result.starttime=$("#starttime").val();
+        $scope.result.endtime=$("#endtime").val();
         var starttime=new Date($scope.result.starttime).getTime();
         var endtime=new Date($scope.result.endtime).getTime();
-        if($scope.result.starttime == ''||$scope.result.endtime == ''){
+        if($scope.result.starttime == ''&&$scope.result.endtime == ''){
+            starttime="";
+            endtime="";
+        }
+        if($scope.result.starttime == ''&&$scope.result.endtime !== ''||$scope.result.starttime !== ''&&$scope.result.endtime == ''){
             $rootScope.errormsg = '请选择开始时间或结束时间';
             $timeout(function() {
                 $rootScope.errormsg = null;
@@ -202,6 +226,8 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
         }
     }
     $scope.exportResults=function(){
+        $scope.result.starttime=$("#starttime").val();
+        $scope.result.endtime=$("#endtime").val();
         var starttime=new Date($scope.result.starttime).getTime();
         var endtime=new Date($scope.result.endtime).getTime();
         if($scope.result.starttime == ''&&$scope.result.endtime != ''){
@@ -259,7 +285,8 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
                     return
                 }, 1500);
             }else{
-                $('#OpenPhotos').attr('src',"http://192.168.100.143:10000/downloadCurrentTaskData?taskid="+whale.store("taskid")+"&orgId="+whale.store("orgId")+"&appId="+whale.store("appid")+"&category="+category1+"&startTime="+starttime+"&endTime="+endtime);
+                //$('#OpenPhotos').attr('src',"http://192.168.100.143:10000/downloadCurrentTaskData?taskid="+whale.store("taskid")+"&orgId="+whale.store("orgId")+"&appId="+whale.store("appid")+"&category="+category1+"&startTime="+starttime+"&endTime="+endtime);
+                $('#OpenPhotos').attr('src',"/downloadCurrentTaskData?taskid="+whale.store("taskid")+"&orgId="+whale.store("orgId")+"&appId="+whale.store("appid")+"&category="+category1+"&startTime="+starttime+"&endTime="+endtime);
                 $rootScope.errormsg = '导出成功';
                 $timeout(function() {
                     $rootScope.errormsg = null;

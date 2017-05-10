@@ -17,13 +17,13 @@
                     <span ng-class="{'aa':overCurrentTask.status=='1','as':overCurrentTask.status=='0','ad':overCurrentTask.status=='2'}">{{ overCurrentTask.status | crawlerstatus}}</span>
                 </div>
                 <div class="zt2">
-                    启用于 {{overCurrentTask.startTime | date:"yyyy-MM-dd HH:mm:ss"}}
+                    开始时间 {{overCurrentTask.startTime | date:"yyyy-MM-dd HH:mm:ss"}}
                 </div>
                 <div class="zt2" ng-if="overCurrentTask.status!='1'">
-                    结束于 {{overCurrentTask.endTime | date:"yyyy-MM-dd HH:mm:ss"}}
+                    结束时间 {{overCurrentTask.endTime | date:"yyyy-MM-dd HH:mm:ss"}}
                 </div>
                 <div class="zt3">
-                    定时运行（每天2:00开始）
+                    定时运行（间隔时间{{overCurrentTask.intervaltime | changeinterval}}）
                 </div>
             </div>
             <div class="set"><a ng-href="#/setup">设置</a></div>
@@ -63,7 +63,7 @@
             <div class="s1"><img src="static/img/overview4.png" alt=""></div>
             <div class="s2">
                 <div class="ss">
-                    <p class="p1">{{overApplyDetail.crawlNum}} <span>个</span></p>
+                    <p class="p1">{{queryApplicationCrawlNum}} <span>个</span></p>
                     <p class="p2">爬虫节点数</p>
                 </div>
             </div>

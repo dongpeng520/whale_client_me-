@@ -529,7 +529,8 @@ whaleModule.directive('taskList',["$rootScope","$http","$timeout",function($root
                             return
                         }, 1500);
                     }else{
-                        $('#OpenPhotos').attr('src',"http://192.168.100.143:10000/downloadHistTaskData?taskid="+taskid+"&fileid="+id);
+                        //$('#OpenPhotos').attr('src',"http://192.168.100.143:10000/downloadHistTaskData?taskid="+taskid+"&fileid="+id);
+                        $('#OpenPhotos').attr('src',"/downloadHistTaskData?taskid="+taskid+"&fileid="+id);
                         //window.location.href="http://192.168.100.143:10081/downloadHistTaskData?taskid="+taskid+"&fileid="+id;
                         $rootScope.errormsg = '下载成功';
                         $timeout(function() {

@@ -101,17 +101,17 @@
       .time2{
         float: left;
         input{
-          width: 160px;
+          width: 180px;
           height: 30px;
           font-size: 14px;
           color: #6ec3fb;
           cursor: pointer;
         }
         #starttime{
-          background: url("../img/starttime.png") #eaf6fe no-repeat 135px center;
+          background: url("../img/starttime.png") #eaf6fe no-repeat 155px center;
         }
         #endtime{
-          background: url("../img/endtime.png") #eaf6fe no-repeat 135px center;
+          background: url("../img/endtime.png") #eaf6fe no-repeat 155px center;
         }
         input::-webkit-input-placeholder {
           color: #6ec3fb;

@@ -102,16 +102,13 @@ whaleModule.filter('changetime', ['$filter', function($filter) {
     return function(second_time) {
         var time = parseInt(second_time) + "秒";
         if( parseInt(second_time )> 60){
-
             var second = parseInt(second_time) % 60;
             var min = parseInt(second_time / 60);
-            time = min + "分" + second + "秒";
-
+            time = min + "分";
             if( min > 60 ){
                 min = parseInt(second_time / 60) % 60;
                 var hour = parseInt( parseInt(second_time / 60) /60 );
-                time = hour + "小时" + min + "分" + second + "秒";
-
+                time = hour + "小时";
                 if( hour > 24 ){
                     hour = parseInt( parseInt(second_time / 60) /60 ) % 24;
                     var day = parseInt( parseInt( parseInt(second_time / 60) /60 ) / 24 );
@@ -176,5 +173,27 @@ whaleModule.filter('fiterflie', ['$filter', function($filter) {
         a[1]=b;
         var c= a.join("_")+").zip";
         return c
+    };
+}]);
+
+
+//用于计算间隔时间
+whaleModule.filter('changeinterval', ['$filter', function($filter) {
+    return function(second_time) {
+        var time = parseInt(second_time) + "秒";
+        if( parseInt(second_time )> 60){
+            var min = parseInt(second_time / 60);
+            time = min + "分";
+
+            if( min > 60 ){
+                var hour = parseInt( parseInt(second_time / 60) /60 );
+                time = hour + "小时";
+                if( hour > 24 ){
+                    var day = parseInt( parseInt( parseInt(second_time / 60) /60 ) / 24 );
+                    time = day + "天";
+                }
+            }
+        }
+        return time;
     };
 }]);
