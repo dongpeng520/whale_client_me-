@@ -1,32 +1,51 @@
 /**
  * Created by Peter on 17/11/2.
  */
-window.whaleModule = angular.module('whaleModule', ['ngRoute']);
-whaleModule.config(['$routeProvider','$locationProvider',function ($routeProvider,$locationProvider) {
-    $routeProvider.
-    when('/', {
+window.whaleModule = angular.module('whaleModule', ['ui.router']);
+whaleModule.config(['$stateProvider','$urlRouterProvider',function ($stateProvider,$urlRouterProvider) {
+    $stateProvider.
+    state('index', {
+        abstract: false,
+        url: '/index',
+        templateUrl: 'static/template/indexhome.html'
+    }).
+    state('index.indexhome', {
+        abstract: false,
+        url: '/indexhome',
+        templateUrl: 'static/template/homeindex.html'
+    }).
+    state('index.whalehome', {
+        abstract: false,
+        url: '/whalehome',
         controller: "HomeController",
         templateUrl: 'static/template/home.html'
     }).
-    when('/overview',{
+    state('whale', {
+        url: '/whale',
+        template: '<div ui-view></div>'
+    }).
+    state('whale.overview', {
+        url: '/overview',
         controller: "OverviewController",
         templateUrl: 'static/template/overview.html'
     }).
-    when('/setup',{
+    state('whale.setup', {
+        url: '/setup',
         controller: "SetupController",
         templateUrl: 'static/template/setup.html'
     }).
-    when('/history',{
+    state('whale.history', {
+        url: '/history',
         controller: "HistoryController",
         templateUrl: 'static/template/history.html'
     }).
-    when('/result',{
+    state('whale.result', {
+        url: '/result',
         controller: "ResultController",
         templateUrl: 'static/template/result.html'
-    }).
-    otherwise({
-        redirectTo: '/'
     });
+    $urlRouterProvider
+        .otherwise('/index/indexhome');
     //$locationProvider.html5Mode(true);
 }]);
 whaleModule.run(['$rootScope','$interval',function($rootScope,$interval){

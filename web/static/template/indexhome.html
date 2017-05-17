@@ -1,0 +1,57 @@
+<div id="home1">
+    <div class="home_header">
+        <div class="layout">
+            <div class="logo">
+                <div class="logo_img">
+                    <img ng-src="static/img/whale.png" alt="">
+                </div>
+            </div>
+            <div class="contain">
+                <a ui-sref-active="active" ui-sref="index.indexhome">首页</a>
+                <a ui-sref-active="active" ui-sref="index.whalehome" href="">鲸鱼爬虫</a>
+                <a ui-sref-active="active" ui-sref="index.whalehome1" href="">鲸鱼API</a>
+            </div>
+            <div class="login" ng-click="openlogin()" ng-if="!username_flag">
+                <div class="login_img"><img src="static/img/login.png" alt=""></div>
+                <div class="login_name"><a href="">登录</a></div>
+            </div>
+            <div class="username" ng-class="{'user_change':user_change}" ng-if="username_flag">
+                <div class="username_fun"><a href="" ng-click="Crawler_close()">用户中心</a></div>
+                <div class="username_img" ng-mouseleave="usernameenter(false)" ng-mouseenter="usernameenter(true)">
+                    <img src="static/img/user.png" alt="">
+                    <div class="username_xin">
+                        <div class="title">
+                            <div class="img">
+                                <img src="static/img/user.png" alt="">
+                            </div>
+                            <div class="name">
+                                <p class="p1" ng-bind="usercount.username"></p>
+                                <p class="p2">这是你使用鲸鱼的第{{usercount.time | timeout}}天</p>
+                            </div>
+                        </div>
+                        <div class="shuju">
+                            <div class="shuju1 bor mar">爬虫应用数<span>{{usercount.appcount}}</span></div>
+                            <div class="shuju1 mar">爬取数据量<span>{{usercount.totalCount |usercount_wan }}</span></div>
+                            <div class="shuju1 bor">爬虫节点数<span>{{usercount.crawlNum}}</span></div>
+                            <div class="shuju1">爬取总耗时<span>{{ usercount.costTime | changeKMG1}}</span></div>
+                            <!--<home-hours creattime="totaltime"></home-hours>-->
+                            <!--<home-kmg creattime="totaltime"></home-kmg>-->
+                            <!--<span>{{nnnnn | changeKMG1}}</span>-->
+                        </div>
+                        <div class="foo">
+                            <div class="foo_user" ng-click="Crawler_close()">用户中心</div>
+                            <div class="foo_out" ng-click="loginout()">退出</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div ui-view></div>
+<div id="footer">
+    <div class="layout">
+        <div class="fot">Copyright © 2017 上海诚数信息科技有限公司版权所有 沪ICP备12010279号</div>
+    </div>
+</div>

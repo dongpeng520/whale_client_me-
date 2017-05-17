@@ -1,0 +1,19 @@
+{
+  "name": "whale_client_me-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongpeng520/whale_client_me-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dongpeng520/whale_client_me-/issues"
+  },
+  "homepage": "https://github.com/dongpeng520/whale_client_me-#readme"
+}
