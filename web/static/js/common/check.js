@@ -103,6 +103,12 @@ var send=function(){
                     showDiv.removeClass('alert-success');
                     showDiv.addClass('alert-danger');
                     showDiv.css('display' , '');
+                }else if(data.code === 10009){
+                    var showDiv = $('#showDiv');
+                    showDiv.text(data.note);
+                    showDiv.removeClass('alert-success');
+                    showDiv.addClass('alert-danger');
+                    showDiv.css('display' , '');
                 }else{
                     var showDiv = $('#showDiv');
                     showDiv.text('网络错误，请稍后重试');

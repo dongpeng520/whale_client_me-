@@ -144,6 +144,13 @@ whaleModule.controller("ResultController",["$scope","$rootScope","$window","$htt
             }, 1500);
             return;
         }
+        if(endtime-$scope.overCurrentTask.startTime<0){
+            $rootScope.errormsg = '本任务还未开始爬取';
+            $timeout(function() {
+                $rootScope.errormsg = null;
+            }, 1500);
+            return;
+        }
         whale.store("starttime",starttime);
         whale.store("endtime",endtime);
         $scope.$broadcast('sendParent_time',starttime,endtime);//监听在子控制器中定义的 时间查询 事件

@@ -209,6 +209,7 @@ whaleModule.directive('detailList',["$http","$rootScope","$timeout",function($ht
     var linkFunction=function(scope,element,attr){
         scope.$on('delivery.request', function (e, req) {
             scope.details_seceld=true;
+            scope.picloading=true;
             $("body").css("overflow","hidden");
             //根据orgId,appId,taskId,dataid品类,.查询具体数据信息
             $http.get("/task/taskcontroller/getCrawlData"+"?accessToken="+whale.store("accessToken"),{
@@ -220,6 +221,9 @@ whaleModule.directive('detailList',["$http","$rootScope","$timeout",function($ht
             }).success(function (data) {
                 if (data.code == 10200) {
                     //scope.details=data.data;
+                    scope.picloading=false;
+                    delete data.data._id;
+                    delete data.data.processStatus;
                     $("#custom-spacing").JSONView(data.data, { collapsed: true, nl2br: true, recursive_collapser: true });
                 }
             }).error(function(data) {

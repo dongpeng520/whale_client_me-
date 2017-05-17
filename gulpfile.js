@@ -56,8 +56,8 @@ gulp.task('webserver', function () {
                     // target: 'http://172.16.8.121:8081',
                     // target:'http://192.168.100.210:8081/',
 
-                    target: 'http://192.168.100.143:10081',
-                    //target: 'http://106.39.181.188:8080',
+                    //target: 'http://192.168.100.143:10000',
+                    target: 'http://106.39.181.188:10000',
                     changeOrigin: true
                 }),
                 proxy('/downloadCurrentTaskData', {
@@ -65,8 +65,8 @@ gulp.task('webserver', function () {
                     // target: 'http://172.16.8.121:8081',
                     // target:'http://192.168.100.210:8081/',
 
-                    target: 'http://192.168.100.143:10081',
-                    //target: 'http://106.39.181.188:8080',
+                    //target: 'http://192.168.100.143:10000',
+                    target: 'http://106.39.181.188:10000',
                     changeOrigin: true
                 })
 
@@ -150,7 +150,7 @@ gulp.task('minify-md5-js', function () {                                //- 创�
 
     // gulp.run("clean_js")
 
-    gulp.src(["web/static/js/libs/*.*"], {base: 'web'})                                 //- 需要处理的css文件，放到一个字符串数组里
+    gulp.src(["web/static/js/libs/*.*","web/static/js/fonts/**/*.*"], {base: 'web'})                                 //- 需要处理的css文件，放到一个字符串数组里
     //.pipe(concat('wap.min.css'))                          //- 合并后的文件名
         //.pipe(uglify())                                      //- 压缩处理成一行
         //.pipe(rev())                                            //- 文件名加MD5后缀
